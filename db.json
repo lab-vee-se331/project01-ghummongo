@@ -1,34 +1,155 @@
 {
-    "events": [
+    "students": [
       {
-        "id": 123,
-        "category": "animal welfare",
-        "title": "Cat Adoption Day",
-        "description": "Find your new feline friend at this event.",
-        "location": "Meow Town",
-        "date": "January 28, 2022",
-        "time": "12:00",
-        "organizer": "Kat Laydee"
+        "name": "John",
+        "surname": "Smith",
+        "studentID": "123456789",
+        "profileImage": "https://example.com/profile_images/john_smith.jpg",
+        "courseList": [
+          "Psychology",
+          "Business Administration",
+          "French"
+        ]
       },
       {
-        "id": 456,
-        "category": "food",
-        "title": "Community Gardening",
-        "description": "Join us as we tend to the community edible plants.",
-        "location": "Flora City",
-        "date": "March 14, 2022",
-        "time": "10:00",
-        "organizer": "Fern Pollin"
+        "name": "Emily",
+        "surname": "Johnson",
+        "studentID": "987654321",
+        "profileImage": "https://example.com/profile_images/emily_johnson.jpg",
+        "courseList": [
+          "Biology",
+          "Environmental Science",
+          "Spanish"
+        ]
       },
       {
-        "id": 789,
-        "category": "sustainability",
-        "title": "Beach Cleanup",
-        "description": "Help pick up trash along the shore.",
-        "location": "Playa Del Carmen",
-        "date": "July 22, 2022",
-        "time": "11:00",
-        "organizer": "Carey Wales"
+        "name": "Michael",
+        "surname": "Brown",
+        "studentID": "456789123",
+        "profileImage": "https://example.com/profile_images/michael_brown.jpg",
+        "courseList": [
+          "Computer Science",
+          "Data Science",
+          "Japanese"
+        ]
+      },
+      {
+        "name": "Sophia",
+        "surname": "Davis",
+        "studentID": "789123456",
+        "profileImage": "https://example.com/profile_images/sophia_davis.jpg",
+        "courseList": [
+          "Anthropology",
+          "Public Health",
+          "Chinese"
+        ]
+      },
+      {
+        "name": "William",
+        "surname": "Miller",
+        "studentID": "321654987",
+        "profileImage": "https://example.com/profile_images/william_miller.jpg",
+        "courseList": [
+          "Physics",
+          "Engineering",
+          "German"
+        ]
+      },
+      {
+        "name": "Olivia",
+        "surname": "Wilson",
+        "studentID": "654987321",
+        "profileImage": "https://example.com/profile_images/olivia_wilson.jpg",
+        "courseList": [
+          "Art History",
+          "Fine Arts",
+          "Italian"
+        ]
+      },
+      {
+        "name": "Ethan",
+        "surname": "Martinez",
+        "studentID": "234567891",
+        "profileImage": "https://example.com/profile_images/ethan_martinez.jpg",
+        "courseList": [
+          "Mathematics",
+          "Statistics",
+          "Russian"
+        ]
+      },
+      {
+        "name": "Ava",
+        "surname": "Taylor",
+        "studentID": "567891234",
+        "profileImage": "https://example.com/profile_images/ava_taylor.jpg",
+        "courseList": [
+          "History",
+          "Archaeology",
+          "Portuguese"
+        ]
+      },
+      {
+        "name": "Liam",
+        "surname": "Anderson",
+        "studentID": "891234567",
+        "profileImage": "https://example.com/profile_images/liam_anderson.jpg",
+        "courseList": [
+          "Literature",
+          "Linguistics",
+          "Swedish"
+        ]
+      }
+    ],
+    "teachers" : [
+      {
+        "name": "Jennifer",
+        "surname": "Smith",
+        "profileImage": "https://example.com/profile_images/jennifer_smith.jpg"
+      },
+      {
+        "name": "Christopher",
+        "surname": "Johnson",
+        "profileImage": "https://example.com/profile_images/christopher_johnson.jpg"
+      },
+      {
+        "name": "Elizabeth",
+        "surname": "Brown",
+        "profileImage": "https://example.com/profile_images/elizabeth_brown.jpg"
+      },
+      {
+        "name": "Matthew",
+        "surname": "Davis",
+        "profileImage": "https://example.com/profile_images/matthew_davis.jpg"
+      },
+      {
+        "name": "Sarah",
+        "surname": "Miller",
+        "profileImage": "https://example.com/profile_images/sarah_miller.jpg"
+      },
+      {
+        "name": "Daniel",
+        "surname": "Wilson",
+        "profileImage": "https://example.com/profile_images/daniel_wilson.jpg"
+      },
+      {
+        "name": "Natalie",
+        "surname": "Martinez",
+        "profileImage": "https://example.com/profile_images/natalie_martinez.jpg"
+      },
+      {
+        "name": "Kevin",
+        "surname": "Taylor",
+        "profileImage": "https://example.com/profile_images/kevin_taylor.jpg"
+      },
+      {
+        "name": "Laura",
+        "surname": "Anderson",
+        "profileImage": "https://example.com/profile_images/laura_anderson.jpg"
+      },
+      {
+        "name": "Jason",
+        "surname": "Wilson",
+        "profileImage": "https://example.com/profile_images/jason_wilson.jpg"
       }
     ]
   }
