@@ -17,7 +17,7 @@ export default {
     // page is number of pages
     return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page)
   },
-  getStudentById(id : number) : Promise<AxiosResponse<StudentItem>>{
+  getStudentByStudentId(id : string) : Promise<AxiosResponse<StudentItem>>{
     return apiClient.get<StudentItem>('students/'+ '?studentId='+id.toString())
   }
 }
