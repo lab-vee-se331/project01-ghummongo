@@ -1,24 +1,69 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type';
-import { ref, type Ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 import StudentService from '../services/StudentService'
 import StudentCard from '@/components/StudentCard.vue';
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import type { AxiosResponse } from 'axios';
+
+const router = useRouter()
 
 const students: Ref<Array<StudentItem>> = ref([])
 
-StudentService.getStudents(6, 1).then((response) => {
+const totalStudent = ref<number>(0)
+
+
+const props = defineProps({
+    page: {
+        type: Number,
+        required: true
+    }
+    ,
+    limit: {
+        type: Number,
+        required: true
+    }
+})
+
+StudentService.getStudents(3, props.page).then((response) => {
     students.value = response.data
+    totalStudent.value = response.headers['x-total-count']
     console.log(students.value)
 
 })
+
+
+onBeforeRouteUpdate((to, from, next) => {
+    const toPage = Number(to.query.page)
+    StudentService.getStudents(3, toPage).then((response: AxiosResponse<StudentItem[]>) => {
+        students.value = response.data
+        totalStudent.value = response.headers['x-total-count']
+        next()
+    }).catch(() => {
+        next({ name: 'NetworkError' })
+    })
+})
+
+const hasNextPage = computed(() => {
+    const totalPages = Math.ceil(totalStudent.value / 3)
+    return props.page.valueOf() < totalPages
+})
+
+
 </script>
 
 <template>
-    <div class="about">
-        <h1>This is an about page</h1>
-    </div>
-
     <StudentCard v-for="student in students" :key="student.studentId" :student="student"></StudentCard>
+    <div class="pagination">
+        <RouterLink :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }" rel="prev" v-if="page != 1"
+            id="page-prev"> Prev
+            Page
+        </RouterLink>
+        <RouterLink :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }" rel="next" v-if="hasNextPage"
+            id="page-next">
+            Next Page
+        </RouterLink>
+    </div>
 </template>
   
 <style></style>
