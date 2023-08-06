@@ -1,55 +1,60 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type';
-import { computed, ref, type Ref } from 'vue'
+import { computed, onMounted, ref, type Ref } from 'vue'
 import StudentService from '../services/StudentService'
 import StudentCard from '@/components/StudentCard.vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import type { AxiosResponse } from 'axios';
+import { useStudentStore } from '@/stores/student';
 
+const studentStore = useStudentStore();
 const router = useRouter()
-
-const students: Ref<Array<StudentItem>> = ref([])
-
+const students = ref<StudentItem[]>([])
 const totalStudent = ref<number>(0)
-
 
 const props = defineProps({
     page: {
         type: Number,
         required: true
-    }
-    ,
+    },
     limit: {
         type: Number,
         required: true
     }
 })
 
-StudentService.getStudents(3, props.page).then((response) => {
-    students.value = response.data
-    totalStudent.value = response.headers['x-total-count']
-    console.log(students.value)
 
+// console.log(props.page, props.limit)
+onMounted(() => {
+    console.log("Hee")
+    students.value = studentStore.getStudents(props.limit, props.page);
+    totalStudent.value = studentStore.getStudentsLength();
 })
 
+// const studentData = ref(studentStore.students)
+
+// watch(studentData, async (newStudents, oldStudents) => {
+//     if (newStudents !== oldStudents) {
+//         students.value = await studentStore.getStudents(3, props.page);
+//         totalStudent.value = students.value.length;
+//     }
+// }, { immediate: true });
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = Number(to.query.page)
-    StudentService.getStudents(3, toPage).then((response: AxiosResponse<StudentItem[]>) => {
-        students.value = response.data
-        totalStudent.value = response.headers['x-total-count']
-        next()
-    }).catch(() => {
-        next({ name: 'NetworkError' })
-    })
+    students.value = studentStore.getStudents(props.limit, toPage);
+    totalStudent.value = studentStore.getStudentsLength();
+
+    next();
 })
 
 const hasNextPage = computed(() => {
-    const totalPages = Math.ceil(totalStudent.value / 3)
+    const totalPages = Math.ceil(totalStudent.value / props.limit)
+    console.log(totalStudent.value, totalPages)
     return props.page.valueOf() < totalPages
 })
 
-
+console.log(hasNextPage.value)
 </script>
 
 <template>

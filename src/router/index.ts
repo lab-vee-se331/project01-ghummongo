@@ -15,7 +15,7 @@ const router = createRouter({
       path: '/students',
       name: 'student-list',
       component: StudentList,
-      props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '2')})
+      props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '3')})
     },
     {
       path: '/teachers',
@@ -66,6 +66,14 @@ const router = createRouter({
 
   ]
 })
+
+router.beforeEach(async (to, from, next) => {
+  const studentStore = useStudentStore()
+  if (studentStore.students.length === 0) {
+    await studentStore.fetchAllStudents();
+  }
+  next();
+});
 
 router.beforeEach(() => {
   NProgress.start()
