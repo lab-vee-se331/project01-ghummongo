@@ -6,27 +6,22 @@ import { ref, type PropType } from 'vue';
 
 
 defineProps({
-    student: {
+    oneStudent: {
         type: Object as PropType<StudentItem>,
         require: true
-    }
+    },
+
+
+
 })
-
-
-
-
-// EventService.getEventById(Number(props.id)).then((response) => {
-//     event.value = response.data
-// }).catch(error => {
-//     console.log(error)
-// })
 
 </script>
 
-<template>
+<template
+>
     <div>
-        <div v-if="student">
-            <span> {{ student?.name }} {{ student?.surname }}</span>
+        <div v-if="oneStudent">
+            <span> {{ oneStudent?.name }} {{ oneStudent?.surname }}</span>
         </div>
 
     </div>

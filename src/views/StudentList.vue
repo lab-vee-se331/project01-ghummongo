@@ -26,7 +26,6 @@ const props = defineProps({
 
 // console.log(props.page, props.limit)
 onMounted(() => {
-    console.log("Hee")
     students.value = studentStore.getStudents(props.limit, props.page);
     totalStudent.value = studentStore.getStudentsLength();
 })
@@ -41,7 +40,9 @@ onMounted(() => {
 // }, { immediate: true });
 
 onBeforeRouteUpdate((to, from, next) => {
-    const toPage = Number(to.query.page)
+    const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
+
+    console.log(props.limit, toPage)
     students.value = studentStore.getStudents(props.limit, toPage);
     totalStudent.value = studentStore.getStudentsLength();
 
@@ -50,11 +51,11 @@ onBeforeRouteUpdate((to, from, next) => {
 
 const hasNextPage = computed(() => {
     const totalPages = Math.ceil(totalStudent.value / props.limit)
-    console.log(totalStudent.value, totalPages)
     return props.page.valueOf() < totalPages
 })
 
-console.log(hasNextPage.value)
+// console.log(typeof studentStore.getStudentById("s1"))
+
 </script>
 
 <template>

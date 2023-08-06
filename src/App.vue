@@ -18,8 +18,8 @@ import { useStudentStore } from './stores/student';
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/students">Students</RouterLink>
-        <RouterLink to="/teachers">Teachers</RouterLink>
+        <RouterLink :to="{ name: 'student-list' }">Students</RouterLink>
+        <RouterLink :to="{ name: 'teacher-list' }">Teachers</RouterLink>
       </nav>
     </div>
   </header>

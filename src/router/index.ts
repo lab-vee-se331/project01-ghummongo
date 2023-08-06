@@ -28,16 +28,15 @@ const router = createRouter({
       component : StudentLayout,
       beforeEnter: (to) => {
         const id =  to.params.id as string
-        const studentStore = useStudentStore()
-        console.log(id)
-        return StudentService.getStudentByStudentId(id)
-        .then((response) => {
-          console.log(response.data[0])
-          if (Array.isArray(response.data) && response.data.length > 0) {
-            studentStore.setStudents(response.data[0]) // Set the first item of the response data array
-          } else {
-          }
-        })
+        const studentStore = useStudentStore().getStudentById(id)
+    console.log(studentStore);
+            
+          // if (Array.isArray(response.data) && response.data.length > 0) {
+          //   studentStore.setStudents(response.data[0]) // Set the first item of the response data array
+          // } else {
+          // }
+        // Save student to route's meta data
+
         // .catch((error) => {
         //   if (error.response && error.response.status === 404) {
         //     return {
@@ -55,11 +54,16 @@ const router = createRouter({
           path: '',
           name: 'student-detail',
           component: StudentDetail,
+          props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
+        
+
         },
         {
           path: 'edit',
           name: 'student-edit',
           component: StudentEdit,
+          props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
+
         },
       ]
     },

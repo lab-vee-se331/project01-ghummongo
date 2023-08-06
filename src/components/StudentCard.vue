@@ -21,22 +21,22 @@ const props = defineProps({
 } -->
 
 <template>
-    <!-- <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }"> -->
-    <div class="student-class">
-        <div class="student-card">
+    <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }">
+        <div class="student-class">
+            <div class="student-card">
 
-            <span> {{ student?.name }} {{ student?.surname }}</span>
+                <span> {{ student?.name }} {{ student?.surname }}</span>
 
 
-            <ul>
-                <li v-for="course in student?.courseList">{{ course }}</li>
-            </ul>
+                <ul>
+                    <li v-for="course in student?.courseList">{{ course }}</li>
+                </ul>
 
-            <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
-                alt="">
+                <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
+                    alt="">
+            </div>
         </div>
-    </div>
-    <!-- </RouterLink> -->
+    </RouterLink>
 </template>
 
 <style scoped>
