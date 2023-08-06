@@ -9,8 +9,8 @@ const router = useRouter()
 import { useStudentStore } from '@/stores/student';
 import { storeToRefs } from 'pinia';
 const store = useStudentStore()
-const student = storeToRefs(store).student
-const studentId = ref(student?.value?.studentId)
+const students = storeToRefs(store).students
+const studentId = ref(students?.value?.studentId)
 
 
 
@@ -18,13 +18,13 @@ const studentId = ref(student?.value?.studentId)
 
 <template>
     <div>
-        <div v-if="student">
-            <h1>{{ student.name }}</h1>
+        <div v-if="students">
+            <h1>{{ students.name }}</h1>
             <div id="nav">
                 <RouterLink :to="{ name: 'student-detail', params: { studentId } }">Details</RouterLink>
                 <RouterLink :to="{ name: 'student-edit', params: { studentId } }">Edit</RouterLink>
             </div>
-            <RouterView :student="student"></RouterView>
+            <RouterView :student="students"></RouterView>
         </div>
     </div>
 </template>

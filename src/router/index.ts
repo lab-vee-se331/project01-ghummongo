@@ -18,7 +18,7 @@ const router = createRouter({
       props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '2')})
     },
     {
-      path: '/teacher',
+      path: '/teachers',
       name: 'teacher-list',
       component: StudentList
     },
@@ -32,11 +32,10 @@ const router = createRouter({
         console.log(id)
         return StudentService.getStudentByStudentId(id)
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data[0])
           if (Array.isArray(response.data) && response.data.length > 0) {
-            studentStore.setStudent(response.data[0]) // Set the first item of the response data array
+            studentStore.setStudents(response.data[0]) // Set the first item of the response data array
           } else {
-            // handle error or empty response here
           }
         })
         // .catch((error) => {
