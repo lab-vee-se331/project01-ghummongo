@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import Sidebar from './components/Sidebar.vue'
 </script>
 
 <template>
-  <header>
+  <Sidebar></Sidebar>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -14,9 +16,11 @@ import { RouterLink, RouterView } from 'vue-router'
         <RouterLink to="/teachers">Teachers</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
-  <RouterView />
+  <div class="p-4 sm:ml-64">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>
