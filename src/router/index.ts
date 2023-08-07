@@ -7,6 +7,7 @@ import StudentDetail from '../views/student/StudentDetail.vue'
 import StudentEdit from '../views/student/StudentEdit.vue'
 // import StudentService from '@/services/StudentService'
 import { useStudentStore } from '@/stores/student'
+import StudentSetting from '../views/StudentSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       path: '/teachers',
       name: 'teacher-list',
       component: StudentList
+    },
+    {
+      path: '/students/setting',
+      name: 'student-setting',
+      component: StudentSetting
     },
     {
 

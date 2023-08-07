@@ -44,7 +44,7 @@ const hasNextPage = computed(() => {
     return props.page.valueOf() < totalPages
 })
 
-// console.log(typeof studentStore.getStudentById("s1"))
+
 </script>
 
 <template>

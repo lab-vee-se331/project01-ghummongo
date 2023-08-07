@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import type { StudentItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:3004',
+  baseURL: import.meta.env.VITE_BASE_URL_STUDENT,
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -12,17 +12,7 @@ const apiClient: AxiosInstance = axios.create({
 })
 
 export default {
-  // getStudents(perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>> {
-  //   // perPage is limit
-  //   // page is number of pages
-  //   return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page)
-  // },
   getStudents(): Promise<AxiosResponse<StudentItem[]>> {
-    // perPage is limit
-    // page is number of pages
-    return apiClient.get<StudentItem[]>('/students')
+    return apiClient.get<StudentItem[]>('')
   },
-  getStudentByStudentId(id : string) : Promise<AxiosResponse<StudentItem>>{
-    return apiClient.get<StudentItem>('students/'+ '?studentId='+id.toString())
-  }
 }

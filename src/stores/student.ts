@@ -19,17 +19,27 @@ export const useStudentStore = defineStore('student', {
 
         getStudentsLength: (state) => () => {
             return state.students.length
-        }
-    },
+        },
+        getAllStudents: (state) => () => {
+            return state.students;
+        },
+    
+    }, 
     actions: {
         addStudent(student: StudentItem) {
-            this.students.push(student);
+            this.students.unshift(student);
         },
         setStudents(students: StudentItem[]) {
             this.students = students;
         },
         deleteStudents() {
             this.students = [];
+        },
+        updateStudent(student: StudentItem) {
+            const index = this.students.findIndex(s => s.studentId === student.studentId);
+            if (index !== -1) {
+                this.students[index] = student;
+            }
         },
         async fetchAllStudents() {
             const response = await StudentService.getStudents();

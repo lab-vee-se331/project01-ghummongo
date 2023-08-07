@@ -5,6 +5,8 @@ export interface StudentItem {
     profileImage: string;
     courseList: string[];
     teacherId: string;
+    comment: string;
+
 }
 
 export interface TeacherItem {
