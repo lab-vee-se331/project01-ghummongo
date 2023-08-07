@@ -23,7 +23,7 @@ const router = createRouter({
       component: StudentList
     },
     {
-      path : '/event/:id',
+      path : '/student/:id',
       name : 'event-layout',
       component : StudentLayout,
       beforeEnter: (to) => {

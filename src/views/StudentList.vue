@@ -30,18 +30,8 @@ onMounted(() => {
     totalStudent.value = studentStore.getStudentsLength();
 })
 
-// const studentData = ref(studentStore.students)
-
-// watch(studentData, async (newStudents, oldStudents) => {
-//     if (newStudents !== oldStudents) {
-//         students.value = await studentStore.getStudents(3, props.page);
-//         totalStudent.value = students.value.length;
-//     }
-// }, { immediate: true });
-
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
-
     console.log(props.limit, toPage)
     students.value = studentStore.getStudents(props.limit, toPage);
     totalStudent.value = studentStore.getStudentsLength();

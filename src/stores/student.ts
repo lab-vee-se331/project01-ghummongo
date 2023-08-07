@@ -10,12 +10,13 @@ export const useStudentStore = defineStore('student', {
         getStudents: (state) => (limit: number, page: number) => {
             const start = (page - 1) * limit;
             const end = start + limit;
-            console.log(state.students.slice(start, end),state.students)
             return state.students.slice(start, end);
         },
+        
         getStudentById: (state) => (id: string) => {
             return state.students.find(student => student.studentId === id);
         },
+
         getStudentsLength: (state) => () => {
             return state.students.length
         }
@@ -27,7 +28,7 @@ export const useStudentStore = defineStore('student', {
         setStudents(students: StudentItem[]) {
             this.students = students;
         },
-        clearStudents() {
+        deleteStudents() {
             this.students = [];
         },
         async fetchAllStudents() {
@@ -35,7 +36,6 @@ export const useStudentStore = defineStore('student', {
             if (response.status === 200) {
                 this.setStudents(response.data);
             } else {
-                // Handle error appropriately
             }
         },
     }
