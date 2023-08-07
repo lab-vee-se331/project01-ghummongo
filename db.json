@@ -16,7 +16,7 @@
       "name": "Emily",
       "surname": "Johnson",
       "studentId": "s2",
-      "profileImage": "https://example.com/profile_images/emily_johnson.jpg",
+      "profileImage": "https://gencraft.ai/p/kCIUON",
       "courseList": [
         "Biology",
         "Environmental Science",
@@ -28,7 +28,7 @@
       "name": "Michael",
       "surname": "Brown",
       "studentId": "s3",
-      "profileImage": "https://example.com/profile_images/michael_brown.jpg",
+      "profileImage": "https://gencraft.ai/p/epoUzt",
       "courseList": [
         "Computer Science",
         "Data Science",
@@ -40,7 +40,7 @@
       "name": "Sophia",
       "surname": "Davis",
       "studentId": "s4",
-      "profileImage": "https://example.com/profile_images/sophia_davis.jpg",
+      "profileImage": "https://gencraft.ai/p/j0WYVS",
       "courseList": [
         "Anthropology",
         "Public Health",
@@ -52,7 +52,7 @@
       "name": "William",
       "surname": "Miller",
       "studentId": "s5",
-      "profileImage": "https://example.com/profile_images/william_miller.jpg",
+      "profileImage": "https://gencraft.ai/p/n3j1NH",
       "courseList": [
         "Physics",
         "Engineering",
@@ -64,7 +64,7 @@
       "name": "Olivia",
       "surname": "Wilson",
       "studentId": "s6",
-      "profileImage": "https://example.com/profile_images/olivia_wilson.jpg",
+      "profileImage": "https://gencraft.ai/p/HyZwgs",
       "courseList": [
         "Art History",
         "Fine Arts",
@@ -76,7 +76,7 @@
       "name": "Ethan",
       "surname": "Martinez",
       "studentId": "s7",
-      "profileImage": "https://example.com/profile_images/ethan_martinez.jpg",
+      "profileImage": "https://gencraft.ai/p/O4P6aj",
       "courseList": [
         "Mathematics",
         "Statistics",
@@ -88,7 +88,7 @@
       "name": "Ava",
       "surname": "Taylor",
       "studentId": "s8",
-      "profileImage": "https://example.com/profile_images/ava_taylor.jpg",
+      "profileImage": "https://gencraft.ai/p/Svx0vZ",
       "courseList": [
         "History",
         "Archaeology",
@@ -100,7 +100,7 @@
       "name": "Liam",
       "surname": "Anderson",
       "studentId": "s9",
-      "profileImage": "https://example.com/profile_images/liam_anderson.jpg",
+      "profileImage": "https://gencraft.ai/p/gTPRtC",
       "courseList": [
         "Literature",
         "Linguistics",
@@ -114,13 +114,13 @@
       "teacherId": "t1",
       "name": "Jennifer",
       "surname": "Smith",
-      "profileImage": "https://example.com/profile_images/jennifer_smith.jpg"
+      "profileImage": "https://gencraft.ai/p/5TRifU"
     },
     {
       "teacherId": "t2",
       "name": "Christopher",
       "surname": "Johnson",
-      "profileImage": "https://example.com/profile_images/christopher_johnson.jpg"
+      "profileImage": "https://gencraft.ai/p/rUhqJP"
     },
     {
       "teacherId": "t3",
@@ -132,37 +132,37 @@
       "teacherId": "t4",
       "name": "Matthew",
       "surname": "Davis",
-      "profileImage": "https://example.com/profile_images/matthew_davis.jpg"
+      "profileImage": "https://gencraft.ai/p/YbYohS"
     },
     {
       "teacherId": "t5",
       "name": "Sarah",
       "surname": "Miller",
-      "profileImage": "https://example.com/profile_images/sarah_miller.jpg"
+      "profileImage": "https://gencraft.ai/p/GP9l7o"
     },
     {
       "teacherId": "t6",
       "name": "Daniel",
       "surname": "Wilson",
-      "profileImage": "https://example.com/profile_images/daniel_wilson.jpg"
+      "profileImage": "https://gencraft.ai/p/fvyVUt"
     },
     {
       "teacherId": "t7",
       "name": "Natalie",
       "surname": "Martinez",
-      "profileImage": "https://example.com/profile_images/natalie_martinez.jpg"
+      "profileImage": "https://gencraft.ai/p/6mVGgo"
     },
     {
       "teacherId": "t8",
       "name": "Kevin",
       "surname": "Taylor",
-      "profileImage": "https://example.com/profile_images/kevin_taylor.jpg"
+      "profileImage": "https://gencraft.ai/p/pYdcsJ"
     },
     {
       "teacherId": "t9",
       "name": "Laura",
       "surname": "Anderson",
-      "profileImage": "https://example.com/profile_images/laura_anderson.jpg"
+      "profileImage": "https://gencraft.ai/p/KYWSx7"
     }
   ]
 }
