@@ -1,21 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StudentList from '../views/StudentList.vue'
 import NProgress from 'nprogress'
+import HomePage from '../views/HomeView.vue'
 import StudentLayout from '../views/StudentLayout.vue'
 import StudentDetail from '../views/student/StudentDetail.vue'
 import StudentEdit from '../views/student/StudentEdit.vue'
-import StudentService from '@/services/StudentService'
+// import StudentService from '@/services/StudentService'
 import { useStudentStore } from '@/stores/student'
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'home-page',
+      component: HomePage
+    },
+    {
       path: '/students',
       name: 'student-list',
       component: StudentList,
-      props : (route) => ({page: parseInt(route.query?.page as string || '1'),limit: parseInt(route.query?.limit as string || '3')})
+      props: (route) => ({
+        page: parseInt((route.query?.page as string) || '1'),
+        limit: parseInt((route.query?.limit as string) || '5')
+      })
     },
     {
       path: '/teachers',
@@ -23,67 +31,46 @@ const router = createRouter({
       component: StudentList
     },
     {
-      path : '/event/:id',
-      name : 'event-layout',
-      component : StudentLayout,
+      path: '/event/:id',
+      name: 'event-layout',
+      component: StudentLayout,
       beforeEnter: (to) => {
-        const id =  to.params.id as string
+        const id = to.params.id as string
         const studentStore = useStudentStore().getStudentById(id)
-    console.log(studentStore);
-            
-          // if (Array.isArray(response.data) && response.data.length > 0) {
-          //   studentStore.setStudents(response.data[0]) // Set the first item of the response data array
-          // } else {
-          // }
-        // Save student to route's meta data
-
-        // .catch((error) => {
-        //   if (error.response && error.response.status === 404) {
-        //     return {
-        //       name : '404-resource'
-        //       ,params: { resource : 'event'}
-        //     }
-        //   } else {
-        //     return { name : 'network-error'}
-        //   }
-        // })
-      }
-      ,
-      children : [
+        console.log(studentStore)
+      },
+      children: [
         {
           path: '',
           name: 'student-detail',
+
           component: StudentDetail,
           props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
-        
-
         },
         {
           path: 'edit',
           name: 'student-edit',
           component: StudentEdit,
           props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
-
-        },
+        }
       ]
-    },
-
+    }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
   const studentStore = useStudentStore()
   if (studentStore.students.length === 0) {
-    await studentStore.fetchAllStudents();
+    await studentStore.fetchAllStudents()
   }
-  next();
-});
+  next()
+})
 
 router.beforeEach(() => {
   NProgress.start()
-  })
-  
-  router.afterEach(() => {
-    NProgress.done()
-  })
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})
 export default router

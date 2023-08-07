@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useStudentStore } from './stores/student';
-
-// const studentStore = useStudentStore();
-
-// onMounted(async () => {
-//   if (studentStore.students.length === 0) {
-//     await studentStore.fetchAllStudents();
-//   }
-// });
+import { RouterLink, RouterView } from 'vue-router'
+import Sidebar from './components/Sidebar.vue'
 </script>
+
 <template>
-  <header>
+  <Sidebar></Sidebar>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
@@ -22,9 +18,11 @@ import { useStudentStore } from './stores/student';
         <RouterLink :to="{ name: 'teacher-list' }">Teachers</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
-  <RouterView />
+  <div class="p-4 sm:ml-64">
+    <RouterView />
+  </div>
 </template>
 
 <style scoped>

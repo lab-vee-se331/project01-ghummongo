@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { StudentItem } from '@/type';
-import type { PropType } from 'vue';
+import type { StudentItem } from '@/type'
+import type { PropType } from 'vue'
 const props = defineProps({
-    student: {
-        type: Object as PropType<StudentItem>
-        , require: true
-    }
+  student: {
+    type: Object as PropType<StudentItem>,
+    require: true
+  }
 })
 
 
@@ -21,47 +21,47 @@ const props = defineProps({
 } -->
 
 <template>
-    <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }">
-        <div class="student-class">
-            <div class="student-card">
+  <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }">
+    <div class="student-class">
+      <div class="student-card">
+        <span> {{ student?.name }} {{ student?.surname }}</span>
 
-                <span> {{ student?.name }} {{ student?.surname }}</span>
+        <ul>
+          <li v-for="course in student?.courseList">{{ course }}</li>
+        </ul>
 
-
-                <ul>
-                    <li v-for="course in student?.courseList">{{ course }}</li>
-                </ul>
-
-                <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
-                    alt="">
-            </div>
-        </div>
-    </RouterLink>
+        <img
+          src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
+          alt=""
+        />
+      </div>
+    </div>
+  </RouterLink>
 </template>
 
 <style scoped>
 .student-card {
-    padding: 20px;
-    width: 250px;
-    cursor: pointer;
-    border: 1px solid #39495c;
-    margin-bottom: 18px;
+  padding: 20px;
+  width: 250px;
+  cursor: pointer;
+  border: 1px solid #39495c;
+  margin-bottom: 18px;
 }
 
 .student-card:hover {
-    transform: scale(1.01);
-    box-shadow: 0 3px 12px 0 rgb(0, 0, 0, 0.2);
+  transform: scale(1.01);
+  box-shadow: 0 3px 12px 0 rgb(0, 0, 0, 0.2);
 }
 
 .student-link {
-    color: #2c3e50;
-    text-decoration: none;
+  color: #2c3e50;
+  text-decoration: none;
 }
 
 .student-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 </style>
