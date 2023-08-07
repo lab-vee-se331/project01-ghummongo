@@ -10,19 +10,23 @@ const ToggleMenu = () => {
 </script>
 
 <template>
+  <!-- <button class="fixed top-8 -left-4 rounded-lg bg-gray-800 text-gray-500 px-4 py-2" @click="isExpanded == true">
+    <font-awesome-icon icon="arrow-right" />
+  </button> -->
   <aside
-    :class="`fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 ${!isExpanded && 'not-expanded'}`"
+    :class="`fixed top-0 left-0 z-40 w-64 h-screen ${!isExpanded && 'not-expanded'}`"
     aria-label="Sidebar"
   >
+  <!-- transition-transform -translate-x-full sm:translate-x-0 -->
     <div :class="`h-full px-6 py-8 overflow-y-auto bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
       <div class="flex items-center justify-between pl-2.5 mb-5">
         <RouterLink to="/" class="flex">
           <img
             src="https://api.logo.com/api/v2/images?logo=logo_4e60f17a-fda1-4731-bdee-b9323c05a05a&format=webp&margins=0&quality=60&width=500&background=transparent&u=1691332226"
-            class="h-4 mr-3 sm:h-7"
+            class="h-4 mr-3"
             alt="Flowbite Logo"
           />
-          <span class="self-center text-xl font-semibold whitespace-nowrap">Ghum</span>
+          <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Ghum</span>
         </RouterLink>
         <button class="px-2.5 py-0.5 rounded bg-gray-800" @click="ToggleMenu">
           <font-awesome-icon icon="arrow-left" />
@@ -66,7 +70,7 @@ const ToggleMenu = () => {
               <span class="ml-3 text-sm">Settings</span>
             </div>
             <button class="px-2.5 py-0.5">
-              <font-awesome-icon icon="caret-down" />
+              <!-- <font-awesome-icon icon="caret-down" /> -->
             </button>
           </RouterLink>
           <div class="pt-2 pl-4">
@@ -80,7 +84,7 @@ const ToggleMenu = () => {
               </li>
               <li>
                 <RouterLink
-                  :to="{ name: 'student-setting' }"
+                  :to="{ name: 'teacher-list' }"
                   class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white"
                   >Teachers</RouterLink
                 >
@@ -137,6 +141,11 @@ const ToggleMenu = () => {
       </ul>
     </div>
   </aside>
+
+  <div :class="`smooth-transition p-4 ${isExpanded ? 'sm:ml-64' : 'sm:ml-16'}`">
+    <RouterView />
+  </div>
+  
 </template>
 
 <style scoped>
@@ -146,10 +155,10 @@ a.router-link-active {
 }
 
 .not-expanded {
-  width: calc(2rem + 32px);
+  width: 4rem;
 }
 
-aside {
+aside, .smooth-transition {
   transition: 0.2s ease-out;
 }
 </style>
