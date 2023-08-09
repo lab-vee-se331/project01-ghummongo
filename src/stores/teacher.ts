@@ -1,6 +1,6 @@
 import type { TeacherItem } from "@/type";
 import { defineStore } from "pinia";
-import teacherService from "../services/TeacherService";
+import TeacherService from "../services/TeacherService";
 
 export const useTeacherStore = defineStore('teacher', {
     state: () => ({
