@@ -13,7 +13,7 @@ import TeacherList from '../views/TeacherList.vue'
 import TeacherLayout from '../views/TeacherLayout.vue'
 import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 import { useTeacherStore } from '@/stores/teacher'
-import TeacherSetting from '../views/TeacherSetting.vue'
+// import TeacherSetting from '../views/TeacherSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,15 +31,16 @@ const router = createRouter({
         page: parseInt((route.query?.page as string) || '1'),
         limit: parseInt((route.query?.limit as string) || '5')
       })
-    },{
-      path: '/teacher',
-      name: 'teacher-list',
-      component: TeacherList,
-      props: (route) => ({
-        page: parseInt((route.query?.page as string) || '1'),
-        limit: parseInt((route.query?.limit as string) || '5')
-      })
     },
+    // {
+    //   path: '/teacher',
+    //   name: 'teacher-list',
+    //   component: TeacherList,
+    //   props: (route) => ({
+    //     page: parseInt((route.query?.page as string) || '1'),
+    //     limit: parseInt((route.query?.limit as string) || '5')
+    //   })
+    // },
     {
       path: '/teachers',
       name: 'teacher-list',
@@ -49,11 +50,12 @@ const router = createRouter({
       path: '/students/setting',
       name: 'student-setting',
       component: StudentSetting
-    }, {
-      path: '/teacher/setting',
-      name: 'teacher-setting',
-      component: TeacherSetting
-    },
+    }, 
+    // {
+    //   path: '/teacher/setting',
+    //   name: 'teacher-setting',
+    //   component: TeacherSetting
+    // },
     {
       path : '/student/:id',
       name : 'student-layout',

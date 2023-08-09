@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type TeacherItem} from '@/type'
+import { type TeacherItem } from '@/type'
 import { computed, onMounted, ref, type Ref } from 'vue'
 import TeacherService from '../services/TeacherService'
 import TeacherCard from '@/components/TeacherCard.vue'
@@ -26,14 +26,14 @@ const props = defineProps({
 // console.log(props.page, props.limit)
 onMounted(() => {
     teachers.value = teacherStore.getTeachers(props.limit, props.page)
-    totalTeacher.value = teacherStore.getTeacherLength()
+    totalTeacher.value = teacherStore.getTeachersLength()
 })
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
     console.log(props.limit, toPage)
     teachers.value = teacherStore.getTeachers(props.limit, toPage);
-    totalTeacher.value = teacherStore.getTeacherLength();
+    totalTeacher.value = teacherStore.getTeachersLength();
 
 
     next()
@@ -46,7 +46,6 @@ const hasNextPage = computed(() => {
 
 
 </script>
-
 
 <template>
     <main class="flex flex-col items-center justify-center">
@@ -65,3 +64,5 @@ const hasNextPage = computed(() => {
         </div>
     </main>
 </template>
+
+<style></style>

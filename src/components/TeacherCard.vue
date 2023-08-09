@@ -2,7 +2,7 @@
 import type { TeacherItem } from '@/type'
 import type { PropType } from 'vue'
 const props = defineProps({
-  student: {
+  teacher: {
     type: Object as PropType<TeacherItem>,
     require: true
   }

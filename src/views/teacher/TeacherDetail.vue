@@ -2,7 +2,7 @@
 import type { Ref } from 'vue'
 import type { TeacherItem } from '@/type';
 import { ref, type PropType } from 'vue';
-// import TeacherService from '@/services/EventService';
+// import StudentService from '@/services/EventService';
 
 
 defineProps({

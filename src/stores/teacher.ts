@@ -17,7 +17,7 @@ export const useTeacherStore = defineStore('teacher', {
             return state.teachers.find(teacher => teacher.teacherId === id);
         },
 
-        getTeacherLength: (state) => () => {
+        getTeachersLength: (state) => () => {
             return state.teachers.length
         },
         getAllTeachers: (state) => () => {
@@ -34,12 +34,6 @@ export const useTeacherStore = defineStore('teacher', {
         },
         deleteTeachers() {
             this.teachers = [];
-        },
-        updateTeacher(teacher: TeacherItem) {
-            const index = this.teachers.findIndex(t => t.teacherId === teacher.teacherId);
-            if (index !== -1) {
-                this.teachers[index] = teacher;
-            }
         },
         async fetchAllTeachers() {
             const response = await TeacherService.getTeachers();
