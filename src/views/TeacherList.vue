@@ -29,26 +29,26 @@ onMounted(() => {
     totalTeacher.value = teacherStore.getTeachersLength()
 })
 
-onBeforeRouteUpdate((to, from, next) => {
-    const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
-    console.log(props.limit, toPage)
-    teachers.value = teacherStore.getTeachers(props.limit, toPage);
-    totalTeacher.value = teacherStore.getTeachersLength();
+// onBeforeRouteUpdate((to, from, next) => {
+//     const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
+//     console.log(props.limit, toPage)
+//     teachers.value = teacherStore.getTeachers(props.limit, toPage);
+//     totalTeacher.value = teacherStore.getTeachersLength();
 
 
-    next()
-})
+//     next()
+// })
 
-const hasNextPage = computed(() => {
-    const totalPages = Math.ceil(totalTeacher.value / props.limit)
-    return props.page.valueOf() < totalPages
-})
+// const hasNextPage = computed(() => {
+//     const totalPages = Math.ceil(totalTeacher.value / props.limit)
+//     return props.page.valueOf() < totalPages
+// })
 
 
 </script>
 
 <template>
-    <main class="flex flex-col items-center justify-center">
+    <!-- <main class="flex flex-col items-center justify-center">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             <TeacherCard v-for="teacher in teachers" :key="teacher.teacherId" :teacher="teacher"></TeacherCard>
         </div>
@@ -62,7 +62,7 @@ const hasNextPage = computed(() => {
                 Next Page
             </RouterLink>
         </div>
-    </main>
+    </main> -->
 </template>
 
 <style></style>

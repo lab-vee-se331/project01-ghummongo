@@ -9,7 +9,8 @@ import StudentEdit from '../views/student/StudentEdit.vue'
 import { useStudentStore } from '@/stores/student'
 import StudentSetting from '../views/StudentSetting.vue'
 
-import TeacherList from '../views/StudentList.vue'
+import TeacherList from '../views/TeacherList.vue'
+import { useTeacherStore } from '@/stores/teacher'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +32,11 @@ const router = createRouter({
     {
       path: '/teachers',
       name: 'teacher-list',
-      component: StudentList
+      component: TeacherList,
+      props: (route) => ({
+        page: parseInt((route.query?.page as string) || '1'),
+        limit: parseInt((route.query?.limit as string) || '5')
+      })
     },
     {
       path: '/students/setting',
@@ -73,6 +78,11 @@ router.beforeEach(async (to, from, next) => {
   if (studentStore.students.length === 0) {
     await studentStore.fetchAllStudents()
   }
+  const teacherStore = useTeacherStore()
+  if (teacherStore.teachers.length === 0) {
+    await teacherStore.fetchAllTeachers()
+  }
+
   next()
 })
 

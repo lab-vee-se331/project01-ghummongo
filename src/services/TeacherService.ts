@@ -12,7 +12,7 @@ const apiClient: AxiosInstance = axios.create({
 })
 
 export default {
-  getStudents(): Promise<AxiosResponse<TeacherItem[]>> {
+  getTeachers(): Promise<AxiosResponse<TeacherItem[]>> {
     return apiClient.get<TeacherItem[]>('')
   },
 }
