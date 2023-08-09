@@ -43,7 +43,7 @@ const router = createRouter({
     {
       path: '/teachers',
       name: 'teacher-list',
-      component: StudentList
+      component: TeacherList
     },
     {
       path: '/students/setting',
@@ -104,8 +104,12 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const studentStore = useStudentStore()
+  const teacherStore = useTeacherStore()
   if (studentStore.students.length === 0) {
     await studentStore.fetchAllStudents()
+  }
+  if (teacherStore.teachers.length === 0) {
+    await teacherStore.fetchAllTeachers()
   }
   next()
 })
