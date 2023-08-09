@@ -23,7 +23,7 @@ const ToggleMenu = () => {
         <RouterLink to="/" class="flex">
           <img
             src="https://api.logo.com/api/v2/images?logo=logo_4e60f17a-fda1-4731-bdee-b9323c05a05a&format=webp&margins=0&quality=60&width=500&background=transparent&u=1691332226"
-            class="h-4 mr-3"
+            class="h-7 mr-3"
             alt="Flowbite Logo"
           />
           <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Ghum</span>
@@ -142,7 +142,7 @@ const ToggleMenu = () => {
     </div>
   </aside>
 
-  <div :class="`smooth-transition p-4 ${isExpanded ? 'sm:ml-64' : 'sm:ml-16'}`">
+  <div :class="`smooth-transition p-4 ${isExpanded ? 'sm:ml-64' : 'ml-16'}`">
     <RouterView />
   </div>
   
