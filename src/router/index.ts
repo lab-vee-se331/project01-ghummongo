@@ -8,10 +8,12 @@ import StudentEdit from '../views/student/StudentEdit.vue'
 // import StudentService from '@/services/StudentService'
 import { useStudentStore } from '@/stores/student'
 import StudentSetting from '../views/StudentSetting.vue'
+
 import TeacherList from '../views/TeacherList.vue'
 import TeacherLayout from '../views/TeacherLayout.vue'
 import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 import { useTeacherStore } from '@/stores/teacher'
+import TeacherSetting from '../views/TeacherSetting.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,20 +31,32 @@ const router = createRouter({
         page: parseInt((route.query?.page as string) || '1'),
         limit: parseInt((route.query?.limit as string) || '5')
       })
+    },{
+      path: '/teacher',
+      name: 'teacher-list',
+      component: TeacherList,
+      props: (route) => ({
+        page: parseInt((route.query?.page as string) || '1'),
+        limit: parseInt((route.query?.limit as string) || '5')
+      })
     },
     {
       path: '/teachers',
       name: 'teacher-list',
-      component: TeacherList
+      component: StudentList
     },
     {
       path: '/students/setting',
       name: 'student-setting',
       component: StudentSetting
+    }, {
+      path: '/teacher/setting',
+      name: 'teacher-setting',
+      component: TeacherSetting
     },
     {
       path : '/student/:id',
-      name : 'event-layout',
+      name : 'student-layout',
       component : StudentLayout,
 
       beforeEnter: (to) => {
@@ -65,10 +79,9 @@ const router = createRouter({
           props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
         }
       ]
-    },
-    {
-      path : '/teacher/:id',
-      name : 'event-layout',
+    }, {
+      path : '/teachers/:id',
+      name : 'teacher-layout',
       component : TeacherLayout,
 
       beforeEnter: (to) => {
@@ -82,8 +95,8 @@ const router = createRouter({
           name: 'teacher-detail',
 
           component: TeacherDetail,
-          props: (route) => ({ oneTeacher: useTeacherStore().getTeacherById(route.params.id) })
-        }
+          props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
+        },
       ]
     }
   ]
@@ -91,17 +104,11 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const studentStore = useStudentStore()
-  const teacherStore = useTeacherStore()
   if (studentStore.students.length === 0) {
     await studentStore.fetchAllStudents()
   }
-    if (teacherStore.teachers.length === 0) {
-        await teacherStore.fetchAllTeachers()
-  }
   next()
 })
-
-
 
 router.beforeEach(() => {
   NProgress.start()
