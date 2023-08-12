@@ -11,6 +11,8 @@ import StudentSetting from '../views/StudentSetting.vue'
 
 import TeacherList from '../views/TeacherList.vue'
 import { useTeacherStore } from '@/stores/teacher'
+import TeacherLayout from '../views/TeacherLayout.vue'
+import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,7 +46,6 @@ const router = createRouter({
       component: StudentSetting
     },
     {
-
       path : '/student/:id',
       name : 'event-layout',
       component : StudentLayout,
@@ -69,7 +70,30 @@ const router = createRouter({
           props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
         }
       ]
-    }
+    },
+
+    //error path teacher
+    
+    // {
+    //   path : '/teacher/:id',
+    //   name : 'event-layout',
+    //   component : TeacherLayout,
+
+    //   beforeEnter: (to) => {
+    //     const id = to.params.id as string
+    //     const teacherStore = useTeacherStore().getTeacherById(id)
+    //     console.log(teacherStore)
+    //   },
+    //   children: [
+    //     {
+    //       path: '',
+    //       name: 'teacher-detail',
+
+    //       component: TeacherDetail,
+    //       props: (route) => ({ oneTeacher: useTeacherStore().getTeacherById(route.params.id) })
+    //     }
+    //   ]
+    // },
   ]
 })
 
