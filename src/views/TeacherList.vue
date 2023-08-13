@@ -48,7 +48,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <!-- <main class="flex flex-col items-center justify-center">
+    <main class="flex flex-col items-center justify-center">
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
             <TeacherCard v-for="teacher in teachers" :key="teacher.teacherId" :teacher="teacher"></TeacherCard>
         </div>
@@ -62,7 +62,7 @@ onMounted(() => {
                 Next Page
             </RouterLink>
         </div>
-    </main> -->
+    </main>
 </template>
 
 <style></style>

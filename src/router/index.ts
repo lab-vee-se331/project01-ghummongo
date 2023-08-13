@@ -14,6 +14,7 @@ import { useTeacherStore } from '@/stores/teacher'
 import TeacherLayout from '../views/TeacherLayout.vue'
 import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -72,28 +73,28 @@ const router = createRouter({
       ]
     },
 
-    //error path teacher
-    
-    // {
-    //   path : '/teacher/:id',
-    //   name : 'event-layout',
-    //   component : TeacherLayout,
+    //path teacher
+   {
+  path : '/teacher/:id',
+  name : 'event-layout',
+  component : TeacherLayout,
 
-    //   beforeEnter: (to) => {
-    //     const id = to.params.id as string
-    //     const teacherStore = useTeacherStore().getTeacherById(id)
-    //     console.log(teacherStore)
-    //   },
-    //   children: [
-    //     {
-    //       path: '',
-    //       name: 'teacher-detail',
+  beforeEnter: (to) => {
+    const id = to.params.id as string
+    const teacherStore = useTeacherStore().getTeacherById(id)
+    console.log(teacherStore)
+  },
+  children: [
+    {
+      path: '',
+      name: 'teacher-detail',
 
-    //       component: TeacherDetail,
-    //       props: (route) => ({ oneTeacher: useTeacherStore().getTeacherById(route.params.id) })
-    //     }
-    //   ]
-    // },
+      component: TeacherDetail,
+      props: (route) => ({ oneTeacher: useTeacherStore().getTeacherById(route.params.id) })
+    }
+  ]
+},
+
   ]
 })
 
@@ -107,8 +108,9 @@ router.beforeEach(async (to, from, next) => {
     await teacherStore.fetchAllTeachers()
   }
 
-  next()
+  next() // เพิ่มบรรทัดนี้
 })
+
 
 router.beforeEach(() => {
   NProgress.start()
