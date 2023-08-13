@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type'
 import { computed, onMounted, ref, type Ref } from 'vue'
-import StudentService from '../services/StudentService'
 import StudentCard from '@/components/StudentCard.vue'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import type { AxiosResponse } from 'axios'

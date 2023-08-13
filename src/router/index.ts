@@ -10,21 +10,25 @@ import NotFoundView from "@/views/NotFoundView.vue"
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 
 // ----- Student -----
-import StudentList from '@/views/student/StudentList.vue'
-import StudentLayout from '@/views/student/StudentLayout.vue'
-import StudentDetail from '@/views/student/StudentDetail.vue'
-import StudentEdit from '@/views/student/StudentEdit.vue'
-import StudentSetting from '@/views/setting/StudentSetting.vue'
+import { 
+  StudentList, StudentLayout, StudentDetail, StudentEdit 
+} from '@/views/student';
 
 // ----- Teacher -----
-import TeacherList from '@/views/teacher/TeacherList.vue'
-import TeacherLayout from '@/views/teacher/TeacherLayout.vue'
-import TeacherDetail from '@/views/teacher/TeacherDetail.vue'
-import TeacherSetting from '@/views/setting/TeacherSetting.vue'
+import {
+  TeacherList, TeacherLayout, TeacherDetail
+} from '@/views/teacher';
 
-// ----- Store -----
+// ----- Setting -----
+import {
+  StudentSetting, TeacherSetting
+} from '@/views/setting';
+
+// ----- Store & Service-----
 import { useTeacherStore } from '@/stores/teacher'
 import { useStudentStore } from '@/stores/student'
+import StudentService from '../services/StudentService'
+
 
 
 const router = createRouter({
@@ -60,25 +64,31 @@ const router = createRouter({
       beforeEnter: (to) => {
         const id = to.params.id as string
       useStudentStore().getStudentById(id)
-    .then(student => {
-    })
     .catch(error => {
         if (error.status && error.status === 404) {
             router.push({
                 name: '404-resource',
-                params: { resource: 'student' }
+                params: { resource: 'student'}
             });
-        } else {
-            // Handle other errors
-            router.push({ name: 'network-error' });
-        }
+        } 
     });
+    if (!navigator.onLine ) {
+      router.push({ name: 'network-error' });
+  }
+    // useStudentStore().getStudentById(id)
+    // .catch(error => {
+    //  if (error.response && error.response.status === 404) {
+    //         router.push({
+    //             name: '404-resource',
+    //             params: { resource: 'student', id : id }
+    //         });
+    //     } 
+    // });
       },
       children: [
         {
           path: '',
           name: 'student-detail',
-
           component: StudentDetail,
         },
         {
@@ -114,17 +124,12 @@ const router = createRouter({
       beforeEnter: (to) => {
         const id = to.params.id as string;
         useTeacherStore().getTeacherById(id)
-          .then(teacher => {
-          })
           .catch(error => {
             if (error.status && error.status === 404) {
                 router.push({
                     name: '404-resource',
                     params: { resource: 'teacher' }
                 });
-            } else {
-                // Handle other errors
-                router.push({ name: 'network-error' });
             }
           });
       },
@@ -163,21 +168,20 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  const studentStore = useStudentStore()
+  NProgress.start();
+
+  const studentStore = useStudentStore();
   if (studentStore.students.length === 0) {
-    await studentStore.fetchAllStudents()
+      await studentStore.fetchAllStudents();
   }
-  const teacherStore = useTeacherStore()
+
+  const teacherStore = useTeacherStore();
   if (teacherStore.teachers.length === 0) {
-    await teacherStore.fetchAllTeachers()
+      await teacherStore.fetchAllTeachers();
   }
-  next()
-})
 
-
-router.beforeEach(() => {
-  NProgress.start()
-})
+  next();
+});
 
 router.afterEach(() => {
   NProgress.done()
