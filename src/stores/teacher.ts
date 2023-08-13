@@ -14,7 +14,17 @@ export const useTeacherStore = defineStore('teacher', {
         },
         
         getTeacherById: (state) => (id: string) => {
-            return state.teachers.find(teacher => teacher.teacherId === id);
+            return new Promise<TeacherItem | undefined>((resolve, reject) => {
+                const teacher = state.teachers.find(teacher => teacher.teacherId === id);
+                if (teacher) {
+                    resolve(teacher);
+                } else {
+                    const error = new Error('Teacher not found');
+                    // Custom status for the error
+                    (error as any).status = 404;
+                    reject(error);
+                }
+            });
         },
 
         getTeachersLength: (state) => () => {

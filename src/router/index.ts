@@ -1,18 +1,30 @@
+// ----- Package -----
 import { createRouter, createWebHistory } from 'vue-router'
-import StudentList from '../views/StudentList.vue'
 import NProgress from 'nprogress'
-import HomePage from '../views/HomeView.vue'
-import StudentLayout from '../views/StudentLayout.vue'
-import StudentDetail from '../views/student/StudentDetail.vue'
-import StudentEdit from '../views/student/StudentEdit.vue'
-// import StudentService from '@/services/StudentService'
-import { useStudentStore } from '@/stores/student'
-import StudentSetting from '../views/StudentSetting.vue'
 
-import TeacherList from '../views/TeacherList.vue'
+// ----- Home -----
+import HomePage from '@/views/HomeView.vue'
+
+// ----- Event Handling -----
+import NotFoundView from "@/views/NotFoundView.vue"
+import NetworkErrorView from '@/views/NetworkErrorView.vue'
+
+// ----- Student -----
+import StudentList from '@/views/student/StudentList.vue'
+import StudentLayout from '@/views/student/StudentLayout.vue'
+import StudentDetail from '@/views/student/StudentDetail.vue'
+import StudentEdit from '@/views/student/StudentEdit.vue'
+import StudentSetting from '@/views/setting/StudentSetting.vue'
+
+// ----- Teacher -----
+import TeacherList from '@/views/teacher/TeacherList.vue'
+import TeacherLayout from '@/views/teacher/TeacherLayout.vue'
+import TeacherDetail from '@/views/teacher/TeacherDetail.vue'
+import TeacherSetting from '@/views/setting/TeacherSetting.vue'
+
+// ----- Store -----
 import { useTeacherStore } from '@/stores/teacher'
-import TeacherLayout from '../views/TeacherLayout.vue'
-import TeacherDetail from '../views/teacher/TeacherDetail.vue'
+import { useStudentStore } from '@/stores/student'
 
 
 const router = createRouter({
@@ -23,6 +35,8 @@ const router = createRouter({
       name: 'home-page',
       component: HomePage
     },
+
+    // ----- Student's Route -----
     {
       path: '/students',
       name: 'student-list',
@@ -33,6 +47,52 @@ const router = createRouter({
       })
     },
     {
+      path: '/students/setting',
+      name: 'student-setting',
+      component: StudentSetting
+    },   
+    {
+      path : '/student/:id',
+      name : 'student-layout',
+      component : StudentLayout,
+      props: (route) => ({ id: route.params.id }),
+
+      beforeEnter: (to) => {
+        const id = to.params.id as string
+      useStudentStore().getStudentById(id)
+    .then(student => {
+    })
+    .catch(error => {
+        if (error.status && error.status === 404) {
+            router.push({
+                name: '404-resource',
+                params: { resource: 'student' }
+            });
+        } else {
+            // Handle other errors
+            router.push({ name: 'network-error' });
+        }
+    });
+      },
+      children: [
+        {
+          path: '',
+          name: 'student-detail',
+
+          component: StudentDetail,
+        },
+        {
+          path: 'edit',
+          name: 'student-edit',
+          component: StudentEdit,
+        }
+      ]
+    },
+    
+    // ----- End Student's Route -----
+
+    // ----- Teacher's Route -----
+    {
       path: '/teachers',
       name: 'teacher-list',
       component: TeacherList,
@@ -42,58 +102,62 @@ const router = createRouter({
       })
     },
     {
-      path: '/students/setting',
-      name: 'student-setting',
-      component: StudentSetting
+      path: '/teachers/setting',
+      name: 'teacher-setting',
+      component: TeacherSetting
     },
     {
-      path : '/student/:id',
-      name : 'event-layout',
-      component : StudentLayout,
-
+      path: '/teacher/:id',
+      name: 'teacher-layout',
+      component: TeacherLayout,
+      props: (route) => ({ id: route.params.id }),
       beforeEnter: (to) => {
-        const id = to.params.id as string
-        const studentStore = useStudentStore().getStudentById(id)
-        console.log(studentStore)
+        const id = to.params.id as string;
+        useTeacherStore().getTeacherById(id)
+          .then(teacher => {
+          })
+          .catch(error => {
+            if (error.status && error.status === 404) {
+                router.push({
+                    name: '404-resource',
+                    params: { resource: 'teacher' }
+                });
+            } else {
+                // Handle other errors
+                router.push({ name: 'network-error' });
+            }
+          });
       },
       children: [
         {
           path: '',
-          name: 'student-detail',
-
-          component: StudentDetail,
-          props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
-        },
-        {
-          path: 'edit',
-          name: 'student-edit',
-          component: StudentEdit,
-          props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
+          name: 'teacher-detail',
+          component: TeacherDetail,
         }
       ]
-    },
+    },  
+  // ----- End Teacher's Route -----
+ 
 
-    //path teacher
-   {
-  path : '/teacher/:id',
-  name : 'event-layout',
-  component : TeacherLayout,
-
-  beforeEnter: (to) => {
-    const id = to.params.id as string
-    const teacherStore = useTeacherStore().getTeacherById(id)
-    console.log(teacherStore)
-  },
-  children: [
-    {
-      path: '',
-      name: 'teacher-detail',
-
-      component: TeacherDetail,
-      props: (route) => ({ oneTeacher: useTeacherStore().getTeacherById(route.params.id) })
-    }
-  ]
+  // ----- Event Handling Route -----
+{
+  path : '/:catchAll(.*)'
+, name : 'not-found'
+,component : NotFoundView
 },
+{
+  path: '/404/:resource',
+  name: '404-resource',
+  component: NotFoundView,
+  props: true
+},
+{
+  path : '/network-error',
+  name : 'network-error',
+  component : NetworkErrorView
+}
+
+// ----- End Event Handling Route ----
 
   ]
 })
@@ -107,8 +171,7 @@ router.beforeEach(async (to, from, next) => {
   if (teacherStore.teachers.length === 0) {
     await teacherStore.fetchAllTeachers()
   }
-
-  next() // เพิ่มบรรทัดนี้
+  next()
 })
 
 
@@ -119,4 +182,5 @@ router.beforeEach(() => {
 router.afterEach(() => {
   NProgress.done()
 })
+
 export default router
