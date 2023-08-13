@@ -53,7 +53,6 @@ import { useStudentStore } from '@/stores/student'
 import type { StudentItem } from '@/type';
 import { reactive, ref, type PropType } from 'vue';
 import router from '@/router';
-import { stringify } from 'querystring';
 const oneStudent = defineProps({
     oneStudent: {
         type: Object as PropType<StudentItem>,
@@ -69,12 +68,13 @@ const student = reactive({
     surname: receivedStudent.surname,
     studentId: receivedStudent.studentId,
     // courseList: receivedStudent.courseList.map(course => `"${course}"`).join(','),
-    courseList: receivedStudent.courseList.join(','),
-    courseListDisplay: receivedStudent.courseList.map(course => `"${course}"`).join(','),
-
+    courseList: receivedStudent.courseList ? receivedStudent.courseList.join(',') : '',
+    courseListDisplay: receivedStudent.courseList ? receivedStudent.courseList.map(course => `"${course}"`).join(',') : '',
     teacherId: receivedStudent.teacherId,
     comment: receivedStudent.comment,
 })
+
+console.log(student)
 const errors = reactive({
     name: '',
     surname: '',
@@ -85,12 +85,16 @@ const errors = reactive({
     image: ''
 })
 
-const uploadImage = (e) => {
-    const ige = e.target.files[0]
+const uploadImage = (e: any) => {
+    const image = e.target.files[0]
     const reader = new FileReader()
     reader.readAsDataURL(image)
     reader.onload = (e) => {
-        profileImage.value = e.target.result
+        if (e.target && typeof e.target.result === 'string') {
+            profileImage.value = e.target.result;
+        } else {
+            // Handle the error here (e.g., show an error message to the user)
+        }
     }
 }
 

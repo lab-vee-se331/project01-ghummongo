@@ -8,6 +8,8 @@ import StudentEdit from '../views/student/StudentEdit.vue'
 // import StudentService from '@/services/StudentService'
 import { useStudentStore } from '@/stores/student'
 import StudentSetting from '../views/StudentSetting.vue'
+import NotFoundView from "../views/NotFoundView.vue"
+import NetworkErrorView from '../views/NetworkErrorView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,11 +43,26 @@ const router = createRouter({
       path : '/student/:id',
       name : 'event-layout',
       component : StudentLayout,
+      props: (route) => ({ id: route.params.id }),
 
       beforeEnter: (to) => {
         const id = to.params.id as string
-        const studentStore = useStudentStore().getStudentById(id)
-        console.log(studentStore)
+      useStudentStore().getStudentById(id)
+    .then(student => {
+        console.log(student);
+    })
+    .catch(error => {
+        console.log(error.message , error.status);
+        if (error.status && error.status === 404) {
+            router.push({
+                name: '404-resource',
+                params: { resource: 'student' }
+            });
+        } else {
+            // Handle other errors
+            router.push({ name: 'network-error' });
+        }
+    });
       },
       children: [
         {
@@ -62,6 +79,22 @@ const router = createRouter({
           props: (route) => ({ oneStudent: useStudentStore().getStudentById(route.params.id) })
         }
       ]
+    },
+    {
+      path : '/:catchAll(.*)'
+    , name : 'not-found'
+    ,component : NotFoundView
+    },
+    {
+      path: '/404/:resource',
+      name: '404-resource',
+      component: NotFoundView,
+      props: true
+    },
+    {
+      path : '/network-error',
+      name : 'network-error',
+      component : NetworkErrorView
     }
   ]
 })
@@ -81,4 +114,5 @@ router.beforeEach(() => {
 router.afterEach(() => {
   NProgress.done()
 })
+
 export default router

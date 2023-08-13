@@ -4,27 +4,44 @@ import type { StudentItem } from '@/type';
 import { ref, type PropType } from 'vue';
 import StudentService from '@/services/StudentService';
 import { useRouter } from 'vue-router';
-const router = useRouter()
+
 
 import { useStudentStore } from '@/stores/student';
 import { storeToRefs } from 'pinia';
+
+
+const router = useRouter()
 const store = useStudentStore()
 const students = storeToRefs(store).students
-const studentId = ref(students?.value?.studentId)
+const student = ref<StudentItem | null>(null);
 
 
+const props = defineProps({
+    id: String
+})
+
+store.getStudentById(props.id!)
+    .then(result => {
+        if (result) {
+            student.value = result;
+        } else {
+            console.warn(props.id);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 </script>
 
 <template>
     <div>
-        <div v-if="students">
-            <h1>{{ students.name }}</h1>
+        <div v-if="student">
             <div id="nav">
-                <RouterLink :to="{ name: 'student-detail', params: { studentId } }">Details</RouterLink>
-                <RouterLink :to="{ name: 'student-edit', params: { studentId } }">Edit</RouterLink>
+                <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink>
+                <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
             </div>
-            <RouterView :student="students"></RouterView>
+            <RouterView :oneStudent="student"></RouterView>
         </div>
     </div>
 </template>
