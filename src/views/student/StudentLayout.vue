@@ -37,7 +37,7 @@ store.getStudentById(props.id!)
     <div>
         <div v-if="student">
             <div id="nav">
-                <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink>
+                <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink> | 
                 <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
             </div>
             <RouterView :oneStudent="student"></RouterView>
