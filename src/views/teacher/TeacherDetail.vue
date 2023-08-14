@@ -21,7 +21,10 @@ defineProps({
 >
     <div>
         <div v-if="oneTeacher">
-            <span> {{ oneTeacher?.name }} {{ oneTeacher?.surname }}</span>
+            <h1>------ teacher --------</h1>
+            <span>name : {{ oneTeacher?.name }} {{ oneTeacher?.surname }}</span>
+            <br><span>teacherid : {{ oneTeacher?.teacherId }}</span>
+            <img :src="oneTeacher?.profileImage" alt="">
         </div>
 
     </div>

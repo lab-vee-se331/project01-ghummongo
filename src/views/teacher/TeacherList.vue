@@ -28,19 +28,19 @@ onMounted(() => {
     totalTeacher.value = teacherStore.getTeachersLength()
 })
 
-// onBeforeRouteUpdate((to, from, next) => {
-//     const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
-//     teachers.value = teacherStore.getTeachers(props.limit, toPage);
-//     totalTeacher.value = teacherStore.getTeachersLength();
+onBeforeRouteUpdate((to, from, next) => {
+    const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
+    teachers.value = teacherStore.getTeachers(props.limit, toPage);
+    totalTeacher.value = teacherStore.getTeachersLength();
 
 
-//     next()
-// })
+    next()
+})
 
-// const hasNextPage = computed(() => {
-//     const totalPages = Math.ceil(totalTeacher.value / props.limit)
-//     return props.page.valueOf() < totalPages
-// })
+const hasNextPage = computed(() => {
+    const totalPages = Math.ceil(totalTeacher.value / props.limit)
+    return props.page.valueOf() < totalPages
+})
 
 
 </script>
