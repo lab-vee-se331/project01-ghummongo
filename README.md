@@ -1,47 +1,38 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/_UXQZ2LF)
-# package
+# Group name : Ghummongo
 
-This template should help get you started developing with Vue 3 in Vite.
+## Contributors :
+1. Phiriyakorn 
+2. Sorawee
+3. Thanapong
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## Checklist :
+1. Data Structure ( Mock ) :
+- [x]  Student Data
+- [x]  Teacher Data
+2. Admin Functionalities :
+- [x]  Ability to add student data
+- [x]  Ability to view a list of all students
+- [x]  Ability to create advisor details
+- [x]  View student list and click on a student's name to route to student details:
+- [ ]  Student Detail Page :
+    - Student 
+    - Teacher 
+    - Student and Teacher Profile images
+- [x]  Comments section where admin can enter comments given by the teacher to the student
+3. Storage and State Management :
+- [x]  Save comments to Pinia
+- [x]  Save student and teacher data to Pinia
+4. User Interface :
+- [ ]  Student list
+- [ ]  Teacher list
+- [ ]  Add student page
+- [ ]  Add teacher page
+- [ ]  Edit student page
+5. Deployment and Version Control :
+- [ ]  Set up automated Continuous Deployment (CD)
+- [ ]  Deploy the application on Firebase
+- [ ]  Store the codebase on a Github Repository
+6. README.md :
+- [ ]  Specify group name
+- [ ]  Detail all group members
+- [ ]  Include the URL of the deployed website
