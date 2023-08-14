@@ -86,13 +86,11 @@
         teacher: {
             name: '',
             surname: '',
-            profileImage: '',
             teacherId: ''
         },
         errors: {
             name: '',
             surname: '',
-            profileImage: '',
             teacherId: ''
         }
       }
