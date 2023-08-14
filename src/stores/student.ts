@@ -14,7 +14,17 @@ export const useStudentStore = defineStore('student', {
         },
         
         getStudentById: (state) => (id: string) => {
-            return state.students.find(student => student.studentId === id);
+            return new Promise<StudentItem | undefined>((resolve, reject) => {
+                const student = state.students.find(student => student.studentId === id);
+                if (student) {
+                    resolve(student);
+                } else {
+                    const error = new Error('Student not found');
+                    // Custom status for the error
+                    (error as any).status = 404;
+                    reject(error);
+                }
+            });
         },
 
         getStudentsLength: (state) => () => {

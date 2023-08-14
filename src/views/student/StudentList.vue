@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { type StudentItem } from '@/type'
 import { computed, onMounted, ref, type Ref } from 'vue'
-import StudentService from '../services/StudentService'
 import StudentCard from '@/components/StudentCard.vue'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import type { AxiosResponse } from 'axios'
@@ -23,7 +22,6 @@ const props = defineProps({
     }
 })
 
-// console.log(props.page, props.limit)
 onMounted(() => {
     students.value = studentStore.getStudents(props.limit, props.page)
     totalStudent.value = studentStore.getStudentsLength()
@@ -31,7 +29,6 @@ onMounted(() => {
 
 onBeforeRouteUpdate((to, from, next) => {
     const toPage = to.query.page ? Number(to.query.page) : 1; // set default page to 1 if to.query.page is undefined
-    console.log(props.limit, toPage)
     students.value = studentStore.getStudents(props.limit, toPage);
     totalStudent.value = studentStore.getStudentsLength();
 
