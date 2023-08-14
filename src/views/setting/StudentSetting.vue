@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="md:col-span-2">
-                  <label for="studentId">Student ID</label>
+                  <label for="studentId">Student ID</label> 
                   <input
                     type="text"
                     name="studentId"
