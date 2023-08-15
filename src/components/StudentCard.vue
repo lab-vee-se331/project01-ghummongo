@@ -19,22 +19,11 @@ const props = defineProps({
 } -->
 
 <template>
-  <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }">
-    <!-- <div class="student-class">
-      <div class="student-card">
-        <span>{{ student?.studentId }} : </span>
-        <span> {{ student?.name }} {{ student?.surname }}</span>
-        <ul>
-          <li v-for="course in student?.courseList">- {{ course }}</li>
-        </ul>
-        <img :src="student?.profileImage" alt="" />
-      </div>
-    </div> -->
-    
+  <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }">    
     <div
-      class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow"
     >
-      <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg px-6 py-1.5">{{
+      <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{
         student?.studentId
       }}</span>
       <div class="flex flex-col items-center p-10">
@@ -54,7 +43,7 @@ const props = defineProps({
         <div class="flex mt-4 space-x-3 md:mt-6">
           <a
             href="#"
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-[#42b883] rounded-lg hover:bg-[#27a26f] focus:ring-4 focus:outline-none focus:ring-blue-300"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-[#42b883] rounded-lg hover:bg-[#27a26f] focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg"
             >Details</a
           >
           <a

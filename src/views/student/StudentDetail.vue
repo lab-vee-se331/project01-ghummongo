@@ -15,7 +15,6 @@ defineProps({
 <template>
   <div>
     <div v-if="oneStudent">
-      <!-- <h2 class="font-semibold text-xl text-gray-600 my-6">------ Student Details ------</h2> -->
       <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 relative my-6">
         <span class="absolute top-0 left-0 bg-[#42b883] rounded-br-lg text-white px-6 py-1.5"
           >Student</span
