@@ -31,6 +31,9 @@ store.getStudentById(props.id!)
         console.error(error);
     });
 
+    const getTeacherInStudent = (teacherId: string) => {
+    return store.getTeacherInStudent(teacherId);
+    };
 </script>
 
 <template>
@@ -40,7 +43,8 @@ store.getStudentById(props.id!)
                 <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink>
                 <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
             </div>
-            <RouterView :oneStudent="student"></RouterView>
+            <!-- Pass teacher data to studentDetail -->
+            <RouterView :oneStudent="student" :oneTeacher="getTeacherInStudent(student.teacherId)"></RouterView>
         </div>
     </div>
 </template>
