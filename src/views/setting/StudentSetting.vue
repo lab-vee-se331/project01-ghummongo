@@ -11,8 +11,8 @@
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
               <div class="md:col-span-6">
                 <div class="flex mb-4 gap-8">
-                  <img v-if="profileImage" :src="profileImage" class="uploading-image border-4 h-48 w-48 border-black" />
-                  <img v-if="profileImage" :src="profileImage" class="uploading-image rounded-full border-4 h-48 w-48 border-black" />
+                  <img v-if="profileImage" :src="profileImage" class="uploading-image border-4 h-48 w-48 border-black object-cover" />
+                  <img v-if="profileImage" :src="profileImage" class="uploading-image rounded-full border-4 h-48 w-48 border-black object-cover" />
                 </div>
                 <label for="profileImage">Upload Profile</label>
                 <input
