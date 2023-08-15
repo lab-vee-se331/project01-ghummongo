@@ -139,7 +139,7 @@
       "Cultural Studies",
       "English"
       ],
-      "teacherId": "t1",
+      "teacherId": "t11",
       "comment" : ""
       }
       ,
@@ -153,7 +153,7 @@
       "Political Science",
       "Mathematics"
       ],
-      "teacherId": "t2",
+      "teacherId": "t12",
       "comment" : ""
       }
       ,
@@ -167,7 +167,7 @@
       "Chemistry",
       "Environmental Science"
       ],
-      "teacherId": "t3",
+      "teacherId": "t13",
       "comment" : ""
       }
       ,
@@ -181,7 +181,7 @@
       "Sociology",
       "Anthropology"
       ],
-      "teacherId": "t4",
+      "teacherId": "t14",
       "comment" : ""
       }
       ,
@@ -195,7 +195,7 @@
       "Marketing",
       "Entrepreneurship"
       ],
-      "teacherId": "t5",
+      "teacherId": "t15",
       "comment" : ""
       }
       ,
@@ -209,7 +209,7 @@
       "Fine Arts",
       "Design"
       ],
-      "teacherId": "t6",
+      "teacherId": "t16",
       "comment" : ""
       }
       ,
@@ -223,7 +223,7 @@
       "Electronics",
       "Robotics"
       ],
-      "teacherId": "t7",
+      "teacherId": "t17",
       "comment" : ""
       }
       ,
@@ -237,7 +237,7 @@
       "Linguistics",
       "Translation"
       ],
-      "teacherId": "t8",
+      "teacherId": "t18",
       "comment" : ""
       }
       ,
@@ -251,7 +251,7 @@
       "Political Science",
       "Sociology"
       ],
-      "teacherId": "t9",
+      "teacherId": "t19",
       "comment" : ""
       }
       ,
@@ -265,148 +265,9 @@
       "Finance",
       "Business Administration"
       ],
-      "teacherId": "t10",
+      "teacherId": "t20",
       "comment" : ""
-      },
-      {
-        "name": "Rajesh",
-        "surname": "Verma",
-        "studentId": "s21",
-        "profileImage": "https://tinyurl.com/yc65x4u5",
-        "courseList": [
-        "Computer Science",
-        "Artificial Intelligence",
-        "Data Science"
-        ],
-        "teacherId": "t1",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Priya",
-        "surname": "Chopra",
-        "studentId": "s22",
-        "profileImage": "https://tinyurl.com/3w32bnrr",
-        "courseList": [
-        "Medicine",
-        "Biology",
-        "Chemistry"
-        ],
-        "teacherId": "t2",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Wei",
-        "surname": "Chen",
-        "studentId": "s23",
-        "profileImage": "https://tinyurl.com/4er7yxn4",
-        "courseList": [
-        "Business Administration",
-        "Marketing",
-        "International Business"
-        ],
-        "teacherId": "t3",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Hiroshi",
-        "surname": "Yamamoto",
-        "studentId": "s24",
-        "profileImage": "https://tinyurl.com/426r7t3m",
-        "courseList": [
-        "Engineering",
-        "Robotics",
-        "Mechatronics"
-        ],
-        "teacherId": "t4",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Neha",
-        "surname": "Kumar",
-        "studentId": "s25",
-        "profileImage": "https://tinyurl.com/mudrf93b",
-        "courseList": [
-        "Psychology",
-        "Counseling",
-        "Behavioral Science"
-        ],
-        "teacherId": "t5",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Lina",
-        "surname": "Nguyen",
-        "studentId": "s26",
-        "profileImage": "https://tinyurl.com/mr2h2hz9",
-        "courseList": [
-        "Linguistics",
-        "Translation",
-        "Language Studies"
-        ],
-        "teacherId": "t6",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Haruki",
-        "surname": "Tanaka",
-        "studentId": "s27",
-        "profileImage": "https://tinyurl.com/3dkb4bk3",
-        "courseList": [
-        "Literature",
-        "Creative Writing",
-        "Cultural Studies"
-        ],
-        "teacherId": "t7",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Seo-joon",
-        "surname": "Kim",
-        "studentId": "s28",
-        "profileImage": "https://tinyurl.com/mfpxyn9p",
-        "courseList": [
-        "Film Studies",
-        "Media Production",
-        "Communication"
-        ],
-        "teacherId": "t8",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Anushka",
-        "surname": "Sharma",
-        "studentId": "s29",
-        "profileImage": "https://tinyurl.com/nsz747ff",
-        "courseList": [
-        "Environmental Science",
-        "Sustainability",
-        "Climate Studies"
-        ],
-        "teacherId": "t9",
-        "comment" : ""
-        }
-        ,
-        {
-        "name": "Amit",
-        "surname": "Patel",
-        "studentId": "s30",
-        "profileImage": "https://tinyurl.com/4d4fc7ev",
-        "courseList": [
-        "Physics",
-        "Astrophysics",
-        "Quantum Mechanics"
-        ],
-        "teacherId": "t10",
-        "comment" : ""
-        }
+      }
   ],
   "teachers": [
     {
@@ -469,6 +330,75 @@
       "surname": "Patel",
       "profileImage": "https://tinyurl.com/5anrk2ju"
       }
-      
+      ,
+      {
+      "teacherId": "t11",
+      "name": "Priya",
+      "surname": "Kumar",
+      "profileImage": "https://tinyurl.com/bdf6m8bv"
+      }
+      ,
+      {
+      "teacherId": "t12",
+      "name": "Wei",
+      "surname": "Chen",
+      "profileImage": "https://tinyurl.com/252zasx5"
+      }
+      ,
+      {
+      "teacherId": "t13",
+      "name": "Sakura",
+      "surname": "Tanaka",
+      "profileImage": "https://tinyurl.com/4zscfrp5"
+      }
+      ,
+      {
+      "teacherId": "t14",
+      "name": "Hiroshi",
+      "surname": "Nakamura",
+      "profileImage": "https://tinyurl.com/wyrvtxxe"
+      }
+      ,
+      {
+      "teacherId": "t15",
+      "name": "Yowei",
+      "surname": "Wong",
+      "profileImage": "https://tinyurl.com/2wbant9j"
+      }
+      ,
+      {
+      "teacherId": "t16",
+      "name": "Sanjay",
+      "surname": "Gupta",
+      "profileImage": "https://tinyurl.com/yc7x229s"
+      }
+      ,
+      {
+      "teacherId": "t17",
+      "name": "Neha",
+      "surname": "Sharma",
+      "profileImage": "https://tinyurl.com/ymtnh4t8"
+      }
+      ,
+      {
+      "teacherId": "t18",
+      "name": "Amit",
+      "surname": "Rao",
+      "profileImage": "https://tinyurl.com/yd7k35xw"
+      }
+      ,
+      {
+      "teacherId": "t19",
+      "name": "Jia",
+      "surname": "Li",
+      "profileImage": "https://tinyurl.com/4k9epuh4"
+      }
+      ,
+      {
+      "teacherId": "t20",
+      "name": "Karthik",
+      "surname": "Reddy",
+      "profileImage": "https://tinyurl.com/rn32u4xj"
+      }
   ]
 }
