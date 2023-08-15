@@ -61,9 +61,9 @@ defineProps({
         </div>
       </div>
       <div class="flex flex-col items-center justify-center my-12">
-        <span class="text-xl text-gray-600 mb-8 underline underline-offset-2 decoration-[#42b883]">Comments {{ oneStudent?.comment }}</span>
+        <span class="text-xl text-gray-600 mb-8 underline underline-offset-2 decoration-[#42b883]">Comments</span>
         <div class="text-gray-600">
-          <div class="grid grid-cols-6">
+          <div v-if="oneStudent?.comment" class="grid grid-cols-6">
             <div class="col-span-1 mr-4">
               <img
                 :src="oneStudent?.profileImage"
@@ -74,31 +74,7 @@ defineProps({
             <div class="col-span-4">
               <div class="text-gray-600"><span class="font-bold">Admin</span> · 1h ago</div>
               <div class="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta assumenda aliquid
-                explicabo quod, architecto ratione. Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Hic quia, perspiciatis dignissimos laudantium numquam et sint modi
-                fugiat magni cumque provident autem. Temporibus maiores corrupti enim iure soluta
-                praesentium! Cum?
-              </div>
-              <hr class="my-6" />
-            </div>
-          </div>
-          <div class="grid grid-cols-6">
-            <div class="col-span-1 mr-4">
-              <img
-                :src="oneStudent?.profileImage"
-                alt=""
-                class="rounded-full w-12 h-12 object-cover float-right"
-              />
-            </div>
-            <div class="col-span-4">
-              <div class="text-gray-600"><span class="font-bold">Admin</span> · 1h ago</div>
-              <div class="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta assumenda aliquid
-                explicabo quod, architecto ratione. Lorem ipsum dolor sit amet consectetur,
-                adipisicing elit. Hic quia, perspiciatis dignissimos laudantium numquam et sint modi
-                fugiat magni cumque provident autem. Temporibus maiores corrupti enim iure soluta
-                praesentium! Cum?
+                {{ oneStudent?.comment }}
               </div>
               <hr class="my-6" />
             </div>
