@@ -10,10 +10,8 @@ defineProps({
         type: Object as PropType<TeacherItem>,
         require: true
     },
-
-
-
 })
+
 
 </script>
 

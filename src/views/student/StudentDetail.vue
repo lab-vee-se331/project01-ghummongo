@@ -19,6 +19,8 @@ defineProps({
 
 })
 
+
+
 </script>
 
 <template
@@ -34,7 +36,7 @@ defineProps({
                 {{ oneStudent?.courseList }}
             </ul>
             <span>comment : {{ oneStudent?.comment }}</span>
-                <br><br>
+            <br><br>
             <h1>------ teacher --------</h1>
             <span>TeacherId : {{ oneTeacher?.teacherId }}</span><br>
             <img :src="oneTeacher?.profileImage" alt="">

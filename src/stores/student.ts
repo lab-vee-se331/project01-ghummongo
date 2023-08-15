@@ -39,6 +39,7 @@ export const useStudentStore = defineStore('student', {
             const teacherStore = useTeacherStore();
             const student = state.students.find(student => student.studentId === id);
             if (student) {
+                console.log(student)
                 const teacherId = student.teacherId; // หาค่า teacherId จาก student
                 const teacher = teacherStore.getTeacherById(teacherId); // ดึงข้อมูล teacher โดยใช้ teacherId
                 return teacher;
