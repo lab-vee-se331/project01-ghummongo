@@ -1,14 +1,30 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 const isExpanded = ref(true)
 const route = useRoute();
 
-// fuck you phiriyakorn
 const ToggleMenu = () => {
   isExpanded.value = !isExpanded.value
 }
+
+const updateIsExpanded = () => {
+  isExpanded.value = window.innerWidth >= 650;
+}
+
+// Call the function initially
+updateIsExpanded();
+
+// Add a resize event listener to update isExpanded value
+onMounted(() => {
+  window.addEventListener('resize', updateIsExpanded);
+});
+
+// Clean up the event listener when the component is unmounted
+onUnmounted(() => {
+  window.removeEventListener('resize', updateIsExpanded);
+});
 
 // highlight when student/techer -setting page
 const isSettingsPage = computed(() => {

@@ -1,6 +1,7 @@
 import type { StudentItem } from "@/type";
 import { defineStore } from "pinia";
 import StudentService from "../services/StudentService";
+import { useTeacherStore } from "../stores/teacher";
 
 export const useStudentStore = defineStore('student', {
     state: () => ({
@@ -33,7 +34,20 @@ export const useStudentStore = defineStore('student', {
         getAllStudents: (state) => () => {
             return state.students;
         },
-    
+        
+        getTeacherInStudent: (state) => (id: string) => {
+            const teacherStore = useTeacherStore();
+            const student = state.students.find(student => student.studentId === id);
+            if (student) {
+                console.log(student)
+                const teacherId = student.teacherId; // หาค่า teacherId จาก student
+                const teacher = teacherStore.getTeacherById(teacherId); // ดึงข้อมูล teacher โดยใช้ teacherId
+                return teacher;
+            } else {
+                return undefined;
+            }
+        },
+
     }, 
     actions: {
         addStudent(student: StudentItem) {

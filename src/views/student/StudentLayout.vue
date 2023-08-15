@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import type { StudentItem } from '@/type';
+import { type TeacherItem, type StudentItem } from '@/type';
 import { ref, type PropType } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -13,6 +13,7 @@ const router = useRouter()
 const store = useStudentStore()
 const students = storeToRefs(store).students
 const student = ref<StudentItem | null>(null);
+const teacher = ref<TeacherItem | null>(null)
 
 
 const props = defineProps({
@@ -23,13 +24,20 @@ store.getStudentById(props.id!)
     .then(result => {
         if (result) {
             student.value = result;
-        } else {
-            console.warn(props.id);
         }
     })
     .catch(error => {
         console.error(error);
     });
+
+store.getTeacherInStudent(props.id!)?.then(result => {
+    if (result) {
+        teacher.value = result
+    }
+})
+
+
+
 
 </script>
 
@@ -40,7 +48,8 @@ store.getStudentById(props.id!)
                 <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink> | 
                 <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
             </div>
-            <RouterView :oneStudent="student"></RouterView>
+            <!-- Pass teacher data to studentDetail -->
+            <RouterView :oneStudent="student" :oneTeacher="teacher"></RouterView>
         </div>
     </div>
 </template>
