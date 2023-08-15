@@ -136,7 +136,7 @@ const isSettingsPage = computed(() => {
     </div>
   </aside>
 
-  <div :class="`smooth-transition p-4 sm:ml-64 ml-16`">
+  <div :class="`smooth-transition p-4 ${isExpanded ? 'sm:ml-64' : 'ml-16'}`">
     <RouterView />
   </div>
 </template>
