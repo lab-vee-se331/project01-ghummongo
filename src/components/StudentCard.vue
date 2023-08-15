@@ -7,8 +7,6 @@ const props = defineProps({
     require: true
   }
 })
-
-
 </script>
 
 <!-- export interface StudentItem {
@@ -26,12 +24,9 @@ const props = defineProps({
       <div class="student-card">
         <span>{{ student?.studentId }} : </span>
         <span> {{ student?.name }} {{ student?.surname }}</span>
-
-
         <ul>
           <li v-for="course in student?.courseList">- {{ course }}</li>
         </ul>
-
         <img :src="student?.profileImage" alt="" />
       </div>
     </div>
