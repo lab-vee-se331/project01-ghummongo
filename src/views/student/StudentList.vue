@@ -47,6 +47,7 @@ const totalPages = computed(() => {
 
 <template>
   <main class="flex flex-col items-center justify-center">
+    <h1 class="text-2xl font-bold mb-4 text-gray-700">Student List</h1>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       <StudentCard
         v-for="student in students"
@@ -72,7 +73,7 @@ const totalPages = computed(() => {
         >
           {{ pageNumber }}
         </RouterLink>
-        <span v-else class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700">{{ pageNumber }}</span>
+        <span v-else class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-[#27a26f] border border-[#7ed7ac] bg-[#d6f5e2] hover:bg-[#b1e9ca] hover:text-[#188359] cursor-pointer">{{ pageNumber }}</span>
       </span>
       <RouterLink
         :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }"

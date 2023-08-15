@@ -17,7 +17,7 @@ defineProps({
     <div v-if="oneStudent">
       <!-- <h2 class="font-semibold text-xl text-gray-600 my-6">------ Student Details ------</h2> -->
       <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6 relative my-6">
-        <span class="absolute top-0 left-0 bg-black rounded-br-lg text-white px-6 py-1.5"
+        <span class="absolute top-0 left-0 bg-[#42b883] rounded-br-lg text-white px-6 py-1.5"
           >Student</span
         >
         <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
@@ -62,7 +62,7 @@ defineProps({
         </div>
       </div>
       <div class="flex flex-col items-center justify-center my-12">
-        <span class="text-xl text-gray-600 mb-8">Comments {{ oneStudent?.comment }}</span>
+        <span class="text-xl text-gray-600 mb-8 underline underline-offset-2 decoration-[#42b883]">Comments {{ oneStudent?.comment }}</span>
         <div class="text-gray-600">
           <div class="grid grid-cols-6">
             <div class="col-span-1 mr-4">
@@ -124,7 +124,7 @@ defineProps({
           <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
             <button
               type="submit"
-              class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
+              class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#27a26f] rounded-lg focus:ring-4 focus:ring-[#b1e9ca]"
             >
               Post comment
             </button>
