@@ -9,6 +9,6 @@ defineProps({
         type: String,
         required: true,
         default: 'page'
-    }
+    },
 })
 </script>
