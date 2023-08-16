@@ -44,10 +44,10 @@ store.getTeacherInStudent(props.id!)?.then(result => {
 <template>
     <div>
         <div v-if="student">
-            <div id="nav">
+            <!-- <div id="nav">
                 <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink> | 
                 <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
-            </div>
+            </div> -->
             <!-- Pass teacher data to studentDetail -->
             <RouterView :oneStudent="student" :oneTeacher="teacher"></RouterView>
         </div>
