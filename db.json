@@ -10,12 +10,30 @@
       "comment": ""
     },
     {
+      "name": "Emily",
+      "surname": "Johnson",
+      "studentId": "s2",
+      "profileImage": "https://tinyurl.com/aukwv7t2",
+      "courseList": ["Biology", "Environmental Science", "Spanish"],
+      "teacherId": "t2",
+      "comment": ""
+    },
+    {
       "name": "Michael",
       "surname": "Brown",
       "studentId": "s3",
       "profileImage": "https://tinyurl.com/2r4yzccp",
       "courseList": ["Computer Science", "Data Science", "Japanese"],
       "teacherId": "t3",
+      "comment": ""
+    },
+    {
+      "name": "Sophia",
+      "surname": "Davis",
+      "studentId": "s4",
+      "profileImage": "https://tinyurl.com/y5v69pcr",
+      "courseList": ["Anthropology", "Public Health", "Chinese"],
+      "teacherId": "t4",
       "comment": ""
     },
     {
@@ -28,12 +46,30 @@
       "comment": ""
     },
     {
+      "name": "Olivia",
+      "surname": "Wilson",
+      "studentId": "s6",
+      "profileImage": "https://tinyurl.com/swb6ftxt",
+      "courseList": ["Art History", "Fine Arts", "Italian"],
+      "teacherId": "t6",
+      "comment": ""
+    },
+    {
       "name": "Ethan",
       "surname": "Martinez",
       "studentId": "s7",
       "profileImage": "https://tinyurl.com/46wr5kxf",
       "courseList": ["Mathematics", "Statistics", "Russian"],
       "teacherId": "t7",
+      "comment": ""
+    },
+    {
+      "name": "Ava",
+      "surname": "Taylor",
+      "studentId": "s8",
+      "profileImage": "https://tinyurl.com/29uxuudd",
+      "courseList": ["History", "Archaeology", "Portuguese"],
+      "teacherId": "t8",
       "comment": ""
     },
     {
@@ -55,12 +91,30 @@
       "comment": ""
     },
     {
+      "name": "Lei",
+      "surname": "Nguyen",
+      "studentId": "s11",
+      "profileImage": "https://tinyurl.com/3j2fnbcr",
+      "courseList": ["History", "Cultural Studies", "English"],
+      "teacherId": "t11",
+      "comment": ""
+    },
+    {
       "name": "Raj",
       "surname": "Patel",
       "studentId": "s12",
       "profileImage": "https://tinyurl.com/3tst6nma",
       "courseList": ["Economics", "Political Science", "Mathematics"],
       "teacherId": "t12",
+      "comment": ""
+    },
+    {
+      "name": "Yuna",
+      "surname": "Kim",
+      "studentId": "s13",
+      "profileImage": "https://tinyurl.com/bdey6snr",
+      "courseList": ["Biology", "Chemistry", "Environmental Science"],
+      "teacherId": "t13",
       "comment": ""
     },
     {
@@ -82,12 +136,30 @@
       "comment": ""
     },
     {
+      "name": "Rina",
+      "surname": "Tanaka",
+      "studentId": "s16",
+      "profileImage": "https://tinyurl.com/bd8e37v9",
+      "courseList": ["Art History", "Fine Arts", "Design"],
+      "teacherId": "t16",
+      "comment": ""
+    },
+    {
       "name": "Varun",
       "surname": "Gupta",
       "studentId": "s17",
       "profileImage": "https://tinyurl.com/4a8v8cah",
       "courseList": ["Computer Engineering", "Electronics", "Robotics"],
       "teacherId": "t17",
+      "comment": ""
+    },
+    {
+      "name": "Mei",
+      "surname": "Wong",
+      "studentId": "s18",
+      "profileImage": "https://tinyurl.com/yndmz4me",
+      "courseList": ["Languages", "Linguistics", "Translation"],
+      "teacherId": "t18",
       "comment": ""
     },
     {
@@ -107,81 +179,6 @@
       "courseList": ["Economics", "Finance", "Business Administration"],
       "teacherId": "t20",
       "comment": ""
-    },
-
-
-
-    {
-      "name": "Emily",
-      "surname": "Johnson",
-      "studentId": "s2",
-      "profileImage": "https://tinyurl.com/aukwv7t2",
-      "courseList": ["Biology", "Environmental Science", "Spanish"],
-      "teacherId": "t2",
-      "comment": ""
-    },
-    {
-      "name": "Sophia",
-      "surname": "Davis",
-      "studentId": "s4",
-      "profileImage": "https://tinyurl.com/y5v69pcr",
-      "courseList": ["Anthropology", "Public Health", "Chinese"],
-      "teacherId": "t4",
-      "comment": ""
-    },
-    {
-      "name": "Olivia",
-      "surname": "Wilson",
-      "studentId": "s6",
-      "profileImage": "https://tinyurl.com/swb6ftxt",
-      "courseList": ["Art History", "Fine Arts", "Italian"],
-      "teacherId": "t6",
-      "comment": ""
-    },
-    {
-      "name": "Ava",
-      "surname": "Taylor",
-      "studentId": "s8",
-      "profileImage": "https://tinyurl.com/29uxuudd",
-      "courseList": ["History", "Archaeology", "Portuguese"],
-      "teacherId": "t8",
-      "comment": ""
-    },
-    {
-      "name": "Lei",
-      "surname": "Nguyen",
-      "studentId": "s11",
-      "profileImage": "https://tinyurl.com/3j2fnbcr",
-      "courseList": ["History", "Cultural Studies", "English"],
-      "teacherId": "t11",
-      "comment": ""
-    },
-    {
-      "name": "Yuna",
-      "surname": "Kim",
-      "studentId": "s13",
-      "profileImage": "https://tinyurl.com/bdey6snr",
-      "courseList": ["Biology", "Chemistry", "Environmental Science"],
-      "teacherId": "t13",
-      "comment": ""
-    },
-    {
-      "name": "Rina",
-      "surname": "Tanaka",
-      "studentId": "s16",
-      "profileImage": "https://tinyurl.com/bd8e37v9",
-      "courseList": ["Art History", "Fine Arts", "Design"],
-      "teacherId": "t16",
-      "comment": ""
-    },
-    {
-      "name": "Mei",
-      "surname": "Wong",
-      "studentId": "s18",
-      "profileImage": "https://tinyurl.com/yndmz4me",
-      "courseList": ["Languages", "Linguistics", "Translation"],
-      "teacherId": "t18",
-      "comment": ""
     }
   ],
 
@@ -195,67 +192,16 @@
       "profileImage": "https://tinyurl.com/32wcyjbm"
     },
     {
-      "teacherId": "t3",
-      "name": "Elizabeth",
-      "surname": "Brown",
-      "profileImage": "https://tinyurl.com/54h2fjrb"
-    },
-    {
-      "teacherId": "t5",
-      "name": "Sarah",
-      "surname": "Miller",
-      "profileImage": "https://tinyurl.com/3s6ha7cz"
-    },
-    {
-      "teacherId": "t7",
-      "name": "Natalie",
-      "surname": "Martinez",
-      "profileImage": "https://tinyurl.com/2x6mh5d"
-    },
-    {
-      "teacherId": "t9",
-      "name": "Laura",
-      "surname": "Anderson",
-      "profileImage": "https://tinyurl.com/bdfkm4f8"
-    },
-    {
-      "teacherId": "t11",
-      "name": "Priya",
-      "surname": "Kumar",
-      "profileImage": "https://tinyurl.com/bdf6m8bv"
-    },
-    {
-      "teacherId": "t13",
-      "name": "Sakura",
-      "surname": "Tanaka",
-      "profileImage": "https://tinyurl.com/4zscfrp5"
-    },
-    {
-      "teacherId": "t18",
-      "name": "Amit",
-      "surname": "Rao",
-      "profileImage": "https://tinyurl.com/yd7k35xw"
-    },
-    {
-      "teacherId": "t19",
-      "name": "Jia",
-      "surname": "Li",
-      "profileImage": "https://tinyurl.com/4k9epuh4"
-    },
-    {
-      "teacherId": "t14",
-      "name": "Hiroshi",
-      "surname": "Nakamura",
-      "profileImage": "https://tinyurl.com/wyrvtxxe"
-    },
-
-
-
-    {
       "teacherId": "t2",
       "name": "Christopher",
       "surname": "Johnson",
       "profileImage": "https://tinyurl.com/bdwja8kd"
+    },
+    {
+      "teacherId": "t3",
+      "name": "Elizabeth",
+      "surname": "Brown",
+      "profileImage": "https://tinyurl.com/54h2fjrb"
     },
     {
       "teacherId": "t4",
@@ -264,10 +210,22 @@
       "profileImage": "https://tinyurl.com/bdz2yskk"
     },
     {
+      "teacherId": "t5",
+      "name": "Sarah",
+      "surname": "Miller",
+      "profileImage": "https://tinyurl.com/3s6ha7cz"
+    },
+    {
       "teacherId": "t6",
       "name": "Daniel",
       "surname": "Wilson",
       "profileImage": "https://tinyurl.com/5ca7m5n2"
+    },
+    {
+      "teacherId": "t7",
+      "name": "Natalie",
+      "surname": "Martinez",
+      "profileImage": "https://tinyurl.com/2x6mh5d"
     },
     {
       "teacherId": "t8",
@@ -276,17 +234,41 @@
       "profileImage": "https://tinyurl.com/fsva87sc"
     },
     {
+      "teacherId": "t9",
+      "name": "Laura",
+      "surname": "Anderson",
+      "profileImage": "https://tinyurl.com/bdfkm4f8"
+    },
+    {
       "teacherId": "t10",
       "name": "Ravi",
       "surname": "Patel",
       "profileImage": "https://tinyurl.com/5anrk2ju"
     },
     {
+      "teacherId": "t11",
+      "name": "Priya",
+      "surname": "Kumar",
+      "profileImage": "https://tinyurl.com/bdf6m8bv"
+    },
+    {
       "teacherId": "t12",
       "name": "Wei",
       "surname": "Chen",
       "profileImage": "https://tinyurl.com/252zasx5"
-    }, 
+    },
+    {
+      "teacherId": "t13",
+      "name": "Sakura",
+      "surname": "Tanaka",
+      "profileImage": "https://tinyurl.com/4zscfrp5"
+    },
+    {
+      "teacherId": "t14",
+      "name": "Hiroshi",
+      "surname": "Nakamura",
+      "profileImage": "https://tinyurl.com/wyrvtxxe"
+    },
     {
       "teacherId": "t15",
       "name": "Yowei",
@@ -304,6 +286,18 @@
       "name": "Neha",
       "surname": "Sharma",
       "profileImage": "https://tinyurl.com/ymtnh4t8"
+    },
+    {
+      "teacherId": "t18",
+      "name": "Amit",
+      "surname": "Rao",
+      "profileImage": "https://tinyurl.com/yd7k35xw"
+    },
+    {
+      "teacherId": "t19",
+      "name": "Jia",
+      "surname": "Li",
+      "profileImage": "https://tinyurl.com/4k9epuh4"
     },
     {
       "teacherId": "t20",
