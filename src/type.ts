@@ -6,7 +6,7 @@ export interface StudentItem {
     courseList: string[];
     teacherId: string;
     comment: string;
-    [key: string]: string | string[]; 
+
 }
 
 export interface TeacherItem {
@@ -14,5 +14,4 @@ export interface TeacherItem {
     surname: string;
     profileImage: string;
     teacherId: string;
-    [key: string]: string; 
 }
