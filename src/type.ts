@@ -37,5 +37,5 @@ export interface StudentType {
     teacherId: string;
     comment: string;
     image?: string;
-    [key: string]: string; // This is the index signature
+    [key: string]: string | undefined; 
 };
