@@ -69,8 +69,7 @@ export const useStudentStore = defineStore('student', {
             const response = await StudentService.getStudents();
             if (response.status === 200) {
                 this.setStudents(response.data);
-            } else {
-            }
+            } 
         },
     }
 })
