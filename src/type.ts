@@ -28,7 +28,7 @@ export interface ErrorsType {
     [key: string]: string | undefined; 
 }
 
-export interface StudentType = {
+export interface StudentType {
     name: string;
     surname: string;
     studentId: string;
