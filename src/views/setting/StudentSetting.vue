@@ -131,7 +131,7 @@ export default {
         comment: '',
         profileImage: ''
       },
-,
+
       errors: {
         name: '',
         surname: '',
