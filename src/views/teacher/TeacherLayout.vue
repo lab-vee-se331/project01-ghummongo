@@ -11,9 +11,9 @@ import { useStudentStore } from '@/stores/student'
 const router = useRouter()
 const store = useTeacherStore()
 
-const students = storeToRefs(store).teachers
+
 const teacher = ref<TeacherItem | null>(null);
-const student = ref<StudentItem | null>(null);
+const students = ref<StudentItem[]>([]);
 
 const props = defineProps({
   id: String
@@ -34,7 +34,7 @@ store.getTeacherById(props.id!)
 
 useStudentStore().getStudentsByTeacherId(props.id!).then((result) => {
   if (result) {
-    student.value = result
+    students.value = result
   } else {
     console.warn(props.id)
   }
@@ -49,7 +49,7 @@ useStudentStore().getStudentsByTeacherId(props.id!).then((result) => {
   <div>
     <div v-if="teacher">
 
-      <RouterView :oneTeacher="teacher" :oneStudent="student"></RouterView>
+      <RouterView :oneTeacher="teacher" :manyStudent="students"></RouterView>
 
     </div>
   </div>
