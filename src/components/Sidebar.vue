@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
@@ -36,7 +37,7 @@ const isSettingsPage = computed(() => {
   <!-- <button class="fixed top-8 -left-4 rounded-lg bg-gray-800 text-gray-500 px-4 py-2" @click="isExpanded == true">
     <font-awesome-icon icon="arrow-right" />
   </button> -->
-  <aside :class="`fixed top-0 left-0 z-40 w-64 h-screen ${!isExpanded && 'not-expanded'}`" aria-label="Sidebar">
+  <aside :class="`fixed top-0 left-0 z-40 w-64 h-screen ${!isExpanded && 'w-[4rem]'}`" aria-label="Sidebar">
     <!-- transition-transform -translate-x-full sm:translate-x-0 -->
     <div :class="`h-full px-6 pb-8 overflow-y-auto bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
       <div class="flex items-center justify-center">
@@ -136,7 +137,7 @@ const isSettingsPage = computed(() => {
     </div>
   </aside>
 
-  <div :class="`smooth-transition p-4 ${isExpanded ? 'sm:ml-64' : 'ml-16'}`">
+  <div :class="`my-4 transition ease-in-out delay-2000 px-2 sm:px-2 md:px-8 ${isExpanded ? 'sm:ml-64' : 'ml-16'}`">
     <RouterView />
   </div>
 </template>
@@ -147,17 +148,12 @@ a.router-link-active {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.not-expanded {
-  width: 4rem;
-}
-
 aside,
 .smooth-transition {
   transition: 0.2s ease-out;
 }
 
 .highlighted {
-
   /* This is an example, you can adjust it */
   color: white;
 }
