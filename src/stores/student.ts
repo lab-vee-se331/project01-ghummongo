@@ -64,13 +64,18 @@ export const useStudentStore = defineStore('student', {
             if (index !== -1) {
                 this.students[index] = student;
             }
+        },    
+        updateComment(studentId: string, newComment: string) {
+            const index = this.students.findIndex(s => s.studentId === studentId);
+            if (index !== -1) {
+                this.students[index].comment = newComment;
+            }
         },
         async fetchAllStudents() {
             const response = await StudentService.getStudents();
             if (response.status === 200) {
                 this.setStudents(response.data);
-            } else {
-            }
+            } 
         },
     }
 })

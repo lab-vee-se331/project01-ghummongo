@@ -10,23 +10,26 @@ import NotFoundView from "@/views/NotFoundView.vue"
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 
 // ----- Student -----
-import { 
-  StudentList, StudentLayout, StudentDetail, StudentEdit 
-} from '@/views/student';
+
+import StudentEdit from '../views/student/StudentEdit.vue'
+import StudentDetail from '../views/student/StudentDetail.vue'
+import StudentLayout from '../views/student/StudentLayout.vue'
+import StudentList from '../views/student/StudentList.vue'
 
 // ----- Teacher -----
-import {
-  TeacherList, TeacherLayout, TeacherDetail
-} from '@/views/teacher';
+
+import TeacherDetail from '../views/teacher/TeacherDetail.vue'
+import TeacherLayout from '../views/teacher/TeacherLayout.vue'
+import TeacherList from '../views/teacher/TeacherList.vue'
 
 // ----- Setting -----
-import {
-  StudentSetting, TeacherSetting
-} from '@/views/setting';
+
+import TeacherSetting from '../views/setting/TeacherSetting.vue'
+import StudentSetting from '../views/setting/StudentSetting.vue'
 
 // ----- Store & Service-----
-import { useTeacherStore } from '@/stores/teacher'
-import { useStudentStore } from '@/stores/student'
+import { useTeacherStore } from '../stores/teacher'
+import { useStudentStore } from '../stores/student'
 import StudentService from '../services/StudentService'
 
 
