@@ -32,10 +32,10 @@ store
 <template>
   <div>
     <div v-if="teacher">
-      <div id="nav">
+      <!-- <div id="nav">
         <RouterLink :to="{ name: 'teacher-detail', params: { id } }">Details</RouterLink>
-        <!-- <RouterLink :to="{ name: 'teacher-edit', params: { id } }">Edit</RouterLink> -->
-      </div>
+        <RouterLink :to="{ name: 'teacher-edit', params: { id } }">Edit</RouterLink>
+      </div> -->
       <RouterView :oneTeacher="teacher"></RouterView>
     </div>
   </div>
