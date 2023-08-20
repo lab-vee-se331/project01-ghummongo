@@ -1,10 +1,8 @@
-<script setup lang="ts"></script>
-
 <template>
   <main class="flex flex-col items-center justify-center">
-    <h1 class="text-3xl font-bold">Welcome to our SE331 Project 1</h1>
+    <h1 class="text-3xl font-bold text-center">Welcome to our SE331 Project 1</h1>
     <p class="my-5">This is our team members</p>
-    <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-24 gap-y-12 mt-14">
+    <div class="grid lg:grid-cols-3 md:grid-cols-1 gap-24 gap-y-12 mt-14 max-[1111px]:gap-16">
       <div class="member">
         <img src="https://i.imgur.com/tbXDnsJ.jpg" alt="" class="h-48 rounded-full mb-4" />
         <!-- <h1 class="mt-6 text-2xl font-bold">Ph1r1</h1> -->

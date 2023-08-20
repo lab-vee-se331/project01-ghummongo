@@ -48,11 +48,9 @@ useStudentStore().getStudentsByTeacherId(props.id!).then((result) => {
 <template>
   <div>
     <div v-if="teacher">
-      <div id="nav">
-        <RouterLink :to="{ name: 'teacher-detail', params: { id } }">Details</RouterLink>
-        <!-- <RouterLink :to="{ name: 'teacher-edit', params: { id } }">Edit</RouterLink> -->
-      </div>
+
       <RouterView :oneTeacher="teacher" :oneStudent="student"></RouterView>
+
     </div>
   </div>
 </template>

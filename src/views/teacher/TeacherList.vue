@@ -101,5 +101,3 @@ const totalPages = computed(() => {
     </div>
   </main>
 </template>
-
-<style></style>
