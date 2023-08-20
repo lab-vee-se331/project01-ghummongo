@@ -1,6 +1,7 @@
 import type { TeacherItem } from "@/type";
 import { defineStore } from "pinia";
 import TeacherService from "../services/TeacherService";
+import { useStudentStore } from "./student";
 
 export const useTeacherStore = defineStore('teacher', {
     state: () => ({
@@ -32,6 +33,18 @@ export const useTeacherStore = defineStore('teacher', {
         },
         getAllTeachers: (state) => () => {
             return state.teachers;
+        },
+        getStudentInTeacher: (state) => (id: string) => {
+            const studentStore = useStudentStore();
+            const teacher = state.teachers.find(teacher => teacher.studentId === id);
+            if (teacher) {
+                const studentId = teacher.teacherId;
+                const student = studentStore.getStudentById(studentId); 
+                console.log()
+                return student;
+            } else {
+                return undefined;
+            }
         },
     
     }, 

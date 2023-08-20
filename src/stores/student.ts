@@ -13,6 +13,18 @@ export const useStudentStore = defineStore('student', {
             const end = start + limit;
             return state.students.slice(start, end);
         },
+
+        getStudentsByTeacherId: (state) => async (teacherId: string) => {
+            const teacherStore = useTeacherStore();
+            const teacher = teacherStore.getTeacherById(teacherId);
+
+            if (!teacher) {
+                return Promise.resolve([]); 
+            }
+
+            const students = state.students.filter(student => student.teacherId === teacherId);
+            return Promise.resolve(students);
+        },
         
         getStudentById: (state) => (id: string) => {
             return new Promise<StudentItem | undefined>((resolve, reject) => {
@@ -40,8 +52,8 @@ export const useStudentStore = defineStore('student', {
             const student = state.students.find(student => student.studentId === id);
             if (student) {
                 console.log(student)
-                const teacherId = student.teacherId; // หาค่า teacherId จาก student
-                const teacher = teacherStore.getTeacherById(teacherId); // ดึงข้อมูล teacher โดยใช้ teacherId
+                const teacherId = student.teacherId;
+                const teacher = teacherStore.getTeacherById(teacherId); 
                 return teacher;
             } else {
                 return undefined;
