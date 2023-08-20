@@ -114,86 +114,99 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
 import { useStudentStore } from '@/stores/student'
+import type { StudentItem, ErrorsType } from '@/type'
+import router from '@/router'
 
-export default {
+export default defineComponent({
   name: 'imageUpload',
-  data() {
-    return {
-      profileImage: null,
-      student: {
-        name: '',
-        surname: '',
-        studentId: '',
-        courseList: '',
-        teacherId: '',
-        comment: ''
-      },
-      errors: {
-        name: '',
-        surname: '',
-        studentId: '',
-        courseList: '',
-        teacherId: '',
-        comment: '',
-        image: ''
-      }
+  setup() {
+    const profileImage = ref<string | null>(null)
+    const student: StudentItem = {
+      name: '',
+      surname: '',
+      studentId: '',
+      courseList: [],
+      teacherId: '',
+      comment: '',
+      profileImage: ''
     }
-  },
-  methods: {
-    uploadImage(e) {
-      const image = e.target.files[0]
+
+    const errors: ErrorsType = {
+      name: '',
+      surname: '',
+      studentId: '',
+      courseList: '',
+      teacherId: '',
+      comment: '',
+      image: ''
+    }
+
+    function uploadImage(e: Event) {
+      const target = e.target as HTMLInputElement
+      const image = target.files && target.files[0]
+      if (!image) return
+
       const reader = new FileReader()
       reader.readAsDataURL(image)
-      reader.onload = (e) => {
-        this.profileImage = e.target.result
+      reader.onload = (event) => {
+        profileImage.value = event.target!.result as string
       }
-    },
-    submitForm() {
-      if (this.validateForm()) {
-        // success baby
+    }
 
-        const newStudent = {
-          name: this.student.name,
-          surname: this.student.surname,
-          studentId: this.student.studentId,
-          profileImage: this.profileImage,
-          courseList: this.student.courseList.split(','),
-          teacherId: this.student.teacherId,
-          comment: this.student.comment
+    function submitForm() {
+      if (validateForm()) {
+        const newStudent: StudentItem = {
+          ...student,
+          profileImage: profileImage.value || '',
+          // courseList: student.courseListDisplay?.split(',') || []
+          courseList: []
         }
 
         const studentStore = useStudentStore()
         studentStore.addStudent(newStudent)
 
-        this.$router.push({ name: 'student-list' })
+        // Assuming you have Vue Router setup
+        router.push({ name: 'student-list' })
       } else {
         console.log('Form validation failed.')
       }
-    },
-    validateForm() {
+    }
+
+    function validateForm(): boolean {
       let isValid = true
-      for (let key in this.student) {
-        if (!this.student[key]) {
-          this.errors[key] = `${key} field is required.`
+      for (let key in student) {
+        if (!student[key as keyof StudentItem]) {
+          errors[key as keyof ErrorsType] = `${key} field is required.`
           isValid = false
         } else {
-          this.errors[key] = ''
+          errors[key as keyof ErrorsType] = ''
         }
       }
-      if (!this.profileImage) {
-        this.errors.image = 'Image is required.'
+      if (!profileImage.value) {
+        errors.image = 'Image is required.'
         isValid = false
-        console.log(this.errors)
+        console.log(errors)
       } else {
-        this.errors.image = ''
+        errors.image = ''
       }
       return isValid
     }
+
+    return {
+      profileImage,
+      student,
+      errors,
+      uploadImage,
+      submitForm,
+      validateForm
+    }
   }
-}
+})
 </script>
+
 
 <style scoped>
 .error {

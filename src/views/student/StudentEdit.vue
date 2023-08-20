@@ -50,7 +50,7 @@
   
 <script setup lang="ts">
 import { useStudentStore } from '@/stores/student'
-import type { StudentItem } from '@/type';
+import type { ErrorsType, StudentItem, StudentType } from '@/type';
 import { reactive, ref, type PropType } from 'vue';
 import router from '@/router';
 const oneStudent = defineProps({
@@ -63,18 +63,19 @@ const oneStudent = defineProps({
 const receivedStudent = oneStudent.oneStudent
 
 const profileImage = ref(receivedStudent.profileImage)
-const student = reactive({
+const student = reactive<StudentType>({
     name: receivedStudent.name,
     surname: receivedStudent.surname,
     studentId: receivedStudent.studentId,
     // courseList: receivedStudent.courseList.map(course => `"${course}"`).join(','),
     courseList: receivedStudent.courseList ? receivedStudent.courseList.join(',') : '',
+    // courseList: [{}],
     courseListDisplay: receivedStudent.courseList ? receivedStudent.courseList.map(course => `"${course}"`).join(',') : '',
     teacherId: receivedStudent.teacherId,
     comment: receivedStudent.comment,
 })
 
-const errors = reactive({
+const errors = reactive<ErrorsType>({
     name: '',
     surname: '',
     studentId: '',
@@ -83,6 +84,8 @@ const errors = reactive({
     comment: '',
     image: ''
 })
+
+
 
 const uploadImage = (e: any) => {
     const image = e.target.files[0]
@@ -149,4 +152,3 @@ input {
     border: 1px solid red;
 }
 </style>
-  

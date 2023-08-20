@@ -38,15 +38,15 @@ const isSettingsPage = computed(() => {
   </button> -->
   <aside :class="`fixed top-0 left-0 z-40 w-64 h-screen ${!isExpanded && 'not-expanded'}`" aria-label="Sidebar">
     <!-- transition-transform -translate-x-full sm:translate-x-0 -->
-    <div :class="`h-full px-6 py-8 overflow-y-auto bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
-      <div class="flex items-center justify-between pl-2.5 mb-5">
-        <RouterLink to="/" class="flex">
+    <div :class="`h-full px-6 pb-8 overflow-y-auto bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
+      <div class="flex items-center justify-center">
+        <RouterLink to="/" class="flex p-5">
           <img
-            src="https://api.logo.com/api/v2/images?logo=logo_4e60f17a-fda1-4731-bdee-b9323c05a05a&format=webp&margins=0&quality=60&width=500&background=transparent&u=1691332226"
-            class="h-7 mr-3" alt="Flowbite Logo" />
-          <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Ghum</span>
+            src="../assets/CATA2.png"
+            class="h-24" alt="Flowbite Logo" />
+          <!-- <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Ghum</span> -->
         </RouterLink>
-        <button class="px-2.5 py-0.5 rounded bg-gray-800" @click="ToggleMenu">
+        <button class="absolute px-2.5 py-4 rounded-lg bg-gray-900 -right-5" @click="ToggleMenu">
           <font-awesome-icon icon="arrow-left" />
         </button>
       </div>
