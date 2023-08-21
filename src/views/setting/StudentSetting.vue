@@ -158,10 +158,26 @@ export default defineComponent({
 
     function submitForm() {
       if (validateForm()) {
+        const tempCourseList = []
+        var temp = ''
+        for (let i = 0; i < student.courseList.length; i++) {
+          if (student.courseList[i] !== ",") {
+            temp += student.courseList[i];
+          } else {
+            tempCourseList.push(temp);
+            temp = "";
+          }
+        }
+        if (temp) {
+          tempCourseList.push(temp);
+        }
+
+
+
         const newStudent: StudentItem = {
           ...student,
           profileImage: profileImage.value || '',
-          courseList: student.courseList?.split(',') || []
+          courseList: tempCourseList || []
           // courseList: ["asda", "asda"]
         }
 
