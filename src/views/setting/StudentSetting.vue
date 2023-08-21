@@ -161,8 +161,8 @@ export default defineComponent({
         const newStudent: StudentItem = {
           ...student,
           profileImage: profileImage.value || '',
-          // courseList: student.courseListDisplay?.split(',') || []
-          courseList: []
+          courseList: student.courseList?.split(',') || []
+          // courseList: ["asda", "asda"]
         }
 
         const studentStore = useStudentStore()
@@ -172,27 +172,52 @@ export default defineComponent({
         router.push({ name: 'student-list' })
       } else {
         console.log('Form validation failed.')
+
       }
     }
 
     function validateForm(): boolean {
-      let isValid = true
-      for (let key in student) {
-        if (!student[key as keyof StudentItem]) {
-          errors[key as keyof ErrorsType] = `${key} field is required.`
-          isValid = false
+      let isValid = true;
+      console.log('submitForm Jaa')
+
+      // Fields that are required and should not be empty
+      const requiredFields: Array<keyof StudentItem> = [
+        'name',
+        'surname',
+        'studentId',
+        'teacherId'
+      ];
+
+      // Loop over the required fields and check if they are empty
+      for (const key of requiredFields) {
+        if (!student[key]) {
+          errors[key] = `${key} field is required.`;
+          isValid = false;
         } else {
-          errors[key as keyof ErrorsType] = ''
+          errors[key] = '';
         }
       }
+
+      console.log(errors)
+      console.log(errors.name)
+
+      // Check for the profile image
       if (!profileImage.value) {
-        errors.image = 'Image is required.'
-        isValid = false
-        console.log(errors)
+        errors.image = 'Image is required.';
+        isValid = false;
       } else {
-        errors.image = ''
+        errors.image = '';
       }
-      return isValid
+
+      // If courseList is empty or doesn't have any items
+      if (!student.courseList || student.courseList.length === 0) {
+        errors.courseList = 'At least one course is required.';
+        isValid = false;
+      } else {
+        errors.courseList = '';
+      }
+
+      return isValid;
     }
 
     return {
