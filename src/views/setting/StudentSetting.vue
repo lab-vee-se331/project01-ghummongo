@@ -36,42 +36,6 @@
                 <p v-if="errors.surname" class="error">{{ errors.surname }}</p>
               </div>
 
-
-              <!-- <div class="md:col-span-2">
-                  <label for="studentId">Student ID</label> 
-                  <input
-                    type="text"
-                    name="studentId"
-                    id="studentId"
-                    v-model="student.studentId"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    placeholder="e.g. 642115069"
-                  />
-                  <p v-if="errors.studentId" class="error">{{ errors.studentId }}</p>
-                </div>
-                <div class="md:col-span-2">
-                  <label for="courses">Courses</label>
-                  <input
-                    type="text"
-                    name="courses"
-                    id="courses"
-                    v-model="student.courseList"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                  />
-                  <p v-if="errors.courseList" class="error">{{ errors.courseList }}</p>
-                </div>
-                <div class="md:col-span-2">
-                  <label for="teacherId">Teacher ID</label>
-                  <input
-                    type="text"
-                    name="teacherId"
-                    id="teacherId"
-                    v-model="student.teacherId"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                  />
-                  <p v-if="errors.teacherId" class="error">{{ errors.teacherId }}</p>
-                </div> -->
-
               <div class="md:col-span-2">
                 <label for="studentId">Student ID</label>
                 <input type="text" name="studentId" id="studentId" v-model="student.studentId"
@@ -90,7 +54,6 @@
                   class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                 <p v-if="errors.teacherId" class="error">{{ errors.teacherId }}</p>
               </div>
-
 
               <div class="md:col-span-6">
                 <label for="comment">Comment</label>
