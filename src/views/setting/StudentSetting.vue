@@ -11,53 +11,106 @@
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
               <div class="md:col-span-6">
                 <div class="flex mb-4 gap-8">
-                  <img v-if="profileImage" :src="profileImage"
-                    class="uploading-image border-4 h-48 w-48 border-black object-cover" />
-                  <img v-if="profileImage" :src="profileImage"
-                    class="uploading-image rounded-full border-4 h-48 w-48 border-black object-cover" />
+                  <img
+                    v-if="profileImage"
+                    :src="profileImage"
+                    class="uploading-image border-4 h-48 w-48 border-black object-cover"
+                  />
+                  <img
+                    v-if="profileImage"
+                    :src="profileImage"
+                    class="uploading-image rounded-full border-4 h-48 w-48 border-black object-cover"
+                  />
                 </div>
                 <label for="profileImage">Upload Profile</label>
                 <input
                   class="mt-1 bg-gray-50 text-gray-400 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                  type="file" id="formFile" accept="image/png, image/gif, image/jpeg" @change="uploadImage" required />
+                  type="file"
+                  id="formFile"
+                  accept="image/png, image/gif, image/jpeg"
+                  @change="uploadImage"
+                  required
+                />
               </div>
               <div class="md:col-span-3">
                 <label for="firstName">First Name</label>
-                <input type="text" name="firstName" id="firstName" v-model="student.name"
-                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+                <input
+                  type="text"
+                  name="firstName"
+                  id="firstName"
+                  v-model="student.name"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  required
+                />
               </div>
 
               <div class="md:col-span-3">
                 <label for="lastName">Last Name</label>
-                <input type="text" name="lastName" id="lastName" v-model="student.surname"
-                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+                <input
+                  type="text"
+                  name="lastName"
+                  id="lastName"
+                  v-model="student.surname"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  required
+                />
               </div>
-              
+
               <div class="md:col-span-2">
                 <label for="studentId">Student ID</label>
-                <input type="text" name="studentId" id="studentId" v-model="student.studentId"
-                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="e.g. 642115069" required />
+                <input
+                  type="text"
+                  name="studentId"
+                  id="studentId"
+                  v-model="student.studentId"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  placeholder="e.g. 642115069"
+                  required
+                />
               </div>
               <div class="md:col-span-2">
                 <label for="courses">Courses</label>
-                <input type="text" name="courses" id="courses" v-model="student.courseList"
-                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="e.g. sci,math,history" required />
+                <input
+                  type="text"
+                  name="courses"
+                  id="courses"
+                  v-model="student.courseList"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  placeholder="e.g. sci,math,history"
+                  required
+                />
               </div>
               <div class="md:col-span-2">
                 <label for="teacherId">Teacher ID</label>
-                <input type="text" name="teacherId" id="teacherId" v-model="student.teacherId"
-                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+                <input
+                  type="text"
+                  name="teacherId"
+                  id="teacherId"
+                  v-model="student.teacherId"
+                  class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                  required
+                />
               </div>
 
               <div class="md:col-span-6">
                 <label for="comment">Comment</label>
-                <textarea type="text" name="comment" id="comment" v-model="student.comment"
-                  class="h-20 border mt-1 rounded px-4 pt-2 w-full bg-gray-50" placeholder="e.g. Noob shit" required />
+                <textarea
+                  type="text"
+                  name="comment"
+                  id="comment"
+                  v-model="student.comment"
+                  class="h-20 border mt-1 rounded px-4 pt-2 w-full bg-gray-50"
+                  placeholder="e.g. Noob shit"
+                  required
+                />
               </div>
 
               <div class="md:col-span-6 text-right mt-2">
                 <div class="inline-flex items-end">
-                  <button class="bg-[#42b883] hover:bg-[#27a26f] text-white font-bold py-2 px-4 rounded" type="submit">
+                  <button
+                    class="bg-[#42b883] hover:bg-[#27a26f] text-white font-bold py-2 px-4 rounded"
+                    type="submit"
+                  >
                     Submit
                   </button>
                 </div>
@@ -75,6 +128,8 @@ import { defineComponent, ref } from 'vue'
 import { useStudentStore } from '@/stores/student'
 import type { StudentItem } from '@/type'
 import router from '@/router'
+
+import { useMessageStore } from '@/stores/message'
 
 export default defineComponent({
   name: 'AddStudent',
@@ -106,15 +161,15 @@ export default defineComponent({
       const tempCourseList = []
       var temp = ''
       for (let i = 0; i < student.courseList.length; i++) {
-        if (student.courseList[i] !== ",") {
-          temp += student.courseList[i];
+        if (student.courseList[i] !== ',') {
+          temp += student.courseList[i]
         } else {
-          tempCourseList.push(temp);
-          temp = "";
+          tempCourseList.push(temp)
+          temp = ''
         }
       }
       if (temp) {
-        tempCourseList.push(temp);
+        tempCourseList.push(temp)
       }
 
       const newStudent: StudentItem = {
@@ -122,9 +177,15 @@ export default defineComponent({
         profileImage: profileImage.value || '',
         courseList: tempCourseList || []
       }
+      const store = useMessageStore()
 
       const studentStore = useStudentStore()
       studentStore.addStudent(newStudent)
+
+      store.updateMessage('The Student has been added!')
+      setTimeout(() => {
+        store.resetMessage()
+      }, 3000)
 
       router.push({ name: 'student-list' })
     }
@@ -138,7 +199,6 @@ export default defineComponent({
   }
 })
 </script>
-
 
 <style scoped>
 .error {

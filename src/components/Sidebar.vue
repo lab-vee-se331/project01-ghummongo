@@ -2,6 +2,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
+import { useMessageStore } from '@/stores/message'
+import { storeToRefs } from 'pinia'
 
 const isExpanded = ref(true)
 const route = useRoute();
@@ -31,6 +33,9 @@ onUnmounted(() => {
 const isSettingsPage = computed(() => {
   return route.name && ['student-setting', 'teacher-setting'].includes(route.name as string);
 });
+
+const messageStore = useMessageStore()
+const { message } = storeToRefs(messageStore)
 </script>
 
 <template>
@@ -138,6 +143,10 @@ const isSettingsPage = computed(() => {
   </aside>
 
   <div :class="`my-4 transition ease-in-out delay-2000 px-2 sm:px-2 md:px-8 ${isExpanded ? 'sm:ml-64' : 'ml-16'}`">
+    <!-- <div class="animate-flashMessage"> -->
+    <div v-if="message" class="animate-flashMessage w-full flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50">
+      <h2 class="font-medium">{{ message }}</h2>
+    </div>
     <RouterView />
   </div>
 </template>

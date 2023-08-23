@@ -13,8 +13,7 @@ const students = storeToRefs(store).students
 const student = ref<StudentItem | null>(null)
 const teacher = ref<TeacherItem | null>(null)
 
-const messageStore = useMessageStore()
-const { message } = storeToRefs(messageStore)
+
 
 const props = defineProps({
   id: String
@@ -41,9 +40,6 @@ store.getTeacherInStudent(props.id!)?.then((result) => {
 <template>
   <div>
     <div v-if="student">
-      <div v-if="message" class="animate-flashMessage">
-        <h4 class="text-[20px]">{{ message }}</h4>
-      </div>
       <!-- <div id="nav">
                 <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink> | 
                 <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
