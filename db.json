@@ -4,174 +4,222 @@
       "name": "John",
       "surname": "Smith",
       "studentId": "s1",
-      "profileImage": "https://shorturl.at/bzRU9",
-      "courseList": [
-        "Psychology",
-        "Business Administration",
-        "French"
-      ],
+      "profileImage": "https://tinyurl.com/4pbru7zs",
+      "courseList": ["Psychology", "Business Administration", "French"],
       "teacherId": "t1",
-      "comment" : ""
+      "comment": ""
     },
     {
       "name": "Emily",
       "surname": "Johnson",
       "studentId": "s2",
-      "profileImage": "https://shorturl.at/lvy59",
-      "courseList": [
-        "Biology",
-        "Environmental Science",
-        "Spanish"
-      ],
-      "teacherId": "t2",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/aukwv7t2",
+      "courseList": ["Biology", "Environmental Science", "Spanish"],
+      "teacherId": "t1",
+      "comment": ""
     },
     {
       "name": "Michael",
       "surname": "Brown",
       "studentId": "s3",
-      "profileImage": "https://shorturl.at/adMS6",
-      "courseList": [
-        "Computer Science",
-        "Data Science",
-        "Japanese"
-      ],
-      "teacherId": "t3",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/2r4yzccp",
+      "courseList": ["Computer Science", "Data Science", "Japanese"],
+      "teacherId": "t1",
+      "comment": ""
     },
     {
       "name": "Sophia",
       "surname": "Davis",
       "studentId": "s4",
-      "profileImage": "https://shorturl.at/iABX8",
-      "courseList": [
-        "Anthropology",
-        "Public Health",
-        "Chinese"
-      ],
-      "teacherId": "t4",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/y5v69pcr",
+      "courseList": ["Anthropology", "Public Health", "Chinese"],
+      "teacherId": "t2",
+      "comment": ""
     },
     {
       "name": "William",
       "surname": "Miller",
       "studentId": "s5",
-      "profileImage": "https://t.ly/irIHq",
-      "courseList": [
-        "Physics",
-        "Engineering",
-        "German"
-      ],
-      "teacherId": "t5",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/mswr2rws",
+      "courseList": ["Physics", "Engineering", "German"],
+      "teacherId": "t2",
+      "comment": ""
     },
     {
       "name": "Olivia",
       "surname": "Wilson",
       "studentId": "s6",
-      "profileImage": "https://t.ly/PVbjj",
-      "courseList": [
-        "Art History",
-        "Fine Arts",
-        "Italian"
-      ],
-      "teacherId": "t6",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/swb6ftxt",
+      "courseList": ["Art History", "Fine Arts", "Italian"],
+      "teacherId": "t2",
+      "comment": ""
     },
     {
       "name": "Ethan",
       "surname": "Martinez",
       "studentId": "s7",
-      "profileImage": "https://t.ly/3Rmvr",
-      "courseList": [
-        "Mathematics",
-        "Statistics",
-        "Russian"
-      ],
-      "teacherId": "t7",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/46wr5kxf",
+      "courseList": ["Mathematics", "Statistics", "Russian"],
+      "teacherId": "t3",
+      "comment": ""
     },
     {
       "name": "Ava",
       "surname": "Taylor",
       "studentId": "s8",
-      "profileImage": "https://t.ly/p-BJi",
-      "courseList": [
-        "History",
-        "Archaeology",
-        "Portuguese"
-      ],
-      "teacherId": "t8",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/29uxuudd",
+      "courseList": ["History", "Archaeology", "Portuguese"],
+      "teacherId": "t3",
+      "comment": ""
     },
     {
       "name": "Liam",
       "surname": "Anderson",
       "studentId": "s9",
-      "profileImage": "https://t.ly/n9Mwt",
-      "courseList": [
-        "Literature",
-        "Linguistics",
-        "Swedish"
-      ],
-      "teacherId": "t9",
-      "comment" : ""
+      "profileImage": "https://tinyurl.com/2p9jfeep",
+      "courseList": ["Literature", "Linguistics", "Swedish"],
+      "teacherId": "t3",
+      "comment": ""
+    },
+    {
+      "name": "Aarav",
+      "surname": "Chowdhury",
+      "studentId": "s10",
+      "profileImage": "https://tinyurl.com/3chu847d",
+      "courseList": ["Mathematics", "Physics", "Computer Science"],
+      "teacherId": "t4",
+      "comment": ""
+    },
+    {
+      "name": "Lei",
+      "surname": "Nguyen",
+      "studentId": "s11",
+      "profileImage": "https://tinyurl.com/3j2fnbcr",
+      "courseList": ["History", "Cultural Studies", "English"],
+      "teacherId": "t4",
+      "comment": ""
+    },
+    {
+      "name": "Raj",
+      "surname": "Patel",
+      "studentId": "s12",
+      "profileImage": "https://tinyurl.com/3tst6nma",
+      "courseList": ["Economics", "Political Science", "Mathematics"],
+      "teacherId": "t4",
+      "comment": ""
+    },
+    {
+      "name": "Yuna",
+      "surname": "Kim",
+      "studentId": "s13",
+      "profileImage": "https://tinyurl.com/bdey6snr",
+      "courseList": ["Biology", "Chemistry", "Environmental Science"],
+      "teacherId": "t5",
+      "comment": ""
+    },
+    {
+      "name": "Amita",
+      "surname": "Rao",
+      "studentId": "s14",
+      "profileImage": "https://tinyurl.com/twdhkjru",
+      "courseList": ["Psychology", "Sociology", "Anthropology"],
+      "teacherId": "t5",
+      "comment": ""
+    },
+    {
+      "name": "Wei",
+      "surname": "Li",
+      "studentId": "s15",
+      "profileImage": "https://tinyurl.com/4k4vapjn",
+      "courseList": ["Business Administration", "Marketing", "Entrepreneurship"],
+      "teacherId": "t6",
+      "comment": ""
+    },
+    {
+      "name": "Rina",
+      "surname": "Tanaka",
+      "studentId": "s16",
+      "profileImage": "https://tinyurl.com/bd8e37v9",
+      "courseList": ["Art History", "Fine Arts", "Design"],
+      "teacherId": "t6",
+      "comment": ""
+    },
+    {
+      "name": "Varun",
+      "surname": "Gupta",
+      "studentId": "s17",
+      "profileImage": "https://tinyurl.com/4a8v8cah",
+      "courseList": ["Computer Engineering", "Electronics", "Robotics"],
+      "teacherId": "t6",
+      "comment": ""
+    },
+    {
+      "name": "Mei",
+      "surname": "Wong",
+      "studentId": "s18",
+      "profileImage": "https://tinyurl.com/yndmz4me",
+      "courseList": ["Languages", "Linguistics", "Translation"],
+      "teacherId": "t7",
+      "comment": ""
+    },
+    {
+      "name": "Arjun",
+      "surname": "Singh",
+      "studentId": "s19",
+      "profileImage": "https://tinyurl.com/7a68padm",
+      "courseList": ["History", "Political Science", "Sociology"],
+      "teacherId": "t7",
+      "comment": ""
+    },
+    {
+      "name": "Ji-hye",
+      "surname": "Park",
+      "studentId": "s20",
+      "profileImage": "https://tinyurl.com/4v6snwts",
+      "courseList": ["Economics", "Finance", "Business Administration"],
+      "teacherId": "t7",
+      "comment": ""
     }
   ],
+
+
+
   "teachers": [
     {
       "teacherId": "t1",
       "name": "Jennifer",
       "surname": "Smith",
-      "profileImage": "https://shorturl.at/fqENP"
+      "profileImage": "https://tinyurl.com/32wcyjbm"
     },
     {
       "teacherId": "t2",
       "name": "Christopher",
       "surname": "Johnson",
-      "profileImage": "https://shorturl.at/rFGIX"
+      "profileImage": "https://tinyurl.com/bdwja8kd"
     },
     {
       "teacherId": "t3",
       "name": "Elizabeth",
       "surname": "Brown",
-      "profileImage": "https://rb.gy/pjvo2"
+      "profileImage": "https://tinyurl.com/54h2fjrb"
     },
     {
       "teacherId": "t4",
       "name": "Matthew",
       "surname": "Davis",
-      "profileImage": "https://shorturl.at/eluyP"
+      "profileImage": "https://tinyurl.com/bdz2yskk"
     },
     {
       "teacherId": "t5",
       "name": "Sarah",
       "surname": "Miller",
-      "profileImage": "https://shorturl.at/lDEX0"
+      "profileImage": "https://tinyurl.com/3s6ha7cz"
     },
     {
       "teacherId": "t6",
       "name": "Daniel",
       "surname": "Wilson",
-      "profileImage": "https://shorturl.at/chjO5"
-    },
-    {
-      "teacherId": "t7",
-      "name": "Natalie",
-      "surname": "Martinez",
-      "profileImage": "https://shorturl.at/acvW8"
-    },
-    {
-      "teacherId": "t8",
-      "name": "Kevin",
-      "surname": "Taylor",
-      "profileImage": "https://rb.gy/h50uq"
-    },
-    {
-      "teacherId": "t9",
-      "name": "Laura",
-      "surname": "Anderson",
-      "profileImage": "https://rb.gy/ekiwm"
+      "profileImage": "https://tinyurl.com/5ca7m5n2"
     }
   ]
 }
