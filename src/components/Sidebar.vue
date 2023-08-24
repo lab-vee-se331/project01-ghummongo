@@ -44,7 +44,7 @@ const { message } = storeToRefs(messageStore)
   </button> -->
   <aside :class="`fixed top-0 left-0 z-40 w-64 h-screen ${!isExpanded && 'w-[4rem]'}`" aria-label="Sidebar">
     <!-- transition-transform -translate-x-full sm:translate-x-0 -->
-    <div :class="`h-full px-6 pb-8 overflow-y-auto bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
+    <div :class="`h-full px-6 pb-8 overflow-hidden bg-gray-900 text-gray-500 ${!isExpanded && 'hidden'}`">
       <div class="flex items-center justify-center">
         <RouterLink to="/" class="flex p-5">
           <img
