@@ -1,9 +1,12 @@
 # Group name : Ghummongo
 
+## Website :
+https://ghummongo.web.app/
+
 ## Contributors :
-1. Phiriyakorn 
-2. Sorawee
-3. Thanapong
+1. Phiriyakorn Maneekongrit 642115031 https://github.com/ph1r1 (ph1r1)
+2. Sorawee Sripakdeepongdej 642115045 https://github.com/veevism (veevism)
+3. Thanapong Yamkamol 642115022 https://github.com/ThanapongYamkamol642115022 (ThanapongYamkamol642115022)
 
 ## Checklist :
 1. Data Structure ( Mock ) :
@@ -14,7 +17,7 @@
 - [x]  Ability to view a list of all students
 - [x]  Ability to create advisor details
 - [x]  View student list and click on a student's name to route to student details:
-- [ ]  Student Detail Page :
+- [x]  Student Detail Page :
     - Student 
     - Teacher 
     - Student and Teacher Profile images
@@ -23,16 +26,15 @@
 - [x]  Save comments to Pinia
 - [x]  Save student and teacher data to Pinia
 4. User Interface :
-- [ ]  Student list
-- [ ]  Teacher list
-- [ ]  Add student page
-- [ ]  Add teacher page
-- [ ]  Edit student page
+- [x]  Student list
+- [x]  Teacher list
+- [x]  Add student page
+- [x]  Add teacher page
 5. Deployment and Version Control :
-- [ ]  Set up automated Continuous Deployment (CD)
-- [ ]  Deploy the application on Firebase
-- [ ]  Store the codebase on a Github Repository
+- [x]  Set up automated Continuous Deployment (CD)
+- [x]  Deploy the application on Firebase
+- [x]  Store the codebase on a Github Repository
 6. README.md :
-- [ ]  Specify group name
-- [ ]  Detail all group members
-- [ ]  Include the URL of the deployed website
+- [x]  Specify group name
+- [x]  Detail all group members
+- [x]  Include the URL of the deployed website
