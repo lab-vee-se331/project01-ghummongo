@@ -8,6 +8,11 @@ https://ghummongo.web.app/
 2. Sorawee Sripakdeepongdej 642115045 https://github.com/veevism (veevism)
 3. Thanapong Yamkamol 642115022 https://github.com/ThanapongYamkamol642115022 (ThanapongYamkamol642115022)
 
+## Role
+ph1r1: UX/UI design, Tailwind CSS
+veevism: Store management
+ThanapongYamkamol642115022: Manage db.json
+
 ## Checklist :
 1. Data Structure ( Mock ) :
 - [x]  Student Data
