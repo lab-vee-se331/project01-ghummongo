@@ -114,7 +114,7 @@ const onSubmit = () => {
           <div v-if="oneStudent?.comment" class="grid grid-cols-6">
             <div class="col-span-1 mr-4">
               <img
-                :src="oneStudent?.profileImage"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Anonymous_emblem.svg/640px-Anonymous_emblem.svg.png"
                 alt=""
                 class="rounded-full w-12 h-12 object-cover float-right"
               />
