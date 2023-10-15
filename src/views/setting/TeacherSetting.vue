@@ -1,10 +1,10 @@
 <template>
   <div>
     <div>
-      <h2 class="font-semibold text-xl text-gray-600">Add Teacher</h2>
-      <p class="text-gray-500 mb-6">This form is used to add new teacher to the list.</p>
+      <h2 class="font-semibold text-xl text-gray-600">Create new Advisor</h2>
+      <p class="text-gray-500 mb-6">This form is used to create new advisor id</p>
 
-      <!-- Form for teacher data -->
+      <!-- Form for advisor data -->
       <form @submit.prevent="submitForm">
         <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
@@ -15,27 +15,77 @@
                   <label for="profileImage">Upload Profile</label>
                   <input
                     class="mt-1 bg-gray-50 text-gray-400 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
-                    type="file" id="formFile" accept="image/png, image/gif, image/jpeg" @change="uploadImage" required />
+                    type="file"
+                    id="formFile"
+                    accept="image/png, image/gif, image/jpeg"
+                    @change="uploadImage"
+                    required
+                  />
                 </div>
+
+                <div class="md:col-span-6">
+                  <label for="username">Username</label>
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    required
+                  />
+                </div>
+
+                <div class="md:col-span-6">
+                  <label for="password">Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    required
+                  />
+                </div>
+
                 <div class="md:col-span-3">
                   <label for="firstName">First Name</label>
-                  <input type="text" name="firstName" id="firstName" v-model="teacher.name"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    v-model="teacher.name"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    required
+                  />
                 </div>
 
                 <div class="md:col-span-3">
                   <label for="lastName">Last Name</label>
-                  <input type="text" name="lastName" id="lastName" v-model="teacher.surname"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    v-model="teacher.surname"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    required
+                  />
                 </div>
-                <div class="md:col-span-2">
-                  <label for="teacherId">Teacher ID</label>
-                  <input type="text" name="teacherId" id="teacherId" v-model="teacher.teacherId"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" required />
+
+                <div class="md:col-span-6">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                    required
+                  />
                 </div>
+
                 <div class="md:col-span-6 text-right mt-2">
                   <div class="inline-flex items-end">
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+                    <button
+                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      type="submit"
+                    >
                       Submit
                     </button>
                   </div>
