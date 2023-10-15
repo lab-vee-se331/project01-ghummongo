@@ -1,16 +1,108 @@
+<script setup lang="ts">
+// import { defineComponent, ref } from 'vue'
+// import { useTeacherStore } from '@/stores/teacher'
+// import { useRouter } from 'vue-router'
+// import type { TeacherItem } from '@/type'
+import InputText from '@/components/InputText.vue'
+import { useField, useForm } from 'vee-validate'
+import * as yup from 'yup'
+
+// export default defineComponent({
+//   name: 'imageUpload',
+//   setup() {
+//     const profileImage = ref<string | null>(null)
+//     const teacher = ref({
+//       name: '',
+//       surname: '',
+//       teacherId: ''
+//     })
+
+//     const router = useRouter()
+
+//     const uploadImage = (e: Event) => {
+//       const input = e.target as HTMLInputElement
+//       const image = input?.files ? input.files[0] : null
+
+//       if (image) {
+//         const reader = new FileReader()
+//         reader.readAsDataURL(image)
+//         reader.onload = (e) => {
+//           profileImage.value = e.target!.result as string
+//         }
+//       }
+//     }
+
+//     const submitForm = () => {
+//       const newTeacher: TeacherItem = {
+//         name: teacher.value.name,
+//         surname: teacher.value.surname,
+//         profileImage: profileImage.value || '',
+//         teacherId: teacher.value.teacherId
+//       }
+
+//       const teacherStore = useTeacherStore()
+//       teacherStore.addTeacher(newTeacher)
+
+//       router.push({ name: 'teacher-list' })
+//     }
+
+//     return {
+//       profileImage,
+//       teacher,
+//       uploadImage,
+//       submitForm
+//     }
+//   }
+// })
+
+const validationSchema = yup.object({
+  username: yup.string().required('The username is required'),
+  password: yup.string().required('The password is required'),
+  firstName: yup.string().required('The first name is required'),
+  lastName: yup.string().required('The last name is required'),
+  email: yup.string().email('The email is required'),
+})
+
+const { errors, handleSubmit } = useForm({
+  validationSchema,
+
+  initialValues: {
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+  }
+})
+
+const { value: username } = useField<string>('username')
+const { value: password } = useField<string>('password')
+const { value: firstName } = useField<string>('firstName')
+const { value: lastName } = useField<string>('lastName')
+const { value: email } = useField<string>('email')
+
+const onSubmit = handleSubmit((values) => {
+  console.log('username: '+ values.username)
+  console.log('password: '+ values.password)
+  console.log('firstName: '+ values.firstName)
+  console.log('lastName: '+ values.lastName)
+  console.log('email: '+ values.email)
+})
+</script>
+
 <template>
   <div>
     <div>
       <h2 class="font-semibold text-xl text-gray-600">Create new Advisor</h2>
-      <p class="text-gray-500 mb-6">This form is used to create new advisor id</p>
+      <p class="text-gray-500 mb-6">This form is used to create New advisor id</p>
 
       <!-- Form for advisor data -->
-      <form @submit.prevent="submitForm">
+      <form @submit.prevent="onSubmit">
         <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
           <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
             <div class="lg:col-span-2">
               <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-                <div class="md:col-span-6">
+                <!-- <div class="md:col-span-6">
                   <img v-if="profileImage" :src="profileImage" class="uploading-image" />
                   <label for="profileImage">Upload Profile</label>
                   <input
@@ -21,63 +113,31 @@
                     @change="uploadImage"
                     required
                   />
-                </div>
+                </div> -->
 
                 <div class="md:col-span-6">
                   <label for="username">Username</label>
-                  <input
-                    type="text"
-                    name="username"
-                    id="username"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    required
-                  />
+                  <InputText type="text" v-model="username" :error="errors['username']"></InputText>
                 </div>
 
                 <div class="md:col-span-6">
                   <label for="password">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    required
-                  />
+                  <InputText type="password" v-model="password" :error="errors['password']"></InputText>
                 </div>
 
                 <div class="md:col-span-3">
                   <label for="firstName">First Name</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                    v-model="teacher.name"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    required
-                  />
+                  <InputText type="text" v-model="firstName" :error="errors['firstName']"></InputText>
                 </div>
 
                 <div class="md:col-span-3">
                   <label for="lastName">Last Name</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                    v-model="teacher.surname"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    required
-                  />
+                  <InputText type="text" v-model="lastName" :error="errors['lastName']"></InputText>
                 </div>
 
                 <div class="md:col-span-6">
                   <label for="email">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                    required
-                  />
+                  <InputText type="text" v-model="email" :error="errors['email']"></InputText>
                 </div>
 
                 <div class="md:col-span-6 text-right mt-2">
@@ -98,61 +158,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { useTeacherStore } from '@/stores/teacher'
-import { useRouter } from 'vue-router'
-import type { TeacherItem } from '@/type'
-
-export default defineComponent({
-  name: 'imageUpload',
-  setup() {
-    const profileImage = ref<string | null>(null)
-    const teacher = ref({
-      name: '',
-      surname: '',
-      teacherId: ''
-    })
-
-    const router = useRouter()
-
-    const uploadImage = (e: Event) => {
-      const input = e.target as HTMLInputElement
-      const image = input?.files ? input.files[0] : null
-
-      if (image) {
-        const reader = new FileReader()
-        reader.readAsDataURL(image)
-        reader.onload = (e) => {
-          profileImage.value = e.target!.result as string
-        }
-      }
-    }
-
-    const submitForm = () => {
-      const newTeacher: TeacherItem = {
-        name: teacher.value.name,
-        surname: teacher.value.surname,
-        profileImage: profileImage.value || '',
-        teacherId: teacher.value.teacherId
-      }
-
-      const teacherStore = useTeacherStore()
-      teacherStore.addTeacher(newTeacher)
-
-      router.push({ name: 'teacher-list' })
-    }
-
-    return {
-      profileImage,
-      teacher,
-      uploadImage,
-      submitForm
-    }
-  }
-})
-</script>
 
 <style scoped>
 .error {
