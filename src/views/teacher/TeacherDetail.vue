@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { StudentItem, TeacherItem } from '@/type'
-import { ref, type PropType } from 'vue'
 
+// eslint-disable-next-line vue/no-setup-props-destructure
 const { manyStudent, oneTeacher } = defineProps<{
   manyStudent: StudentItem[]
   oneTeacher?: TeacherItem

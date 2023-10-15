@@ -6,24 +6,21 @@ import NProgress from 'nprogress'
 import HomePage from '@/views/HomeView.vue'
 
 // ----- Event Handling -----
-import NotFoundView from "@/views/NotFoundView.vue"
+import NotFoundView from '@/views/NotFoundView.vue'
 import NetworkErrorView from '@/views/NetworkErrorView.vue'
 
 // ----- Student -----
-
 import StudentEdit from '../views/student/StudentEdit.vue'
 import StudentDetail from '../views/student/StudentDetail.vue'
 import StudentLayout from '../views/student/StudentLayout.vue'
 import StudentList from '../views/student/StudentList.vue'
 
 // ----- Teacher -----
-
 import TeacherDetail from '../views/teacher/TeacherDetail.vue'
 import TeacherLayout from '../views/teacher/TeacherLayout.vue'
 import TeacherList from '../views/teacher/TeacherList.vue'
 
 // ----- Setting -----
-
 import TeacherSetting from '../views/setting/TeacherSetting.vue'
 import StudentSetting from '../views/setting/StudentSetting.vue'
 
@@ -31,8 +28,6 @@ import StudentSetting from '../views/setting/StudentSetting.vue'
 import { useTeacherStore } from '../stores/teacher'
 import { useStudentStore } from '../stores/student'
 import StudentService from '../services/StudentService'
-
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,51 +52,43 @@ const router = createRouter({
       path: '/students/setting',
       name: 'student-setting',
       component: StudentSetting
-    },   
+    },
     {
-      path : '/student/:id',
-      name : 'student-layout',
-      component : StudentLayout,
+      path: '/student/:id',
+      name: 'student-layout',
+      component: StudentLayout,
       props: (route) => ({ id: route.params.id }),
 
       beforeEnter: (to) => {
         const id = to.params.id as string
-      useStudentStore().getStudentById(id)
-    .catch(error => {
-        if (error.status && error.status === 404) {
-            router.push({
+        useStudentStore()
+          .getStudentById(id)
+          .catch((error) => {
+            if (error.status && error.status === 404) {
+              router.push({
                 name: '404-resource',
-                params: { resource: 'student'}
-            });
-        } 
-    });
-    if (!navigator.onLine ) {
-      router.push({ name: 'network-error' });
-  }
-    // useStudentStore().getStudentById(id)
-    // .catch(error => {
-    //  if (error.response && error.response.status === 404) {
-    //         router.push({
-    //             name: '404-resource',
-    //             params: { resource: 'student', id : id }
-    //         });
-    //     } 
-    // });
+                params: { resource: 'student' }
+              })
+            }
+          })
+        if (!navigator.onLine) {
+          router.push({ name: 'network-error' })
+        }
       },
       children: [
         {
           path: '',
           name: 'student-detail',
-          component: StudentDetail,
+          component: StudentDetail
         },
         {
           path: 'edit',
           name: 'student-edit',
-          component: StudentEdit,
+          component: StudentEdit
         }
       ]
     },
-    
+
     // ----- End Student's Route -----
 
     // ----- Teacher's Route -----
@@ -125,66 +112,65 @@ const router = createRouter({
       component: TeacherLayout,
       props: (route) => ({ id: route.params.id }),
       beforeEnter: (to) => {
-        const id = to.params.id as string;
-        useTeacherStore().getTeacherById(id)
-          .catch(error => {
+        const id = to.params.id as string
+        useTeacherStore()
+          .getTeacherById(id)
+          .catch((error) => {
             if (error.status && error.status === 404) {
-                router.push({
-                    name: '404-resource',
-                    params: { resource: 'teacher' }
-                });
+              router.push({
+                name: '404-resource',
+                params: { resource: 'teacher' }
+              })
             }
-          });
+          })
       },
       children: [
         {
           path: '',
           name: 'teacher-detail',
-          component: TeacherDetail,
+          component: TeacherDetail
         }
       ]
-    },  
-  // ----- End Teacher's Route -----
- 
+    },
+    // ----- End Teacher's Route -----
 
-  // ----- Event Handling Route -----
-{
-  path : '/:catchAll(.*)'
-, name : 'not-found'
-,component : NotFoundView
-},
-{
-  path: '/404/:resource',
-  name: '404-resource',
-  component: NotFoundView,
-  props: true
-},
-{
-  path : '/network-error',
-  name : 'network-error',
-  component : NetworkErrorView
-}
+    // ----- Event Handling Route -----
+    {
+      path: '/:catchAll(.*)',
+      name: 'not-found',
+      component: NotFoundView
+    },
+    {
+      path: '/404/:resource',
+      name: '404-resource',
+      component: NotFoundView,
+      props: true
+    },
+    {
+      path: '/network-error',
+      name: 'network-error',
+      component: NetworkErrorView
+    }
 
-// ----- End Event Handling Route ----
-
+    // ----- End Event Handling Route ----
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  NProgress.start();
+  NProgress.start()
 
-  const studentStore = useStudentStore();
+  const studentStore = useStudentStore()
   if (studentStore.students.length === 0) {
-      await studentStore.fetchAllStudents();
+    await studentStore.fetchAllStudents()
   }
 
-  const teacherStore = useTeacherStore();
+  const teacherStore = useTeacherStore()
   if (teacherStore.teachers.length === 0) {
-      await teacherStore.fetchAllTeachers();
+    await teacherStore.fetchAllTeachers()
   }
 
-  next();
-});
+  next()
+})
 
 router.afterEach(() => {
   NProgress.done()

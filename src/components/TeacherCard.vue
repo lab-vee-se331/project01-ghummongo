@@ -19,13 +19,13 @@ const truncate = (text: string) => {
 <template>
   <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.teacherId } }">
     <div
-      class="w-[270px] max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 hover:shadow-md">
+      class="w-[270px] max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
       <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{ teacher?.teacherId
       }}</span>
       <div class="flex flex-col items-center p-10">
         <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" :src="teacher?.profileImage" alt="Bonnie image" />
         <div v-if="teacher">
-          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+          <h5 class="mb-1 text-xl font-medium text-gray-900">
             {{ truncate(teacher?.name) }} {{ truncate(teacher?.surname) }}
           </h5>
         </div>

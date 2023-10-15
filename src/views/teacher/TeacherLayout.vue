@@ -18,6 +18,7 @@ const students = ref<StudentItem[]>([]);
 const props = defineProps({
   id: String
 })
+// eslint-disable-next-line vue/no-setup-props-destructure
 store.getTeacherById(props.id!)
   .then((result) => {
     if (result) {
@@ -30,8 +31,7 @@ store.getTeacherById(props.id!)
     console.error(error)
   })
 
-
-
+// eslint-disable-next-line vue/no-setup-props-destructure
 useStudentStore().getStudentsByTeacherId(props.id!).then((result) => {
   if (result) {
     students.value = result
