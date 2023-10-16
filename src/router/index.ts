@@ -24,25 +24,42 @@ import TeacherList from '../views/teacher/TeacherList.vue'
 import TeacherSetting from '../views/setting/TeacherSetting.vue'
 import StudentSetting from '../views/setting/StudentSetting.vue'
 
-// ----- Store & Service-----
+// ----- Store & Service -----
 import { useTeacherStore } from '../stores/teacher'
 import { useStudentStore } from '../stores/student'
 import StudentService from '../services/StudentService'
 
+// ----- Announcement -----
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
+
+// ----- Auth -----
+import LoginView from '../views/auth/LoginView.vue'
+import RegisterView from '../views/auth/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/',
+      name: 'home-page',
+      component: HomePage
+    },
+    {
       path: '/announcement',
       name: 'announcement-page',
       component: AnnouncementView
     },
+
+    // ----- Auth -----
     {
-      path: '/',
-      name: 'home-page',
-      component: HomePage
+      path: '/login',
+      name: 'login-page',
+      component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register-page',
+      component: RegisterView
     },
 
     // ----- Student's Route -----
