@@ -24,7 +24,7 @@ const uuid = UniqueID().getID()
 
 const placeholderErrorClass = computed(() => {
   return !isError.value
-    ? 'h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+    ? 'h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6'
     : 'h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-red-700 shadow-sm ring-1 ring-inset ring-red-300 placeholder:text-red-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6'
 })
 

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { type TeacherItem } from '@/type'
-import { computed, onMounted, ref, type Ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import TeacherCard from '@/components/TeacherCard.vue'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
-import type { AxiosResponse } from 'axios'
+import { onBeforeRouteUpdate } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
+import BaseInput from '@/components/BaseInput.vue'
 
 const teacherStore = useTeacherStore()
-const router = useRouter()
 const teachers = ref<TeacherItem[]>([])
 const totalTeacher = ref<number>(0)
 
@@ -43,11 +42,36 @@ const hasNextPage = computed(() => {
 const totalPages = computed(() => {
   return Math.ceil(totalTeacher.value / props.limit)
 })
+
+const keyword = ref('')
+function updateKeyword(value: string) {
+  console.log(keyword.value)
+  // let queryFunction
+  // if (keyword.value === '') {
+  //   queryFunction = studentStore.getStudents(3, 1)
+  // } else {
+  //   queryFunction = EventService.getEventsByKeyword(keyword.value, 3, 1)
+  // }
+  // queryFunction
+  //   .then((response: AxiosResponse<EventItem[]>) => {
+  //     events.value = response.data
+  //     console.log('events', events.value)
+  //     totalEvent.value = response.headers['x-total-count']
+  //     console.log('totalEvent', totalEvent.value)
+  //   })
+  //   .catch(() => {
+  //     router.push({ name: 'NetworkError' })
+  //   })
+}
 </script>
 
 <template>
   <main class="flex flex-col items-center justify-center">
     <h1 class="text-2xl font-bold mb-4 text-gray-700">Teacher List</h1>
+    <!-- Search -->
+    <div class="w-[50%] mb-4">
+      <BaseInput v-model="keyword" type="text" label="Search" placeholder="ค้นหาควายเหมือนกันแต่โตกว่า" @input="updateKeyword"></BaseInput>
+    </div>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       <TeacherCard
         v-for="teacher in teachers"

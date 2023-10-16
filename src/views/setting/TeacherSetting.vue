@@ -143,7 +143,7 @@ const onSubmit = handleSubmit((values) => {
                 <div class="md:col-span-6 text-right mt-2">
                   <div class="inline-flex items-end">
                     <button
-                      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      class="bg-[#42b883] hover:bg-[#27a26f] text-white font-bold py-2 px-4 rounded"
                       type="submit"
                     >
                       Submit
@@ -158,13 +158,3 @@ const onSubmit = handleSubmit((values) => {
     </div>
   </div>
 </template>
-
-<style scoped>
-.error {
-  color: red;
-}
-
-input {
-  border: 1px solid red;
-}
-</style>

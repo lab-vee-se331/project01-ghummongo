@@ -27,7 +27,7 @@ import StudentSetting from '../views/setting/StudentSetting.vue'
 // ----- Store & Service -----
 import { useTeacherStore } from '../stores/teacher'
 import { useStudentStore } from '../stores/student'
-import StudentService from '../services/StudentService'
+// import StudentService from '../services/StudentService'
 
 // ----- Announcement -----
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
