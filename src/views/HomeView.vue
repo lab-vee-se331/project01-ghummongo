@@ -8,7 +8,7 @@
         <!-- <h1 class="mt-6 text-2xl font-bold">Ph1r1</h1> -->
         <p><span class="font-bold">Name:</span> Phiriyakorn Maneekongrit</p>
         <p><span class="font-bold">Student Id:</span> 642115031</p>
-        <p><span class="font-bold">Position:</span> UX/UI Design</p>
+        <p><span class="font-bold">Position:</span> Bankai</p>
         <a href="https://github.com/ph1r1" target="_blank"
           class="rounded-lg bg-dark text-light text-lg font-semibold mt-4"><font-awesome-icon :icon="['fab', 'github']"
             class="mr-2" />Github</a>
@@ -23,7 +23,7 @@
             class="mr-2" />Github</a>
       </div>
       <div class="member">
-        <img src="https://i.imgur.com/ZFR8aEk.jpg" alt="" class="object-cover h-48 rounded-full mb-4" />
+        <img src="https://i.imgur.com/ZFR8aEk.jpg" alt="" class="object-fit h-48 w-48 rounded-full mb-4" />
         <p><span class="font-bold">Name:</span> Ratchapon</p>
         <p><span class="font-bold">Student Id:</span> 642115040</p>
         <p><span class="font-bold">Position:</span> Hokage</p>
