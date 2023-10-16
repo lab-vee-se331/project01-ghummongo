@@ -23,7 +23,7 @@
             class="mr-2" />Github</a>
       </div>
       <div class="member">
-        <img src="https://i.imgur.com/ZFR8aEk.jpg" alt="" class="object-fit h-48 w-48 rounded-full mb-4" />
+        <img src="https://i.imgur.com/FVzou0W.jpg" alt="" class="object-cover h-48 w-48 rounded-full mb-4" />
         <p><span class="font-bold">Name:</span> Ratchapon</p>
         <p><span class="font-bold">Student Id:</span> 642115040</p>
         <p><span class="font-bold">Position:</span> Hokage</p>
