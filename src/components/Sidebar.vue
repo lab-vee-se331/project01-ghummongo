@@ -101,13 +101,6 @@ const { message } = storeToRefs(messageStore)
           </RouterLink>
           <div class="pt-2 pl-4">
             <ul class="flex flex-col pl-2 text-gray-500 border-l border-gray-700">
-              <!-- <li>
-                <RouterLink
-                  :to="{ name: 'student-setting' }"
-                  class="inline-block w-full px-4 py-2 text-xs rounded hover:bg-gray-800 hover:text-white"
-                  >Students
-                </RouterLink>
-              </li> -->
               <li>
                 <RouterLink
                   :to="{ name: 'teacher-setting' }"
@@ -117,6 +110,15 @@ const { message } = storeToRefs(messageStore)
               </li>
             </ul>
           </div>
+        </li>
+        <li>
+          <RouterLink
+            :to="{ name: 'announcement-page' }"
+            class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
+          >
+            <font-awesome-icon icon="user-tie" class="w-5 h-5" />
+            <span class="ml-3 text-sm">Create Announcement</span>
+          </RouterLink>
         </li>
       </ul>
     </div>

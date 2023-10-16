@@ -29,9 +29,16 @@ import { useTeacherStore } from '../stores/teacher'
 import { useStudentStore } from '../stores/student'
 import StudentService from '../services/StudentService'
 
+import AnnouncementView from '../views/announcement/AnnouncementView.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/announcement',
+      name: 'announcement-page',
+      component: AnnouncementView
+    },
     {
       path: '/',
       name: 'home-page',
