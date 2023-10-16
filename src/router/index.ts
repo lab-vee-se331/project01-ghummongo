@@ -30,6 +30,7 @@ import { useStudentStore } from '../stores/student'
 // import StudentService from '../services/StudentService'
 
 // ----- Announcement -----
+import CreateAnnouncementView from '../views/announcement/CreateAnnouncementView.vue'
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
 
 // ----- Auth -----
@@ -43,6 +44,13 @@ const router = createRouter({
       path: '/',
       name: 'home-page',
       component: HomePage
+    },
+
+    // ----- Announcement -----
+    {
+      path: '/create-announcement',
+      name: 'create-announcement-page',
+      component: CreateAnnouncementView
     },
     {
       path: '/announcement',

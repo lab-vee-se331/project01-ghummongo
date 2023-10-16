@@ -116,6 +116,15 @@ const { message } = storeToRefs(messageStore)
             :to="{ name: 'announcement-page' }"
             class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
           >
+            <font-awesome-icon icon="bell" class="w-5 h-5" />
+            <span class="ml-3 text-sm">Announcement</span>
+          </RouterLink>
+        </li>
+        <li>
+          <RouterLink
+            :to="{ name: 'create-announcement-page' }"
+            class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
+          >
             <font-awesome-icon icon="bullhorn" class="w-5 h-5" />
             <span class="ml-3 text-sm">Create Announcement</span>
           </RouterLink>

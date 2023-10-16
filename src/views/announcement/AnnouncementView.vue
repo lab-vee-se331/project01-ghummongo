@@ -1,77 +1,57 @@
 <script setup lang="ts">
-import InputText from '@/components/InputText.vue'
-import { useField, useForm } from 'vee-validate'
-import * as yup from 'yup'
-
-const validationSchema = yup.object({
-  title: yup.string().required('The title is required')
-})
-
-const { errors, handleSubmit } = useForm({
-  validationSchema,
-
-  initialValues: {
-    title: '',
-  }
-})
-
-const { value: title } = useField<string>('title')
-
-const onSubmit = handleSubmit((values) => {
-  console.log('title: ' + values.title)
-})
+import AnnouncementCard from '@/components/AnnouncementCard.vue'
 </script>
 
 <template>
-  <div>
-    <div>
-      <h2 class="font-semibold text-xl text-gray-600">Create New Announcement</h2>
-      <p class="text-gray-500 mb-6">This form is used to create New Announcement to Student</p>
-
-      <!-- Form for advisor data -->
-      <form @submit.prevent="onSubmit">
-        <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-          <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
-            <div class="lg:col-span-2">
-              <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-                <!-- <div class="md:col-span-6">
-                  <img v-if="profileImage" :src="profileImage" class="uploading-image" />
-                  <label for="profileImage">Upload Profile</label>
-                  <input
-                    class="mt-1 bg-gray-50 text-gray-400 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none"
-                    type="file"
-                    id="formFile"
-                    accept="image/png, image/gif, image/jpeg"
-                    @change="uploadImage"
-                    required
-                  />
-                </div> -->
-
-                <div class="md:col-span-6">
-                  <label for="title">Title</label>
-                  <InputText type="text" v-model="title" :error="errors['title']" placeholder="Title..."></InputText>
-                </div>
-
-                <div class="md:col-span-6">
-                  <label for="content">Content</label>
-                  <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-[#42b883] mt-1 px-4 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6" placeholder="Write your announcement here..."></textarea>
-                </div>
-
-                <div class="md:col-span-6 text-right mt-2">
-                  <div class="inline-flex items-end">
-                    <button
-                      class="bg-[#42b883] hover:bg-[#27a26f] text-white font-bold py-2 px-4 rounded"
-                      type="submit"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
+  <main class="flex flex-col items-center justify-center">
+    <h1 class="text-2xl font-bold mb-4 text-gray-700">Announcement(s)</h1>
+    <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-2 sm:grid-cols-1"> -->
+      <!-- announcement here -->
+      <AnnouncementCard></AnnouncementCard>
+    <!-- </div> -->
+    <!-- <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
+      <RouterLink
+        :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }"
+        rel="prev"
+        v-if="page != 1"
+        id="page-prev"
+        class="flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
+      >
+        Prev
+      </RouterLink>
+      <span
+        v-if="page === 1"
+        class="cursor-not-allowed flex items-center justify-center px-4 h-10 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
+        >Prev</span
+      >
+      <span v-for="pageNumber in totalPages" :key="pageNumber">
+        <RouterLink
+          :to="{ name: 'student-list', query: { page: pageNumber, limit: limit } }"
+          v-if="pageNumber != page"
+          class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+        >
+          {{ pageNumber }}
+        </RouterLink>
+        <span
+          v-else
+          class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-[#27a26f] border border-[#7ed7ac] bg-[#d6f5e2] hover:bg-[#b1e9ca] hover:text-[#188359] cursor-pointer"
+          >{{ pageNumber }}</span
+        >
+      </span>
+      <RouterLink
+        :to="{ name: 'student-list', query: { page: page + 1, limit: limit } }"
+        rel="next"
+        v-if="hasNextPage"
+        id="page-next"
+        class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
+      >
+        Next
+      </RouterLink>
+      <span
+        v-if="!hasNextPage"
+        class="cursor-not-allowed flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
+        >Next</span
+      > 
+    </div> -->
+  </main>
 </template>
