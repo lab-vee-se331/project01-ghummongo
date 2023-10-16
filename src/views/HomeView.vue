@@ -23,11 +23,11 @@
             class="mr-2" />Github</a>
       </div>
       <div class="member">
-        <img src="https://i.imgur.com/dOzZLui.jpg" alt="" class="h-48 rounded-full mb-4" />
-        <p><span class="font-bold">Name:</span> Thanapong Yamkamol</p>
-        <p><span class="font-bold">Student Id:</span> 642115022</p>
-        <p><span class="font-bold">Position:</span> DevOps</p>
-        <a href="https://github.com/ThanapongYamkamol642115022" target="_blank"
+        <img src="https://i.imgur.com/ZFR8aEk.jpg" alt="" class="object-cover h-48 rounded-full mb-4" />
+        <p><span class="font-bold">Name:</span> Ratchapon</p>
+        <p><span class="font-bold">Student Id:</span> 642115040</p>
+        <p><span class="font-bold">Position:</span> Hokage</p>
+        <a href="https://github.com/LodHoiZ" target="_blank"
           class="rounded-lg bg-dark text-light text-lg font-semibold mt-4"><font-awesome-icon :icon="['fab', 'github']"
             class="mr-2" />Github</a>
       </div>
