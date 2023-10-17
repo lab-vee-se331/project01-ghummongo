@@ -2,6 +2,16 @@
 import InputText from '@/components/InputText.vue'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
+import { type AnnouncementItem } from '@/type'
+import ImageUpload from '@/components/ImageUpload.vue'
+import { ref } from 'vue'
+
+const announcement = ref<AnnouncementItem>({
+  id: 0,
+  title: '',
+  content: '',
+  images: []
+})
 
 const validationSchema = yup.object({
   title: yup.string().required('The title is required')
@@ -11,7 +21,7 @@ const { errors, handleSubmit } = useForm({
   validationSchema,
 
   initialValues: {
-    title: '',
+    title: ''
   }
 })
 
@@ -49,12 +59,28 @@ const onSubmit = handleSubmit((values) => {
 
                 <div class="md:col-span-6">
                   <label for="title">Title</label>
-                  <InputText type="text" v-model="title" :error="errors['title']" placeholder="Title..."></InputText>
+                  <InputText
+                    type="text"
+                    v-model="title"
+                    :error="errors['title']"
+                    placeholder="Title..."
+                  ></InputText>
                 </div>
 
                 <div class="md:col-span-6">
                   <label for="content">Content</label>
-                  <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-[#42b883] mt-1 px-4 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6" placeholder="Write your announcement here..."></textarea>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:border-[#42b883] mt-1 px-4 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6"
+                    placeholder="Write your announcement here..."
+                  ></textarea>
+                </div>
+
+                <div class="md:col-span-6">
+                  <h3>The Image of The Announcement</h3>
+                  <ImageUpload v-model="announcement.images" class="my-1" />
+                  <p class="text-gray-400">Supported formats: "JPG", "JPEG", "PNG", "GIF"</p>
                 </div>
 
                 <div class="md:col-span-6 text-right mt-2">
