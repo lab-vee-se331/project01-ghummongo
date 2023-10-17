@@ -1,4 +1,43 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import VueEasyLightbox from 'vue-easy-lightbox'
+
+// const img = ref('') // Img Url , string or Array of string
+const imgs = ref<String[]>()
+const visible = ref(false)
+const index = ref(0)
+
+// const showSingle = () => {
+//   img.value = 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070' // or an object with title and src
+//   show()
+// }
+
+const showMultiple = (i: number) => {
+  imgs.value = [
+    'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070',
+    'https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1935',
+    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070'
+  ] // or an array of objects with title and src
+  index.value = i
+  show()
+}
+
+// const changeIndexAndShowMultiple = (index: number) => {
+//   changeIndex(index)
+// }
+
+// const changeIndex = (index: number) => {
+//   index.value = index
+// }
+
+const show = () => {
+  visible.value = true
+}
+
+const handleHide = () => {
+  visible.value = false
+}
+
 const truncate = (text: string) => {
   if (text.length > 150) {
     return text.substring(0, 150) + '...'
@@ -29,21 +68,33 @@ const truncate = (text: string) => {
         </p>
       </div>
 
+      <vue-easy-lightbox
+        escDisabled
+        moveDisabled
+        :visible="visible"
+        :imgs="imgs"
+        :index="index"
+        @hide="handleHide"
+      ></vue-easy-lightbox>
+
       <div class="flex flex-row flex-wrap items-start gap-2 mt-2">
         <img
-          src="https://i.imgur.com/tbXDnsJ.jpg"
+          src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070"
           alt="events image"
-          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg"
+          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
+          @click="showMultiple(0)"
         />
         <img
-          src="https://i.imgur.com/tbXDnsJ.jpg"
+          src="https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1935"
           alt="events image"
-          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg"
+          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
+          @click="showMultiple(1)"
         />
         <img
-          src="https://i.imgur.com/tbXDnsJ.jpg"
+          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070"
           alt="events image"
-          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg"
+          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
+          @click="showMultiple(2)"
         />
       </div>
 

@@ -35,7 +35,11 @@ const onSubmit = handleSubmit((values) => {
   authStore
     .login(values.username, values.password)
     .then(() => {
-      router.push({ name: 'event-list' })
+      router.push({ name: 'home-page' })
+      messageStore.updateMessage('Login Successful')
+      setTimeout(() => {
+        messageStore.resetMessage()
+      }, 5000)
     })
     .catch(() => {
       messageStore.updateMessage('could not login')
@@ -65,8 +69,8 @@ const onSubmit = handleSubmit((values) => {
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6" @submit.prevent="onSubmit">
-        <div>
+      <form class="" @submit.prevent="onSubmit">
+        <div class="mb-4">
           <label for="username" class="block text-sm font-medium leading-6 text-gray-900"
             >Username</label
           >
@@ -74,7 +78,7 @@ const onSubmit = handleSubmit((values) => {
           <InputText type="text" v-model="username" :error="errors['username']"></InputText>
         </div>
 
-        <div>
+        <div class="mb-6">
           <div class="flex items-center justify-start">
             <label for="password" class="block text-sm font-medium leading-6 text-gray-900"
               >Password</label
@@ -101,7 +105,7 @@ const onSubmit = handleSubmit((values) => {
 
         {{ ' ' }}
 
-        <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-[#42b883] hover:text-[#42b883]">Try to register here</RouterLink>
+        <RouterLink :to="{ name: 'register-page' }" class="font-semibold leading-6 text-[#42b883] hover:text-[#42b883]">Sign Up</RouterLink>
       </p>
     </div>
   </div>

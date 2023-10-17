@@ -21,11 +21,10 @@ export const useAuthStore = defineStore('auth', {
       return ''
     }
   },
-
   actions: {
-    async login(email: string, password: string) {
-      const response = await apiClient.post('/api/v1/auth/authenticate', {
-        username: email,
+    async login(username: string, password: string) {
+      const response = await apiClient.post('/api/v1/auth/login', {
+        username: username,
         password: password
       })
       this.token = response.data.access_token
@@ -35,7 +34,7 @@ export const useAuthStore = defineStore('auth', {
       return response
     },
     async studentRegister(username: string, firstName: string, lastName: string, email: string, password: string) {
-      const response = await apiClient.post('/api/v1/auth/register', {
+      const response = await apiClient.post('/api/v1/auth/register/student', {
         username: username,
         firstname: firstName,
         lastname: lastName,
@@ -43,9 +42,9 @@ export const useAuthStore = defineStore('auth', {
         password: password,
       })
       this.token = response.data.access_token
-      // this.userRole = response.data.user_role
+      this.userRole = response.data.user_role
       localStorage.setItem('access_token', this.token as string)
-      // localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      localStorage.setItem('user_role', JSON.stringify(this.userRole))
       return response
     },
     logout() {
@@ -59,8 +58,17 @@ export const useAuthStore = defineStore('auth', {
       this.token = token
       this.userRole = userRole
     },
+    isLoggedIn(): boolean {
+      return this.token != null || false;
+    },
     isAdmin(): boolean {
       return this.userRole?.includes('ROLE_ADMIN') || false
-    }
+    },
+    isStudent(): boolean {
+      return this.userRole?.includes('ROLE_STUDENT') || false
+    },
+    isTeacher(): boolean {
+      return this.userRole?.includes('ROLE_TEACHER') || false
+    },
   }
 })

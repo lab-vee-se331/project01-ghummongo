@@ -7,12 +7,10 @@ https://ghummongo.web.app/
 ## Contributors :
 1. Phiriyakorn Maneekongrit 642115031 https://github.com/ph1r1 (ph1r1)
 2. Sorawee Sripakdeepongdej 642115045 https://github.com/veevism (veevism)
-3. Thanapong Yamkamol 642115022 https://github.com/ThanapongYamkamol642115022 (ThanapongYamkamol642115022)
 
 ## Role
 ph1r1: UX/UI design, Tailwind CSS
 veevism: Store management
-ThanapongYamkamol642115022: Manage db.json
 
 ## Checklist :
 1. Data Structure ( Mock ) :

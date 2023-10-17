@@ -47,10 +47,15 @@ const onSubmit = handleSubmit((values) => {
   authStore
     .studentRegister(values.username, values.firstName, values.lastName, values.email, values.password)
     .then(() => {
-      router.push({ name: 'event-list' })
+      router.push({ name: 'login-page' })
+      messageStore.updateMessage('Register Successful')
+
+      setTimeout(() => {
+        messageStore.resetMessage()
+      }, 5000)
     })
     .catch(() => {
-      messageStore.updateMessage('could not login')
+      messageStore.updateMessage('could not register')
 
       setTimeout(() => {
         messageStore.resetMessage()
@@ -71,9 +76,6 @@ const onSubmit = handleSubmit((values) => {
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Register to your account
       </h2>
-      <div class="animate-flashMessage mb-4" v-if="message">
-        <h4>{{ message }}</h4>
-      </div>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -136,7 +138,7 @@ const onSubmit = handleSubmit((values) => {
         <RouterLink
           :to="{ name: 'login-page' }"
           class="font-semibold leading-6 text-[#42b883] hover:text-[#42b883]"
-          >Try to sign in here</RouterLink
+          >Sign In</RouterLink
         >
       </p>
     </div>
