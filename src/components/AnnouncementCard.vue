@@ -14,7 +14,7 @@ const truncate = (text: string) => {
       <div class="flex flex-row text-sm text-gray-500">
         <img src="https://i.imgur.com/tbXDnsJ.jpg" alt="" class="h-12 rounded-full mb-4 mr-4" />
         <div class="">
-          <div class="">Web</div>
+          <div class="text-gray-900 font-medium">Web</div>
           <div class="">— 10/15/2023 1:10 AM</div>
         </div>
       </div>
