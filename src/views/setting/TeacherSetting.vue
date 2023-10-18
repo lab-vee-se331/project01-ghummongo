@@ -60,7 +60,7 @@ const validationSchema = yup.object({
   password: yup.string().required('The password is required'),
   firstName: yup.string().required('The first name is required'),
   lastName: yup.string().required('The last name is required'),
-  email: yup.string().email('The email is required'),
+  email: yup.string().email().required('The email is required'),
 })
 
 const { errors, handleSubmit } = useForm({

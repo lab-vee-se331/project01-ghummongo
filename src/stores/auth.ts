@@ -14,11 +14,13 @@ const apiClient: AxiosInstance = axios.create({
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null as string | null,
-    userRole: null as string[] | null
+    userRole: null as string[] | null,
+    username: null as string | null,
+    userId: null as string | null
   }),
   getters: {
     currentUserName(): string {
-      return ''
+      return this.username || ""
     }
   },
   actions: {
@@ -29,17 +31,27 @@ export const useAuthStore = defineStore('auth', {
       })
       this.token = response.data.access_token
       this.userRole = response.data.user_role
+      this.username = response.data.user_username
+      this.userId = response.data.user_id
       localStorage.setItem('access_token', this.token as string)
       localStorage.setItem('user_role', JSON.stringify(this.userRole))
+      localStorage.setItem('user_username', this.username as string)
+      localStorage.setItem('user_id', this.username as string)
       return response
     },
-    async studentRegister(username: string, firstName: string, lastName: string, email: string, password: string) {
+    async studentRegister(
+      username: string,
+      firstName: string,
+      lastName: string,
+      email: string,
+      password: string
+    ) {
       const response = await apiClient.post('/api/v1/auth/register/student', {
         username: username,
         firstname: firstName,
         lastname: lastName,
         email: email,
-        password: password,
+        password: password
       })
       this.token = response.data.access_token
       this.userRole = response.data.user_role
@@ -51,15 +63,19 @@ export const useAuthStore = defineStore('auth', {
       console.log('logout')
       this.token = null
       this.userRole = null
+      this.username = null
+      this.userId = null
       localStorage.removeItem('access_token')
       localStorage.removeItem('user_role')
+      localStorage.removeItem('user_username')
+      localStorage.removeItem('user_id')
     },
     reload(token: string, userRole: string[]) {
       this.token = token
       this.userRole = userRole
     },
     isLoggedIn(): boolean {
-      return this.token != null || false;
+      return this.token != null || false
     },
     isAdmin(): boolean {
       return this.userRole?.includes('ROLE_ADMIN') || false
@@ -69,6 +85,6 @@ export const useAuthStore = defineStore('auth', {
     },
     isTeacher(): boolean {
       return this.userRole?.includes('ROLE_TEACHER') || false
-    },
+    }
   }
 })

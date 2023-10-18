@@ -42,7 +42,7 @@ const onSubmit = handleSubmit((values) => {
       }, 5000)
     })
     .catch(() => {
-      messageStore.updateMessage('could not login')
+      messageStore.updateMessage('Could not login')
 
       setTimeout(() => {
         messageStore.resetMessage()
@@ -63,9 +63,6 @@ const onSubmit = handleSubmit((values) => {
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
         Sign in to your account
       </h2>
-      <div class="animate-flashMessage mb-4" v-if="message">
-        <h4>{{ message }}</h4>
-      </div>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

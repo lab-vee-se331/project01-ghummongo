@@ -53,6 +53,10 @@ function logout() {
   authStore.logout()
   router.push({ name: 'login-page' })
 }
+
+const isErrorMessage = () => {
+  return message.value === "Could not login"
+}
 </script>
 
 <template>
@@ -79,7 +83,7 @@ function logout() {
               <font-awesome-icon icon="bars" class="text-white" />
             </button>
           </div>
-          <ul class="space-y-2 font-medium mt-4">
+          <ul class="font-medium mt-4">
             <li>
               <RouterLink
                 :to="{ name: 'home-page' }"
@@ -89,7 +93,7 @@ function logout() {
                 <span class="ml-3 text-sm">Home Page</span>
               </RouterLink>
             </li>
-            <span v-if="authStore.isStudent()">
+            <span v-if="authStore.isAdmin()">
               <li>
                 <RouterLink
                   :to="{ name: 'student-list' }"
@@ -137,7 +141,7 @@ function logout() {
               <li>
                 <RouterLink
                   :to="{ name: 'announcement-page' }"
-                  class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
+                  class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group mt-2"
                 >
                   <font-awesome-icon icon="bell" class="w-5 h-5" />
                   <span class="ml-3 text-sm">Announcement</span>
@@ -153,6 +157,15 @@ function logout() {
                 </RouterLink>
               </li>
             </span>
+            <li v-if="authStore.isStudent() || authStore.isTeacher()">
+              <RouterLink
+                :to="{ name: 'profile-page' }"
+                class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
+              >
+                <font-awesome-icon icon="address-card" class="w-5 h-5" />
+                <span class="ml-3 text-sm">Profile</span>
+              </RouterLink>
+            </li>
           </ul>
         </div>
         <div class="flex items-center justify-center gap-2">
@@ -215,10 +228,10 @@ function logout() {
   </aside>
 
   <div v-if="authStore.isLoggedIn()" class="top-2 right-2 fixed">
-    <RouterLink :to="{ name: 'register-page' }" class="flex" @click="logout">
+    <RouterLink :to="{ name: 'profile-page' }" class="flex">
       <div class="py-2 px-3 rounded-lg bg-gray-900 -right-6 border border-white/20">
         <font-awesome-icon icon="user" class="text-white mr-2" />
-        <span class="text-white">username</span>
+        <span class="text-white">{{ authStore.currentUserName }}</span>
       </div>
     </RouterLink>
   </div>
@@ -230,7 +243,7 @@ function logout() {
   >
     <div
       v-if="message"
-      class="animate-flashMessage w-full flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50"
+      :class="`animate-flashMessage w-full flex items-center p-4 mb-4 text-sm ${ isErrorMessage() ? 'text-red-800 bg-red-50' : 'text-green-800 bg-green-50'} rounded-lg`"
     >
       <h2 class="font-medium">{{ message }}</h2>
     </div>
