@@ -58,9 +58,9 @@ const onSubmit = handleSubmit((values) => {
     <div class="col-span-12 lg:col-span-8 bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
       <div class="w-full flex items-center justify-between">
         <h2 class="font-semibold text-xl text-gray-600 mb-2">Profile</h2>
-        <button class="py-2 px-3 rounded-lg bg-gray-900 -right-6 border border-white/20">
-          <font-awesome-icon icon="pen-to-square" class="text-white mr-2" />
-          <span class="text-white">Edit</span>
+        <button class="group py-2 px-3 rounded-lg bg-white -right-6 border-2 border-gray-900 hover:bg-gray-900">
+          <font-awesome-icon icon="pen-to-square" class="text-gray-900 mr-2 group-hover:text-white" />
+          <span class="text-gray-900 font-medium group-hover:text-white">Edit</span>
         </button>
       </div>
       <form @submit.prevent="onSubmit">

@@ -93,7 +93,7 @@ const isErrorMessage = () => {
                 <span class="ml-3 text-sm">Home Page</span>
               </RouterLink>
             </li>
-            <span v-if="authStore.isAdmin()">
+            <span v-if="authStore.isAdmin() || authStore.isTeacher()">
               <li>
                 <RouterLink
                   :to="{ name: 'student-list' }"
@@ -103,7 +103,7 @@ const isErrorMessage = () => {
                   <span class="ml-3 text-sm">Students List</span>
                 </RouterLink>
               </li>
-              <li>
+              <li v-if="authStore.isAdmin()">
                 <RouterLink
                   :to="{ name: 'teacher-list' }"
                   class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
@@ -112,7 +112,7 @@ const isErrorMessage = () => {
                   <span class="ml-3 text-sm">Advisors List</span>
                 </RouterLink>
               </li>
-              <li class="">
+              <li v-if="authStore.isAdmin()">
                 <RouterLink
                   :to="{ name: 'teacher-setting' }"
                   class="flex justify-between text-gray-500 hover:pl-4 hover:bg-gray-800 group rounded-lg"
@@ -141,7 +141,7 @@ const isErrorMessage = () => {
               <li>
                 <RouterLink
                   :to="{ name: 'announcement-page' }"
-                  class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group mt-2"
+                  class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
                 >
                   <font-awesome-icon icon="bell" class="w-5 h-5" />
                   <span class="ml-3 text-sm">Announcement</span>
@@ -227,7 +227,7 @@ const isErrorMessage = () => {
     </div>
   </aside>
 
-  <div v-if="authStore.isLoggedIn()" class="top-2 right-2 fixed">
+  <div v-if="authStore.isLoggedIn()" class="top-2 right-2 fixed z-10">
     <RouterLink :to="{ name: 'profile-page' }" class="flex">
       <div class="py-2 px-3 rounded-lg bg-gray-900 -right-6 border border-white/20">
         <font-awesome-icon icon="user" class="text-white mr-2" />

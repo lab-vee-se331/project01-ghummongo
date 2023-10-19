@@ -62,7 +62,6 @@ export const useTeacherStore = defineStore('teacher', {
             const response = await TeacherService.getTeachers();
             if (response.status === 200) {
                 this.setTeachers(response.data);
-            } else {
             }
         },
     }
