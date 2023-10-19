@@ -7,7 +7,6 @@ export const useTeacherStore = defineStore('teacher', {
     teachers: [] as TeacherItem[]
   }),
   getters: {
-    // getTeachers: (state) => state.teachers,
     getTeachers: (state) => (perPage: number, page: number) => {
       const startIndex = (page - 1) * perPage
       const endIndex = startIndex + perPage

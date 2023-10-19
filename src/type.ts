@@ -1,12 +1,11 @@
 export interface StudentItem {
-  name: string
-  surname: string
-  studentId: string
-  profileImage: string
-  courseList: string[]
-  teacherId: string
-  comment: string
-  [key: string]: string | string[] // ใส่ index signature นี้เพื่อรองรับการใช้ string เป็น key
+  id: string
+  username: string
+  firstname: string
+  lastname: string
+  images: string[]
+  department: string
+  teacher: OwnTeacher | string
 }
 
 export interface TeacherItem {
@@ -23,8 +22,16 @@ export interface TeacherItem {
 
 export interface OwnStudent{
   id: number
-  name: string
-  surname: string
+  username: string
+  firstname: string
+  lastname: string
+}
+
+export interface OwnTeacher{
+  id: number
+  username: string
+  firstname: string
+  lastname: string
 }
 
 export interface ErrorsType {
