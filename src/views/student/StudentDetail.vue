@@ -1,43 +1,26 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { TeacherItem } from '@/type'
 import type { StudentItem } from '@/type'
-import { ref, type PropType, reactive } from 'vue'
-import { useStudentStore } from '@/stores/student'
-
-// defineProps({
-//   oneStudent: {
-//     type: Object as PropType<StudentItem>,
-//     require: true
-//   },
-//   oneTeacher: {
-//     type: Object as PropType<TeacherItem>,
-//     required: false
-//   }
-// })
 
 const { oneStudent, oneTeacher } = defineProps<{
   oneStudent: StudentItem
   oneTeacher?: TeacherItem
 }>()
 
-const student = reactive({
-  comment: ''
-})
+// const student = reactive({
+//   comment: ''
+// })
 
-const validateForm = () => {
-  if (student.comment) {
-    return true
-  } else {
-    return false
-  }
-}
+// const validateForm = () => {
+//   if (student.comment) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
 
 const onSubmit = () => {
-  if (validateForm()) {
-    useStudentStore().updateComment(oneStudent.studentId, student.comment)
-    student.comment = ''
-  }
+  console.log("hi")
 }
 </script>
 
@@ -55,34 +38,22 @@ const onSubmit = () => {
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6 my-4">
               <div class="lg:col-span-2 sm:col-span-6">
                 <img
-                  :src="oneStudent?.profileImage"
+                  :src="oneStudent?.images[0]"
                   alt=""
                   class="rounded-full w-80 h-80 object-cover max-[1360px]:w-64 max-[1360px]:h-64 max-[1190px]:w-52 max-[1190px]:h-52"
                 />
               </div>
               <div class="lg:col-span-4 sm:col-span-6 text-xl text-gray-600">
                 <div class="mb-4">
-                  <span class="font-bold">Name:</span> {{ oneStudent?.name }}
-                  {{ oneStudent?.surname }}
+                  <span class="font-bold">Name:</span> {{ oneStudent?.firstname }}
+                  {{ oneStudent?.lastname }}
                 </div>
                 <div class="mb-4">
-                  <span class="font-bold">Student Id:</span> {{ oneStudent?.studentId }}
+                  <span class="font-bold">Student Id:</span> {{ oneStudent?.id }}
                 </div>
-                <div class="font-bold mb-4">Course Lists:</div>
-                <ul
-                  class="flex lg:flex-row mb-4 items-center max-[449px]:flex-col max-[449px]:items-start gap-y-2"
-                >
-                  <li v-for="(course, index) in oneStudent?.courseList" :key="index">
-                    <div
-                      class="bg-transparent text-sm p-2 mr-2 cursor-pointer bg-white border border-gray-200 rounded-lg shadow"
-                    >
-                      {{ course }}
-                    </div>
-                  </li>
-                </ul>
                 <div class="mb-4"><span class="font-bold">Advisor: </span></div>
                 <RouterLink
-                  :to="{ name: 'teacher-detail', params: { id: oneTeacher?.teacherId } }"
+                  :to="{ name: 'teacher-detail', params: { id: oneStudent?.teacher.id } }"
                   class="w-fit flex"
                 >
                   <div
@@ -90,14 +61,14 @@ const onSubmit = () => {
                   >
                     <img
                       class="w-16 h-16 rounded-full mr-4 object-cover"
-                      :src="oneTeacher?.profileImage"
+                      :src="oneStudent?.teacher.images"
                       alt=""
                     />
                     <div class="text-base">
                       <p class="text-gray-900 leading-none">
-                        {{ oneTeacher?.name }} {{ oneTeacher?.surname }}
+                        {{ oneStudent?.teacher.firstname }} {{ oneStudent?.teacher.lastname }}
                       </p>
-                      <p class="text-gray-600">{{ oneTeacher?.teacherId }}</p>
+                      <p class="text-gray-600">{{ oneStudent?.teacher.id }}</p>
                     </div>
                   </div>
                 </RouterLink>
@@ -110,7 +81,7 @@ const onSubmit = () => {
         <span class="text-xl text-gray-600 mb-8 underline underline-offset-2 decoration-[#42b883]"
           >Comments</span
         >
-        <div class="text-gray-600">
+        <!-- <div class="text-gray-600">
           <div v-if="oneStudent?.comment" class="grid grid-cols-6">
             <div class="col-span-1 mr-4">
               <img
@@ -127,7 +98,7 @@ const onSubmit = () => {
               <hr class="my-6" />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <form @submit.prevent="onSubmit">
@@ -137,14 +108,10 @@ const onSubmit = () => {
           <div class="px-4 py-2 bg-white rounded-t-lg">
             <label for="comment" class="sr-only">Your comment</label>
             <textarea
-              id="comment"
               rows="4"
-              v-model="student.comment"
               class="w-full px-0 text-sm text-gray-900 bg-white border-0"
               placeholder="Write a comment..."
-              required
-            >
-            </textarea>
+            ></textarea>
           </div>
           <div class="flex items-center justify-between px-3 py-2 border-t">
             <button
