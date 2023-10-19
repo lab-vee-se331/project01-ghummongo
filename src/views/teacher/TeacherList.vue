@@ -5,13 +5,10 @@ import TeacherCard from '@/components/TeacherCard.vue'
 import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
 import BaseInput from '@/components/BaseInput.vue'
-import TeacherService from '@/services/TeacherService'
 
 const teacherStore = useTeacherStore()
-// const teachers = ref<TeacherItem[]>([])
 const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
-const router = useRouter()
 
 const props = defineProps({
   page: {
@@ -24,15 +21,6 @@ const props = defineProps({
   }
 })
 
-TeacherService.getTeachers(3, props.page)
-  .then((response) => {
-    teachers.value = response.data
-    totalTeacher.value = response.headers['x-total-count']
-  })
-  .catch(() => {
-    router.push({ name: 'NetworkError' })
-  })
-
 onMounted(() => {
   teachers.value = teacherStore.getTeachers(props.limit, props.page)
   totalTeacher.value = teacherStore.getTeachersLength()
@@ -42,7 +30,6 @@ onBeforeRouteUpdate((to, from, next) => {
   const toPage = to.query.page ? Number(to.query.page) : 1 // set default page to 1 if to.query.page is undefined
   teachers.value = teacherStore.getTeachers(props.limit, toPage)
   totalTeacher.value = teacherStore.getTeachersLength()
-
   next()
 })
 
