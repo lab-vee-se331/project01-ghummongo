@@ -29,9 +29,9 @@ const { manyStudent, oneTeacher } = defineProps<{
                 </div>
                 <div class="mb-4"><span class="font-bold">Students List: </span></div>
 
-                <!-- <ul class="flex flex-col mb-4 items-start max-[449px]:flex-col max-[449px]:items-start gap-y-2">
-                  <li v-for="(student, index) in manyStudent" :key="index">
-                    <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }" class="w-fit flex">
+                <ul class="flex flex-col mb-4 items-start max-[449px]:flex-col max-[449px]:items-start gap-y-2">
+                  <li v-for="(student, index) in oneTeacher?.ownStudent" :key="index">
+                    <RouterLink :to="{ name: 'student-detail', params: { id: student?.id } }" class="w-fit flex">
                       <div
                         class="w-fit px-3 py-2 flex items-center bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
                         <img class="w-16 h-16 rounded-full mr-4 object-cover" :src="student?.profileImage" alt="" />
@@ -39,12 +39,11 @@ const { manyStudent, oneTeacher } = defineProps<{
                           <p class="text-gray-900 leading-none">
                             {{ student?.name }} {{ student?.surname }}
                           </p>
-                          <p class="text-gray-600">{{ student?.teacherId }}</p>
                         </div>
                       </div>
                     </RouterLink>
                   </li>
-                </ul> -->
+                </ul>
               </div>
             </div>
           </div>
