@@ -201,10 +201,10 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
-  const studentStore = useStudentStore()
-  if (studentStore.students.length === 0) {
-    await studentStore.fetchAllStudents()
-  }
+  // const studentStore = useStudentStore()
+  // if (studentStore.students.length === 0) {
+  //   await studentStore.fetchAllStudents()
+  // }
 
   const teacherStore = useTeacherStore()
   if (teacherStore.teachers.length === 0) {

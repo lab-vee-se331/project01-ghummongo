@@ -17,19 +17,19 @@ const { manyStudent, oneTeacher } = defineProps<{
           <div class="lg:col-span-2">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6 my-4">
               <div class="lg:col-span-2 sm:col-span-6">
-                <img :src="oneTeacher?.profileImage" alt="" class="rounded-full w-80 h-80 object-cover" />
+                <img :src="oneTeacher?.images[0]" alt="" class="rounded-full w-80 h-80 object-cover" />
               </div>
               <div class="lg:col-span-4 sm:col-span-6 text-xl text-gray-600">
                 <div class="mb-4">
-                  <span class="font-bold">Name:</span> {{ oneTeacher?.name }}
-                  {{ oneTeacher?.surname }}
+                  <span class="font-bold">Name:</span> {{ oneTeacher?.firstname }}
+                  {{ oneTeacher?.lastname }}
                 </div>
                 <div class="mb-4">
-                  <span class="font-bold">Teacher Id:</span> {{ oneTeacher?.teacherId }}
+                  <span class="font-bold">Teacher Id:</span> {{ oneTeacher?.id }}
                 </div>
                 <div class="mb-4"><span class="font-bold">Students List: </span></div>
 
-                <ul class="flex flex-col mb-4 items-start max-[449px]:flex-col max-[449px]:items-start gap-y-2">
+                <!-- <ul class="flex flex-col mb-4 items-start max-[449px]:flex-col max-[449px]:items-start gap-y-2">
                   <li v-for="(student, index) in manyStudent" :key="index">
                     <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }" class="w-fit flex">
                       <div
@@ -44,7 +44,7 @@ const { manyStudent, oneTeacher } = defineProps<{
                       </div>
                     </RouterLink>
                   </li>
-                </ul>
+                </ul> -->
               </div>
             </div>
           </div>

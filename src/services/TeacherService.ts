@@ -3,7 +3,7 @@ import type { AxiosInstance, AxiosResponse } from 'axios'
 import type { TeacherItem } from '@/type'
 
 const apiClient: AxiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL_TEACHER,
+  baseURL: import.meta.env.VITE_BACKEND_URL + "/api/v1",
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -12,7 +12,10 @@ const apiClient: AxiosInstance = axios.create({
 })
 
 export default {
-  getTeachers(): Promise<AxiosResponse<TeacherItem[]>> {
-    return apiClient.get<TeacherItem[]>('')
+  getTeachers(perPage: number, page: number): Promise<AxiosResponse<TeacherItem[]>> {
+    return apiClient.get<TeacherItem[]>('/teachers?_limit=' + perPage + '&_page=' + page)
+  },
+  getAllTeachers(): Promise<AxiosResponse<TeacherItem[]>> {
+    return apiClient.get<TeacherItem[]>('/teachers')
   },
 }

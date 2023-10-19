@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { type TeacherItem } from '@/type'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, type Ref } from 'vue'
 import TeacherCard from '@/components/TeacherCard.vue'
-import { onBeforeRouteUpdate } from 'vue-router'
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
 import BaseInput from '@/components/BaseInput.vue'
+import TeacherService from '@/services/TeacherService'
 
 const teacherStore = useTeacherStore()
-const teachers = ref<TeacherItem[]>([])
+// const teachers = ref<TeacherItem[]>([])
+const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
+const router = useRouter()
 
 const props = defineProps({
   page: {
@@ -20,6 +23,15 @@ const props = defineProps({
     required: true
   }
 })
+
+TeacherService.getTeachers(3, props.page)
+  .then((response) => {
+    teachers.value = response.data
+    totalTeacher.value = response.headers['x-total-count']
+  })
+  .catch(() => {
+    router.push({ name: 'NetworkError' })
+  })
 
 onMounted(() => {
   teachers.value = teacherStore.getTeachers(props.limit, props.page)
@@ -75,7 +87,7 @@ function updateKeyword(value: string) {
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       <TeacherCard
         v-for="teacher in teachers"
-        :key="teacher.teacherId"
+        :key="teacher.id"
         :teacher="teacher"
       ></TeacherCard>
     </div>

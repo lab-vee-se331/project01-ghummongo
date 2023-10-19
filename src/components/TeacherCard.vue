@@ -17,16 +17,16 @@ const truncate = (text: string) => {
 </script>
 
 <template>
-  <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.teacherId } }">
+  <RouterLink :to="{ name: 'teacher-detail', params: { id: teacher?.id } }">
     <div
       class="w-[270px] max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
-      <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{ teacher?.teacherId
+      <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{ teacher?.id
       }}</span>
       <div class="flex flex-col items-center p-10">
-        <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" :src="teacher?.profileImage" alt="Bonnie image" />
+        <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" :src="teacher?.images[0]" alt="Bonnie image" />
         <div v-if="teacher">
           <h5 class="mb-1 text-xl font-medium text-gray-900">
-            {{ truncate(teacher?.name) }} {{ truncate(teacher?.surname) }}
+            {{ truncate(teacher?.firstname) }} {{ truncate(teacher?.lastname) }}
           </h5>
         </div>
         <div class="flex mt-4 space-x-3 md:mt-6">
