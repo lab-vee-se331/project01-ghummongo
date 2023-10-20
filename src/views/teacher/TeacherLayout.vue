@@ -1,25 +1,19 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import type { StudentItem, TeacherItem } from '@/type'
-import { ref, type PropType } from 'vue'
-
+import type { TeacherItem } from '@/type'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
-import { storeToRefs } from 'pinia'
-import { useStudentStore } from '@/stores/student'
 
-const router = useRouter()
 const store = useTeacherStore()
-
-
-const teacher = ref<TeacherItem | null>(null);
-const students = ref<StudentItem[]>([]);
+const router = useRouter()
+const teacher = ref<TeacherItem | null>(null)
 
 const props = defineProps({
   id: String
 })
 // eslint-disable-next-line vue/no-setup-props-destructure
-store.getTeacherById(props.id!)
+store
+  .getTeacherById(props.id!)
   .then((result) => {
     if (result) {
       teacher.value = result
@@ -30,27 +24,15 @@ store.getTeacherById(props.id!)
   .catch((error) => {
     console.error(error)
   })
-
-// eslint-disable-next-line vue/no-setup-props-destructure
-useStudentStore().getStudentsByTeacherId(props.id!).then((result) => {
-  if (result) {
-    students.value = result
-  } else {
-    console.warn(props.id)
-  }
-})
-
-
-
-
 </script>
 
 <template>
   <div>
     <div v-if="teacher">
-
-      <RouterView :oneTeacher="teacher" :manyStudent="students"></RouterView>
-
+      <div>
+        <button @click="router.go(-1)" class="group py-2 px-3 hover:bg-gray-900 rounded-lg"><font-awesome-icon icon="arrow-left" class="mr-2 group-hover:text-white" /><span class="group-hover:text-white">Back</span></button>
+      </div>
+      <RouterView :oneTeacher="teacher"></RouterView>
     </div>
   </div>
 </template>

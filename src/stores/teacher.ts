@@ -40,6 +40,12 @@ export const useTeacherStore = defineStore('teacher', {
     },
     async fetchAllTeachers() {
       const response = await TeacherService.getAllTeachers()
+      console.log(response.data)
+      this.setTeacher(response.data)
+    },
+    async fetchAllTeachersByPage(perPage: number, page: number) {
+      const response = await TeacherService.getTeachers(perPage, page)
+      console.log(response.data)
       this.setTeacher(response.data)
     },
     async fetchTeacherById(id: string) {

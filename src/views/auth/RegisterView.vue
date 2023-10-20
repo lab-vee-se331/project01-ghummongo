@@ -5,13 +5,10 @@ import { useField, useForm } from 'vee-validate'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter, RouterLink } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
-import { storeToRefs } from 'pinia'
 
 const authStore = useAuthStore()
 const router = useRouter()
 const messageStore = useMessageStore()
-
-const { message } = storeToRefs(messageStore)
 
 const validationSchema = yup.object({
   username: yup.string().required('The username is required'),

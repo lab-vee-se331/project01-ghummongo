@@ -21,7 +21,10 @@ const props = defineProps({
   }
 })
 
-onMounted(() => {
+onMounted(async () => {
+  if (studentStore.students.length === 0) {
+    await studentStore.fetchAllStudentsByPage(props.limit, props.page)
+  }
   students.value = studentStore.getStudents(props.limit, props.page)
   totalStudent.value = studentStore.getStudentsLength()
 })

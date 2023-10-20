@@ -55,18 +55,11 @@ export const useStudentStore = defineStore('student', {
         return null
       }
     },
-    // updateStudent(student: StudentItem) {
-    //   const index = this.students.findIndex((s) => s.studentId === student.studentId)
-    //   if (index !== -1) {
-    //     this.students[index] = student
-    //   }
-    // },
-    // updateComment(studentId: string, newComment: string) {
-    //   const index = this.students.findIndex((s) => s.studentId === studentId)
-    //   if (index !== -1) {
-    //     this.students[index].comment = newComment
-    //   }
-    // },
+    async fetchAllStudentsByPage(perPage: number, page: number) {
+      const response = await StudentService.getStudents(perPage, page)
+      console.log(response.data)
+      this.setStudents(response.data)
+    },
     async fetchAllStudents() {
       const response = await StudentService.getAllStudents()
       if (response.status === 200) {

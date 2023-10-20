@@ -3,7 +3,7 @@ export interface StudentItem {
   username: string
   firstname: string
   lastname: string
-  images: string[]
+  image: string
   department: string
   teacher: OwnTeacher | string
 }
@@ -15,16 +15,16 @@ export interface TeacherItem {
   lastname: string
   email: string
   roles: string[]
-  images: string[]
+  image: string
   department: string
   ownStudent: OwnStudent | string
 }
 
 export interface OwnStudent{
   id: number
-  username: string
-  firstname: string
-  lastname: string
+  name: string
+  surname: string
+  image: string
 }
 
 export interface OwnTeacher{
@@ -32,6 +32,7 @@ export interface OwnTeacher{
   username: string
   firstname: string
   lastname: string
+  image: string
 }
 
 export interface ErrorsType {
@@ -45,17 +46,17 @@ export interface ErrorsType {
   [key: string]: string | undefined
 }
 
-export interface StudentType {
-  name: string
-  surname: string
-  studentId: string
-  courseList: string
-  courseListDisplay?: string
-  teacherId: string
-  comment: string
-  image?: string
-  [key: string]: string | undefined
-}
+// export interface StudentType {
+//   name: string
+//   surname: string
+//   studentId: string
+//   courseList: string
+//   courseListDisplay?: string
+//   teacherId: string
+//   comment: string
+//   image?: string
+//   [key: string]: string | undefined
+// }
 
 export interface AnnouncementItem {
   id: number

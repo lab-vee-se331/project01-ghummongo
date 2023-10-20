@@ -9,6 +9,7 @@ import BaseInput from '@/components/BaseInput.vue'
 const teacherStore = useTeacherStore()
 const teachers: Ref<Array<TeacherItem>> = ref([])
 const totalTeacher = ref<number>(0)
+const router = useRouter()
 
 const props = defineProps({
   page: {
@@ -21,7 +22,16 @@ const props = defineProps({
   }
 })
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    if (teacherStore.teachers.length === 0) {
+    await teacherStore.fetchAllTeachersByPage(props.limit, props.page)
+  }
+  } catch (error) {
+    console.log("ERROR: " + error)
+    // router.push({name: 'login-page'})
+  }
+  
   teachers.value = teacherStore.getTeachers(props.limit, props.page)
   totalTeacher.value = teacherStore.getTeachersLength()
 })

@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth', {
   }),
   getters: {
     currentUserName(): string {
-      return this.username || ""
+      return this.username || ''
     }
   },
   actions: {
@@ -58,6 +58,21 @@ export const useAuthStore = defineStore('auth', {
       localStorage.setItem('access_token', this.token as string)
       localStorage.setItem('user_role', JSON.stringify(this.userRole))
       return response
+    },
+    async teacherRegister(
+      username: string,
+      firstName: string,
+      lastName: string,
+      email: string,
+      password: string
+    ) {
+      await apiClient.post('/api/v1/auth/register/teacher', {
+        username: username,
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        password: password
+      })
     },
     logout() {
       console.log('logout')

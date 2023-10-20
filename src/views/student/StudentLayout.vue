@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { type TeacherItem, type StudentItem } from '@/type'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStudentStore } from '@/stores/student'
-import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
 const store = useStudentStore()
-const students = storeToRefs(store).students
 const student = ref<StudentItem | null>(null)
 const teacher = ref<TeacherItem | null>(null)
+const router = useRouter()
 
 const props = defineProps({
   id: String
@@ -24,17 +23,14 @@ store
   .catch((error) => {
     console.error(error)
   })
-
 </script>
 
 <template>
   <div>
     <div v-if="student">
-      <!-- <div id="nav">
-                <RouterLink :to="{ name: 'student-detail', params: { id } }">Details</RouterLink> | 
-                <RouterLink :to="{ name: 'student-edit', params: { id } }">Edit</RouterLink>
-            </div> -->
-      <!-- Pass teacher data to studentDetail -->
+      <div>
+        <button @click="router.go(-1)" class="group py-2 px-3 hover:bg-gray-900 rounded-lg"><font-awesome-icon icon="arrow-left" class="mr-2 group-hover:text-white" /><span class="group-hover:text-white">Back</span></button>
+      </div>
       <RouterView :oneStudent="student" :oneTeacher="teacher"></RouterView>
     </div>
   </div>

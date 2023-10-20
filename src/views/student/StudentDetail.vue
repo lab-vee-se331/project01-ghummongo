@@ -1,23 +1,9 @@
 <script setup lang="ts">
-import type { TeacherItem } from '@/type'
 import type { StudentItem } from '@/type'
 
-const { oneStudent, oneTeacher } = defineProps<{
+const { oneStudent } = defineProps<{
   oneStudent: StudentItem
-  oneTeacher?: TeacherItem
 }>()
-
-// const student = reactive({
-//   comment: ''
-// })
-
-// const validateForm = () => {
-//   if (student.comment) {
-//     return true
-//   } else {
-//     return false
-//   }
-// }
 
 const onSubmit = () => {
   console.log("hi")
@@ -38,7 +24,7 @@ const onSubmit = () => {
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6 my-4">
               <div class="lg:col-span-2 sm:col-span-6">
                 <img
-                  :src="oneStudent?.images[0]"
+                  :src="oneStudent?.image"
                   alt=""
                   class="rounded-full w-80 h-80 object-cover max-[1360px]:w-64 max-[1360px]:h-64 max-[1190px]:w-52 max-[1190px]:h-52"
                 />
@@ -61,7 +47,7 @@ const onSubmit = () => {
                   >
                     <img
                       class="w-16 h-16 rounded-full mr-4 object-cover"
-                      :src="oneStudent?.teacher.images"
+                      :src="oneStudent?.teacher.image"
                       alt=""
                     />
                     <div class="text-base">

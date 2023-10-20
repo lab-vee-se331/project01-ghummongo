@@ -9,8 +9,8 @@ const props = defineProps({
 })
 
 const truncate = (text: string) => {
-  if (text.length > 8) {
-    return text.substring(0, 8) + '...'
+  if (text.length > 10) {
+    return text.substring(0, 10) + '...'
   }
   return text
 }
@@ -23,9 +23,9 @@ const truncate = (text: string) => {
         student?.id
       }}</span>
       <div class="flex flex-col items-center p-10">
-        <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" :src="student?.images[0]" alt="Bonnie image" />
+        <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" :src="student?.image" alt="Bonnie image" />
         <div v-if="student">
-          <h5 class="mb-1 text-xl font-medium text-gray-900">
+          <h5 class="mb-1 text-lg font-medium text-gray-900">
             {{ truncate(student?.firstname) }} {{ truncate(student?.lastname) }}
           </h5>
         </div>
