@@ -10,6 +10,7 @@ export interface Props {
   error?: string
   required?: boolean
   type: string
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -17,15 +18,16 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   error: '',
   required: false,
-  type: 'text'
+  type: 'text',
+  disabled: false
 })
 
 const uuid = UniqueID().getID()
 
 const placeholderErrorClass = computed(() => {
   return !isError.value
-    ? 'h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6'
-    : 'h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-red-700 shadow-sm ring-1 ring-inset ring-red-300 placeholder:text-red-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6'
+    ? `h-10 border mt-1 text-gray-900 rounded px-4 bg-gray-50 block w-full shadow-sm ring-1 ring-inset ring-gray-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#42b883] sm:text-sm sm:leading-6 disabled:bg-slate-50 disabled:text-slate-500 disabled:ring-slate-200 disabled:shadow-none`
+    : `h-10 border mt-1 rounded px-4 bg-gray-50 block w-full text-red-700 shadow-sm ring-1 ring-inset ring-red-300 placeholder:text-red-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6`
 })
 
 const isError = computed(() => {
@@ -46,6 +48,7 @@ const isError = computed(() => {
         v-bind="$attrs"
         :aria-describedby="error ? `${uuid}-error` : undefined"
         :aria-invalid="error ? true : false"
+        :disabled="disabled"
       />
 
       <ErrorMessage class="inline-flex text-sm text-red-700" v-if="error" :id="`${uuid}-error`">
