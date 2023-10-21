@@ -7,7 +7,9 @@ export const useTeacherStore = defineStore('teacher', {
     teachers: [] as TeacherItem[]
   }),
   getters: {
-    getTeachers: (state) => (perPage: number, page: number) => {
+    getTeachers: (state) => async (perPage: number, page: number) => {
+      const response = await TeacherService.getAllTeachers()
+      state.teachers = response.data
       const startIndex = (page - 1) * perPage
       const endIndex = startIndex + perPage
       return state.teachers.slice(startIndex, endIndex)
@@ -20,6 +22,7 @@ export const useTeacherStore = defineStore('teacher', {
       })
     },
     getTeachersLength: (state) => () => {
+      console.log('L: ' + state.teachers.length)
       return state.teachers.length
     },
     getAllTeachers: (state) => () => {
@@ -39,9 +42,12 @@ export const useTeacherStore = defineStore('teacher', {
       }
     },
     async fetchAllTeachers() {
-      const response = await TeacherService.getAllTeachers()
-      console.log(response.data)
-      this.setTeacher(response.data)
+      try {
+        const response = await TeacherService.getAllTeachers()
+        this.setTeacher(response.data)
+      } catch (error) {
+        console.error(error)
+      }
     },
     async fetchAllTeachersByPage(perPage: number, page: number) {
       const response = await TeacherService.getTeachers(perPage, page)

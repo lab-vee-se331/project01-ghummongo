@@ -2,14 +2,13 @@
 import { type TeacherItem } from '@/type'
 import { computed, onMounted, ref, type Ref } from 'vue'
 import TeacherCard from '@/components/TeacherCard.vue'
-import { onBeforeRouteUpdate, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
 import BaseInput from '@/components/BaseInput.vue'
 
 const teacherStore = useTeacherStore()
-const teachers: Ref<Array<TeacherItem>> = ref([])
+const teachers = ref<TeacherItem[]>([])
 const totalTeacher = ref<number>(0)
-const router = useRouter()
 
 const props = defineProps({
   page: {
@@ -23,22 +22,22 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-  try {
-    if (teacherStore.teachers.length === 0) {
-    await teacherStore.fetchAllTeachersByPage(props.limit, props.page)
-  }
-  } catch (error) {
-    console.log("ERROR: " + error)
-    // router.push({name: 'login-page'})
-  }
-  
-  teachers.value = teacherStore.getTeachers(props.limit, props.page)
+  // try {
+  //   if (teacherStore.teachers.length === 0) {
+  //     await teacherStore.fetchAllTeachers()
+  //   }
+  // } catch (error) {
+  //   console.log('ERROR: ' + error)
+  // }
+
+  teachers.value = await teacherStore.getTeachers(props.limit, props.page)
   totalTeacher.value = teacherStore.getTeachersLength()
 })
 
-onBeforeRouteUpdate((to, from, next) => {
+onBeforeRouteUpdate(async (to, from, next) => {
   const toPage = to.query.page ? Number(to.query.page) : 1 // set default page to 1 if to.query.page is undefined
-  teachers.value = teacherStore.getTeachers(props.limit, toPage)
+  console.log(toPage)
+  teachers.value = await teacherStore.getTeachers(props.limit, toPage)
   totalTeacher.value = teacherStore.getTeachersLength()
   next()
 })
@@ -79,14 +78,16 @@ function updateKeyword(value: string) {
     <h1 class="text-2xl font-bold mb-4 text-gray-700">Teacher List</h1>
     <!-- Search -->
     <div class="w-[50%] mb-4">
-      <BaseInput v-model="keyword" type="text" label="Search" placeholder="ค้นหาควายเหมือนกันแต่โตกว่า" @input="updateKeyword"></BaseInput>
+      <BaseInput
+        v-model="keyword"
+        type="text"
+        label="Search"
+        placeholder="ค้นหาควายเหมือนกันแต่โตกว่า"
+        @input="updateKeyword"
+      ></BaseInput>
     </div>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      <TeacherCard
-        v-for="teacher in teachers"
-        :key="teacher.id"
-        :teacher="teacher"
-      ></TeacherCard>
+      <TeacherCard v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"></TeacherCard>
     </div>
     <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink

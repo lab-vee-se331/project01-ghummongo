@@ -3,11 +3,9 @@ import InputText from '@/components/InputText.vue'
 import { useField, useForm } from 'vee-validate'
 import * as yup from 'yup'
 import { useAuthStore } from '@/stores/auth'
-import { useRouter } from 'vue-router'
 import { useMessageStore } from '@/stores/message'
 
 const authStore = useAuthStore()
-const router = useRouter()
 const messageStore = useMessageStore()
 
 const validationSchema = yup.object({
@@ -37,7 +35,6 @@ const { value: lastName } = useField<string>('lastName')
 const { value: email } = useField<string>('email')
 
 const onSubmit = handleSubmit((values) => {
-  console.log("hello")
   authStore
     .teacherRegister(
       values.username,
@@ -47,15 +44,18 @@ const onSubmit = handleSubmit((values) => {
       values.password
     )
     .then(() => {
-      // router.push({ name: 'teacher-setting' })
       messageStore.updateMessage('Add Teacher Successful')
-
+      // username.value = ""
+      // firstName.value = ""
+      // lastName.value = ""
+      // email.value = ""
+      // username.value = ""
       setTimeout(() => {
         messageStore.resetMessage()
       }, 5000)
     })
     .catch(() => {
-      messageStore.updateMessage('could Add Teacher')
+      messageStore.updateMessage('could not Add Teacher')
 
       setTimeout(() => {
         messageStore.resetMessage()

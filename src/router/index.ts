@@ -87,7 +87,7 @@ const router = createRouter({
       component: StudentList,
       props: (route) => ({
         page: parseInt((route.query?.page as string) || '1'),
-        limit: parseInt((route.query?.limit as string) || '5')
+        limit: parseInt((route.query?.limit as string) || '6')
       })
     },
     {
@@ -140,7 +140,7 @@ const router = createRouter({
       component: TeacherList,
       props: (route) => ({
         page: parseInt((route.query?.page as string) || '1'),
-        limit: parseInt((route.query?.limit as string) || '5')
+        limit: parseInt((route.query?.limit as string) || '6')
       })
     },
     {
@@ -201,15 +201,19 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   NProgress.start()
 
-  // const studentStore = useStudentStore()
-  // if (studentStore.students.length === 0) {
-  //   await studentStore.fetchAllStudents()
-  // }
+  const studentStore = useStudentStore()
+  if (studentStore.students.length === 0) {
+    await studentStore.fetchAllStudents()
+  }
 
   // const teacherStore = useTeacherStore()
   // if (teacherStore.teachers.length === 0) {
-  //   await teacherStore.fetchAllTeachers()
+  //   await teacherStore.fetchAllTeachersByPage(3, 1)
   // }
+  const teacherStore = useTeacherStore()
+  if (teacherStore.teachers.length === 0) {
+    await teacherStore.fetchAllTeachers()
+  }
 
   next()
 })

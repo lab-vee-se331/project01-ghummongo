@@ -7,22 +7,13 @@ export const useStudentStore = defineStore('student', {
     students: [] as StudentItem[]
   }),
   getters: {
-    getStudents: (state) => (limit: number, page: number) => {
+    getStudents: (state) => async (limit: number, page: number) => {
+      const response = await StudentService.getAllStudents()
+      state.students = response.data
       const start = (page - 1) * limit
       const end = start + limit
       return state.students.slice(start, end)
     },
-    // getStudentsByTeacherId: (state) => async (teacherId: string) => {
-    //   const teacherStore = useTeacherStore()
-    //   const teacher = teacherStore.getTeacherById(teacherId)
-
-    //   if (!teacher) {
-    //     return Promise.resolve([])
-    //   }
-
-    //   const students = state.students.filter((student) => student.teacherId === teacherId)
-    //   return Promise.resolve(students)
-    // },
     getStudentById: (state) => (id: string) => {
       const response = state.students.find((student) => student.id == id)
       console.log(response)
@@ -38,15 +29,9 @@ export const useStudentStore = defineStore('student', {
     }
   },
   actions: {
-    // addStudent(student: StudentItem) {
-    //   this.students.unshift(student)
-    // },
     setStudents(students: StudentItem[]) {
       this.students = students
     },
-    // deleteStudents() {
-    //   this.students = []
-    // },
     fetchStudent() {
       try {
         return this.students

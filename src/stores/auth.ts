@@ -66,13 +66,14 @@ export const useAuthStore = defineStore('auth', {
       email: string,
       password: string
     ) {
-      await apiClient.post('/api/v1/auth/register/teacher', {
+      const response = await apiClient.post('/api/v1/auth/register/teacher', {
         username: username,
         firstname: firstName,
         lastname: lastName,
         email: email,
         password: password
       })
+      return response
     },
     logout() {
       console.log('logout')

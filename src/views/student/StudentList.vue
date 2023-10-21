@@ -22,18 +22,22 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-  if (studentStore.students.length === 0) {
-    await studentStore.fetchAllStudentsByPage(props.limit, props.page)
-  }
-  students.value = studentStore.getStudents(props.limit, props.page)
+  // try {
+  //   if (studentStore.students.length === 0) {
+  //     await studentStore.fetchAllStudents()
+  //   }
+  // } catch (error) {
+  //   console.log('ERROR: ' + error)
+  // }
+
+  students.value = await studentStore.getStudents(props.limit, props.page)
   totalStudent.value = studentStore.getStudentsLength()
 })
 
-onBeforeRouteUpdate((to, from, next) => {
+onBeforeRouteUpdate(async (to, from, next) => {
   const toPage = to.query.page ? Number(to.query.page) : 1 // set default page to 1 if to.query.page is undefined
-  students.value = studentStore.getStudents(props.limit, toPage)
+  students.value = await studentStore.getStudents(props.limit, toPage)
   totalStudent.value = studentStore.getStudentsLength()
-
   next()
 })
 
@@ -73,14 +77,16 @@ function updateKeyword(value: string) {
     <h1 class="text-2xl font-bold mb-4 text-gray-700">Student List</h1>
     <!-- Search -->
     <div class="w-[50%] mb-4">
-      <BaseInput v-model="keyword" type="text" label="Search" placeholder="ค้นหาควาย" @input="updateKeyword"></BaseInput>
+      <BaseInput
+        v-model="keyword"
+        type="text"
+        label="Search"
+        placeholder="ค้นหาควาย"
+        @input="updateKeyword"
+      ></BaseInput>
     </div>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      <StudentCard
-        v-for="student in students"
-        :key="student.id"
-        :student="student"
-      ></StudentCard>
+      <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
     </div>
     <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink
