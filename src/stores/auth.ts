@@ -32,11 +32,11 @@ export const useAuthStore = defineStore('auth', {
       this.token = response.data.access_token
       this.userRole = response.data.user_role
       this.username = response.data.user_username
-      this.userId = response.data.user_id
+      this.userId = this.userRole?.includes('ROLE_STUDENT') ? response.data.student_id : response.data.teacher_id
       localStorage.setItem('access_token', this.token as string)
       localStorage.setItem('user_role', JSON.stringify(this.userRole))
       localStorage.setItem('user_username', this.username as string)
-      localStorage.setItem('user_id', this.username as string)
+      localStorage.setItem('user_id', this.userId as string)
       return response
     },
     async studentRegister(
@@ -87,6 +87,19 @@ export const useAuthStore = defineStore('auth', {
         firstname: firstName,
         lastname: lastName,
         email: email
+      })
+      return response
+    },
+    async updateStudent(
+      id: string,
+      username: string,
+      firstName: string,
+      lastName: string,
+    ) {
+      const response = await apiClient.put(`/api/v1/students/${id}`, {
+        username: username,
+        firstname: firstName,
+        lastname: lastName,
       })
       return response
     },

@@ -14,9 +14,10 @@ export const useStudentStore = defineStore('student', {
       const end = start + limit
       return state.students.slice(start, end)
     },
-    getStudentById: (state) => (id: string) => {
+    getStudentById: (state) => async (id: string) => {
+      const students = await StudentService.getAllStudents()
+      state.students = students.data
       const response = state.students.find((student) => student.id == id)
-      console.log(response)
       return new Promise<StudentItem | null>((resolve) => {
         resolve(response || null)
       })

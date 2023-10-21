@@ -5,6 +5,7 @@ export interface StudentItem {
   lastname: string
   image: string
   department: string
+  email: string
   teacher: OwnTeacher | string
 }
 

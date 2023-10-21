@@ -38,7 +38,7 @@ import LoginView from '../views/auth/LoginView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
 
 // ----- Profile -----
-import ProfileView from '../views/ProfileView.vue'
+import ProfileView from '../views/profile/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

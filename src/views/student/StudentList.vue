@@ -22,14 +22,6 @@ const props = defineProps({
 })
 
 onMounted(async () => {
-  // try {
-  //   if (studentStore.students.length === 0) {
-  //     await studentStore.fetchAllStudents()
-  //   }
-  // } catch (error) {
-  //   console.log('ERROR: ' + error)
-  // }
-
   students.value = await studentStore.getStudents(props.limit, props.page)
   totalStudent.value = studentStore.getStudentsLength()
 })

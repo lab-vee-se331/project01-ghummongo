@@ -10,6 +10,10 @@ const isExpanded = ref(true)
 const route = useRoute()
 const router = useRouter()
 
+const userId = () =>  {
+  return localStorage.getItem("user_id") as string
+}
+
 const ToggleMenu = () => {
   isExpanded.value = !isExpanded.value
 }

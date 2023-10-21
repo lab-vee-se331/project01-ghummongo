@@ -2,7 +2,7 @@
 import type { TeacherItem } from '@/type'
 import InputText from '@/components/InputText.vue'
 import { useField, useForm } from 'vee-validate'
-import * as yup from 'yup'
+// import * as yup from 'yup'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
@@ -41,7 +41,6 @@ const { value: lastName } = useField<string>('lastName')
 const { value: email } = useField<string>('email')
 
 const onSubmit = handleSubmit((values) => {
-  console.log("WTF")
   authStore.updateTeacher(
     values.id,
     values.username,
@@ -82,7 +81,7 @@ const editToggle = () => {
           <div class="lg:col-span-2">
             <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6 my-4">
               <div class="lg:col-span-2 sm:col-span-6">
-                <img :src="oneTeacher?.image" alt="" class="rounded-full w-80 h-80 object-cover" />
+                <img :src="oneTeacher?.image" alt="" class="rounded-full w-80 h-80 object-cover max-[1360px]:w-64 max-[1360px]:h-64 max-[1190px]:w-52 max-[1190px]:h-52" />
               </div>
               <div class="lg:col-span-4 sm:col-span-6 text-xl text-gray-600">
                 <!-- <div class="mb-4">
