@@ -1,6 +1,22 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { AnnouncementItem, TeacherItem } from '@/type';
+import { ref, type PropType, onMounted } from 'vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
+
+const props = defineProps({
+  announcement: {
+    type: Object as PropType<AnnouncementItem>,
+      require: true
+  },
+  teacher:{
+    type: Object as PropType<TeacherItem>,
+      require: true
+  }
+})
+onMounted(async () => {
+  
+  console.log(props.teacher)
+});
 
 // const img = ref('') // Img Url , string or Array of string
 const imgs = ref<String[]>()
@@ -48,23 +64,19 @@ const truncate = (text: string) => {
 
 <template>
   <!-- <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }"> -->
-  <div class="w-[80%] md:w-[60%] bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
+  <div class="w-[80%] md:w-[60%] bg-white border border-gray-200 rounded-lg shadow hover:shadow-md mb-4">
     <div class="flex flex-col p-8">
       <div class="flex flex-row text-sm text-gray-500">
         <img src="https://i.imgur.com/tbXDnsJ.jpg" alt="" class="h-12 rounded-full mb-4 mr-4" />
         <div class="">
-          <div class="text-gray-900 font-medium">Web</div>
-          <div class="">— 10/15/2023 1:10 AM</div>
+          <div class="text-gray-900 font-medium">{{ announcement?.id }} {{ teacher?.firstname }}</div>
+          <div class="">{{ new Date().toString() }}</div>
         </div>
       </div>
       <div>
-        <h5 class="mb-1 text-xl font-medium text-gray-900">Some Title</h5>
+        <h5 class="mb-1 text-xl font-medium text-gray-900">{{ announcement?.title }}</h5>
         <p class="text-gray-600">
-          {{
-            truncate(
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vitae eaque voluptate eius perferendis pariatur unde placeat totam incidunt quaerat! eaque voluptate eius'
-            )
-          }}
+          {{ announcement?.description }}
         </p>
       </div>
 
@@ -99,10 +111,10 @@ const truncate = (text: string) => {
       </div>
 
       <div class="flex mt-4 space-x-3">
-        <a
+        <RouterLink :to="{ name: 'announcement-details', params: { id: announcement?.id} }"
           href="#"
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-[#42b883] rounded-lg hover:bg-[#27a26f] focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg"
-          >Read more</a
+          >Read more</RouterLink
         >
       </div>
     </div>

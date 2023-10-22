@@ -62,6 +62,6 @@ export interface ErrorsType {
 export interface AnnouncementItem {
   id: number
   title: string
-  content: string
-  images: string[]
+  description: string
+  image: string
 }

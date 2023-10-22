@@ -10,6 +10,7 @@ export const useAnnouncementStore = defineStore('announcement', {
     getAnnouncements: (state) => async (limit: number, page: number) => {
       const response = await AnnouncementService.getAllAnnouncements()
       state.announcements = response.data
+      console.log(state.announcements)
       const start = (page - 1) * limit
       const end = start + limit
       return state.announcements.slice(start, end)

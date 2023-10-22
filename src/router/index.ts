@@ -32,6 +32,8 @@ import { useStudentStore } from '../stores/student'
 // ----- Announcement -----
 import CreateAnnouncementView from '../views/announcement/CreateAnnouncementView.vue'
 import AnnouncementView from '../views/announcement/AnnouncementView.vue'
+import AnnouncementLayout from '../views/announcement/AnnouncementLayout.vue'
+import AnnouncementDetail from '../views/announcement/AnnouncementDetail.vue'
 
 // ----- Auth -----
 import LoginView from '../views/auth/LoginView.vue'
@@ -66,6 +68,19 @@ const router = createRouter({
       path: '/announcement',
       name: 'announcement-page',
       component: AnnouncementView
+    },
+    {
+      path: '/announcement/:id',
+      name: 'announcement-layout',
+      component: AnnouncementLayout,
+      props: (route) => ({ id: route.params.id }),
+      children:[
+        {
+          path: '',
+          name: 'announcement-details',
+          component: AnnouncementDetail
+        }
+      ]
     },
     {
       path: '/announcement',

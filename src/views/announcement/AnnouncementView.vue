@@ -26,24 +26,25 @@ const props = defineProps({
 onMounted(async () => {
   announcements.value = await announcementStore.getAnnouncements(limit.value, page.value);
   totalAnnouncements.value = announcementStore.getAnnouncementsLength();
+  console.log(announcements.value)
 });
 
-// onBeforeRouteUpdate(async (to, from, next) => {
-//   const toPage = to.query.page ? Number(to.query.page) : 1;
-//   page.value = toPage;
-//   announcements.value = await announcementStore.getAnnouncements(limit.value, toPage);
-//   totalAnnouncements.value = announcementStore.getAnnouncementsLength();
-//   next();
-// });
+onBeforeRouteUpdate(async (to, from, next) => {
+  const toPage = to.query.page ? Number(to.query.page) : 1;
+  page.value = toPage;
+  announcements.value = await announcementStore.getAnnouncements(limit.value, toPage);
+  totalAnnouncements.value = announcementStore.getAnnouncementsLength();
+  next();
+});
 
-// const totalPages = computed(() => {
-//   return Math.ceil(totalAnnouncements.value / props.limit)
-// });
+const totalPages = computed(() => {
+  return Math.ceil(totalAnnouncements.value / props.limit)
+});
 
-// const hasNextPage = computed(() => {
-//   const totalPages = Math.ceil(totalAnnouncements.value / limit.value);
-//   return page.value < totalPages;
-// });
+const hasNextPage = computed(() => {
+  const totalPages = Math.ceil(totalAnnouncements.value / limit.value);
+  return page.value < totalPages;
+});
 
 </script>
 
@@ -52,10 +53,10 @@ onMounted(async () => {
   <main class="flex flex-col items-center justify-center">
     <h1 class="text-2xl font-bold mb-4 text-gray-700">Announcements</h1>
     <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-2 sm:grid-cols-1"> -->
-    <AnnouncementCard></AnnouncementCard>
-    <!-- v-for="announcement in announcements" :key="announcement.id" :announcement="announcement" -->
-    <!-- </div>
-    <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
+    <AnnouncementCard v-for="announcement in announcements" :key="announcement.id" :announcement="announcement"></AnnouncementCard>
+    
+    <!-- </div> -->
+    <!-- <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink
         :to="{ name: 'announcement-list', query: { page: page - 1, limit: limit } }"
         rel="prev"
