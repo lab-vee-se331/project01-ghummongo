@@ -7,7 +7,7 @@ export default {
     return apiClient.get<AnnouncementItem[]>('/announcements?_limit=' + perPage + '&_page=' + page)
   },
   getAllAnnouncements(): Promise<AxiosResponse<AnnouncementItem[]>> {
-    return apiClient.get<AnnouncementItem[]>('/announcements')
+    return apiClient.get<AnnouncementItem[]>('/announcements/')
   },
   getAnnouncementById(id: string): Promise<AxiosResponse<AnnouncementItem>> {
     return apiClient.get<AnnouncementItem>('/announcements/' + id)

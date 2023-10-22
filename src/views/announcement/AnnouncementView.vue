@@ -1,32 +1,32 @@
 <script setup lang="ts">
 import AnnouncementCard from '@/components/AnnouncementCard.vue'
-// import { computed, onMounted, ref } from 'vue';
-// import { useAnnouncementStore } from '@/stores/announcement';
-// import { onBeforeRouteUpdate } from 'vue-router';
-// import type { AnnouncementItem } from '@/type';
+import { computed, onMounted, ref } from 'vue';
+import { useAnnouncementStore } from '@/stores/announcement';
+import { onBeforeRouteUpdate } from 'vue-router';
+import type { AnnouncementItem } from '@/type';
 
-// const announcementStore = useAnnouncementStore();
+const announcementStore = useAnnouncementStore();
 
-// const announcements = ref([] as AnnouncementItem[]);
-// const totalAnnouncements = ref(0);
-// const page = ref(1);
-// const limit = ref(10);
+const announcements = ref([] as AnnouncementItem[]);
+const totalAnnouncements = ref(0);
+const page = ref(1);
+const limit = ref(10);
 
-// const props = defineProps({
-//   page: {
-//     type: Number,
-//     required: true
-//   },
-//   limit: {
-//     type: Number,
-//     required: true
-//   }
-// })
+const props = defineProps({
+  page: {
+    type: Number,
+    required: true
+  },
+  limit: {
+    type: Number,
+    required: true
+  }
+})
 
-// onMounted(async () => {
-//   announcements.value = await announcementStore.getAnnouncements(limit.value, page.value);
-//   totalAnnouncements.value = announcementStore.getAnnouncementsLength();
-// });
+onMounted(async () => {
+  announcements.value = await announcementStore.getAnnouncements(limit.value, page.value);
+  totalAnnouncements.value = announcementStore.getAnnouncementsLength();
+});
 
 // onBeforeRouteUpdate(async (to, from, next) => {
 //   const toPage = to.query.page ? Number(to.query.page) : 1;
@@ -52,8 +52,8 @@ import AnnouncementCard from '@/components/AnnouncementCard.vue'
   <main class="flex flex-col items-center justify-center">
     <h1 class="text-2xl font-bold mb-4 text-gray-700">Announcements</h1>
     <!-- <div class="grid grid-cols-1 gap-4 md:grid-cols-2 sm:grid-cols-1"> -->
-      <AnnouncementCard ></AnnouncementCard>
-      <!-- v-for="announcement in announcements" :key="announcement.id" :announcement="announcement" -->
+    <AnnouncementCard></AnnouncementCard>
+    <!-- v-for="announcement in announcements" :key="announcement.id" :announcement="announcement" -->
     <!-- </div>
     <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink
