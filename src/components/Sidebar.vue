@@ -10,8 +10,8 @@ const isExpanded = ref(true)
 const route = useRoute()
 const router = useRouter()
 
-const userId = () =>  {
-  return localStorage.getItem("user_id") as string
+const userId = () => {
+  return localStorage.getItem('user_id') as string
 }
 
 const ToggleMenu = () => {
@@ -60,7 +60,7 @@ function logout() {
 }
 
 const isErrorMessage = () => {
-  return message.value === "Could not login"
+  return message.value === 'Could not login'
 }
 </script>
 
@@ -248,7 +248,9 @@ const isErrorMessage = () => {
   >
     <div
       v-if="message"
-      :class="`animate-flashMessage w-full flex items-center p-4 mb-4 text-sm ${ isErrorMessage() ? 'text-red-800 bg-red-50' : 'text-green-800 bg-green-50'} rounded-lg`"
+      :class="`animate-flashMessage w-full flex items-center p-4 mb-4 text-sm ${
+        isErrorMessage() ? 'text-red-800 bg-red-50' : 'text-green-800 bg-green-50'
+      } rounded-lg`"
     >
       <h2 class="font-medium">{{ message }}</h2>
     </div>

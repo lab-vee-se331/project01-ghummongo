@@ -39,6 +39,8 @@ import RegisterView from '../views/auth/RegisterView.vue'
 
 // ----- Profile -----
 import ProfileView from '../views/profile/ProfileView.vue'
+import ProfileLayout from '@/views/profile/ProfileLayout.vue'
+import ProfileDetail from '@/views/profile/ProfileDetail.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +56,35 @@ const router = createRouter({
       path: '/profile',
       name: 'profile-page',
       component: ProfileView
+    },
+    {
+      path: '/profile/:id',
+      name: 'profile-layout',
+      component: ProfileLayout,
+      props: (route) => ({ id: route.params.id }),
+      beforeEnter: () => {
+        const id = localStorage.getItem('user_id') as string
+        useStudentStore()
+          .getStudentById(id)
+          .catch((error) => {
+            if (error.status && error.status === 404) {
+              router.push({
+                name: '404-resource',
+                params: { resource: 'student' }
+              })
+            }
+          })
+        if (!navigator.onLine) {
+          router.push({ name: 'network-error' })
+        }
+      },
+      children: [
+        {
+          path: '',
+          name: 'profile-detail',
+          component: ProfileDetail
+        }
+      ]
     },
 
     // ----- Announcement -----

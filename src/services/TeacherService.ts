@@ -9,4 +9,7 @@ export default {
   getAllTeachers(): Promise<AxiosResponse<TeacherItem[]>> {
     return apiClient.get<TeacherItem[]>('/teachers')
   },
+  getTeachersById(id: string): Promise<AxiosResponse<TeacherItem[]>> {
+    return apiClient.get<TeacherItem[]>('/teachers/' + id)
+  },
 }
