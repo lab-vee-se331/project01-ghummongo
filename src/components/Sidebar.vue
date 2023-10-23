@@ -98,8 +98,8 @@ const isErrorMessage = () => {
                 <span class="ml-3 text-sm">Home Page</span>
               </RouterLink>
             </li>
-            <span v-if="authStore.isAdmin() || authStore.isTeacher()">
-              <li>
+            <span>
+              <li v-if="authStore.isTeacher() || authStore.isAdmin()">
                 <RouterLink
                   :to="{ name: 'student-list' }"
                   class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
@@ -143,7 +143,7 @@ const isErrorMessage = () => {
                   </ul>
                 </div>
               </li>
-              <li>
+              <li v-if="authStore.isStudent()">
                 <RouterLink
                   :to="{ name: 'announcement-page' }"
                   class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"
@@ -152,7 +152,7 @@ const isErrorMessage = () => {
                   <span class="ml-3 text-sm">Announcement</span>
                 </RouterLink>
               </li>
-              <li>
+              <li v-if="authStore.isTeacher()">
                 <RouterLink
                   :to="{ name: 'create-announcement-page' }"
                   class="flex items-center p-2 rounded-lg hover:pl-4 hover:bg-gray-800 group"

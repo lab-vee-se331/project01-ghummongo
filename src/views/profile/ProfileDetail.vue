@@ -7,6 +7,8 @@ import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
 import CommentSection from '@/components/CommentSection.vue'
 import ImageUpload from '@/components/ImageUpload.vue'
+import StudentCard from '@/components/StudentCard.vue'
+import TeacherCard from '@/components/TeacherCard.vue'
 
 const isEdit = ref(false)
 const authStore = useAuthStore()
@@ -51,7 +53,14 @@ const onSubmit = handleSubmit((values) => {
   // console.log(images.value[0].url);
   if (getRole() === '["ROLE_STUDENT"]') {
     authStore
-      .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email, images.value[0].url)
+      .updateStudent(
+        values.id,
+        values.username,
+        values.firstName,
+        values.lastName,
+        values.email,
+        images.value[0].url
+      )
       .then(() => {
         messageStore.updateMessage('Update Successful')
 
@@ -69,7 +78,14 @@ const onSubmit = handleSubmit((values) => {
   } else if (getRole() === '["ROLE_TEACHER"]') {
     // console.log(values.image)
     authStore
-      .updateTeacher(values.id, values.username, values.firstName, values.lastName, values.email, images.value[0].url)
+      .updateTeacher(
+        values.id,
+        values.username,
+        values.firstName,
+        values.lastName,
+        values.email,
+        images.value[0].url
+      )
       .then(() => {
         messageStore.updateMessage('Update Successful')
 
@@ -197,6 +213,24 @@ const isStudent = () => {
       </form>
       <div v-if="isStudent()" class="flex flex-col items-center justify-center my-12">
         <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
+      </div>
+    </div>
+    <div class="col-span-12 flex flex-col items-center justify-center">
+      <div class="" v-if="oneStudent?.teacher">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+          <TeacherCard
+            :oneTeacher="oneStudent.teacher"
+          ></TeacherCard>
+        </div>
+      </div>
+      <div class="" v-if="oneTeacher?.ownStudent">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+          <StudentCard
+            v-for="student in oneTeacher.ownStudent"
+            :key="student.id"
+            :student="student"
+          ></StudentCard>
+        </div>
       </div>
     </div>
   </main>
