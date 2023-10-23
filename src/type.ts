@@ -47,21 +47,15 @@ export interface ErrorsType {
   [key: string]: string | undefined
 }
 
-// export interface StudentType {
-//   name: string
-//   surname: string
-//   studentId: string
-//   courseList: string
-//   courseListDisplay?: string
-//   teacherId: string
-//   comment: string
-//   image?: string
-//   [key: string]: string | undefined
-// }
-
 export interface AnnouncementItem {
   id: number
   title: string
   content: string
   images: string[]
+}
+
+export interface CommentItem {
+  id: number
+  content: string
+  reply: string[]
 }

@@ -5,6 +5,7 @@ import { useField, useForm } from 'vee-validate'
 import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
 import { ref } from 'vue'
+import CommentSection from '@/components/CommentSection.vue'
 
 const isEdit = ref(false)
 const authStore = useAuthStore()
@@ -21,13 +22,15 @@ const { errors, handleSubmit } = useForm({
     id: (oneStudent?.id as string) || '',
     username: (oneStudent?.username as string) || '',
     firstName: (oneStudent?.firstname as string) || '',
-    lastName: (oneStudent?.lastname as string) || ''
+    lastName: (oneStudent?.lastname as string) || '',
+    email: (oneStudent?.email as string) || ''
   }
 })
 
 const { value: username } = useField<string>('username')
 const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
+const { value: email } = useField<string>('email')
 
 const onSubmit = handleSubmit((values) => {
   authStore
@@ -35,8 +38,8 @@ const onSubmit = handleSubmit((values) => {
       values.id,
       values.username,
       values.firstName,
-      values.lastName
-      // values.email,
+      values.lastName,
+      values.email
     )
     .then(() => {
       messageStore.updateMessage('Update Successful')
@@ -129,6 +132,16 @@ const onSubmitComment = () => {
                       ></InputText>
                     </div>
 
+                    <div class="md:col-span-6">
+                      <label for="email">Email</label>
+                      <InputText
+                        type="text"
+                        v-model="email"
+                        :error="errors['email']"
+                        :disabled="!isEdit"
+                      ></InputText>
+                    </div>
+
                     <div class="md:col-span-6 text-right mt-2">
                       <div class="inline-flex items-end">
                         <button
@@ -169,27 +182,7 @@ const onSubmitComment = () => {
         </div>
       </div>
       <div class="flex flex-col items-center justify-center my-12">
-        <span class="text-xl text-gray-600 mb-8 underline underline-offset-2 decoration-[#42b883]"
-          >Comments</span
-        >
-        <!-- <div class="text-gray-600">
-          <div v-if="oneStudent?.comment" class="grid grid-cols-6">
-            <div class="col-span-1 mr-4">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Anonymous_emblem.svg/640px-Anonymous_emblem.svg.png"
-                alt=""
-                class="rounded-full w-12 h-12 object-cover float-right"
-              />
-            </div>
-            <div class="col-span-4">
-              <div class="text-gray-600"><span class="font-bold">Admin</span> · 1h ago</div>
-              <div class="text">
-                {{ oneStudent?.comment }}
-              </div>
-              <hr class="my-6" />
-            </div>
-          </div>
-        </div> -->
+        <CommentSection :id="oneStudent.id"></CommentSection>
       </div>
 
       <form @submit.prevent="onSubmitComment">
