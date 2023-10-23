@@ -55,35 +55,10 @@ const onSubmit = handleSubmit((values) => {
     })
 })
 
-const isTeacherRole = () => {
-  return localStorage.getItem('user_role') === '["ROLE_TEACHER"]'
-}
-
 const editToggle = () => {
   isEdit.value = !isEdit.value
   console.log(isEdit.value)
 }
-
-const onSubmitComment = handleSubmit((values) => {
-  const teacherId = localStorage.getItem('user_id') as string
-  // console.log(values.content, values.id, teacherId);
-  commentStore
-    .createComment(values.content, values.id, teacherId)
-    .then(() => {
-      messageStore.updateMessage('Update Successful')
-
-      setTimeout(() => {
-        messageStore.resetMessage()
-      }, 5000)
-    })
-    .catch(() => {
-      messageStore.updateMessage('could not Update')
-
-      setTimeout(() => {
-        messageStore.resetMessage()
-      }, 3000)
-    })
-})
 </script>
 
 <template>
@@ -201,31 +176,7 @@ const onSubmitComment = handleSubmit((values) => {
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center my-12">
-        <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
-      </div>
-
-      <form v-if="isTeacherRole()" @submit.prevent="onSubmitComment">
-        <div class="w-full border border-gray-200 rounded-lg bg-gray-50">
-          <div class="px-4 py-2 bg-white rounded-t-lg">
-            <label for="comment" class="sr-only">Your comment</label>
-            <InputText
-              rows="4"
-              v-model="content"
-              class="w-full px-0 text-sm text-gray-900 bg-white"
-              placeholder="Write a comment..."
-            ></InputText>
-          </div>
-          <div class="flex items-center justify-between px-3 py-2 border-t">
-            <button
-              type="submit"
-              class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-[#27a26f] rounded-lg focus:ring-4 focus:ring-[#b1e9ca]"
-            >
-              Post comment
-            </button>
-          </div>
-        </div>
-      </form>
+      <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
     </div>
   </div>
 </template>
