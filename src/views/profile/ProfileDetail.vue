@@ -173,9 +173,9 @@ const isStudent = () => {
           </div>
         </div>
       </form>
-    </div>
-    <div v-if="isStudent()" class="flex flex-col items-center justify-center my-12">
-      <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
+      <div v-if="isStudent()" class="flex flex-col items-center justify-center my-12">
+        <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
+      </div>
     </div>
   </main>
 </template>

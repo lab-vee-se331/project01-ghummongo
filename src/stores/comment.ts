@@ -37,7 +37,7 @@ export const useCommentStore = defineStore('comment', {
       this.setComments(response.data)
     },
     async replyComment(id: string, content: string, sid: string, tid: string) {
-      const response = await apiClient.post(`/api/v1/comments/${id}?studentId=${sid}&teacherId=${tid}`, {
+      const response = await apiClient.post(`/api/v1/comments/reply?studentId=${sid}&teacherId=${tid}&commentId=${id}`, {
         content: content
       })
       return response
