@@ -26,7 +26,8 @@ const { errors, handleSubmit } = useForm({
     firstName: (oneStudent?.firstname as string) || '',
     lastName: (oneStudent?.lastname as string) || '',
     email: (oneStudent?.email as string) || '',
-    content: ''
+    content: '',
+    image: (oneStudent?.image as string) || '',
   }
 })
 
@@ -38,7 +39,7 @@ const { value: content } = useField<string>('content')
 
 const onSubmit = handleSubmit((values) => {
   authStore
-    .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email)
+    .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email, values.image)
     .then(() => {
       messageStore.updateMessage('Update Successful')
 
@@ -103,7 +104,8 @@ const editToggle = () => {
                         v-model="username"
                         :error="errors['username']"
                         :disabled="!isEdit"
-                      ></InputText>
+                      >
+                      </InputText>
                     </div>
 
                     <div class="md:col-span-3">
@@ -113,7 +115,8 @@ const editToggle = () => {
                         v-model="firstName"
                         :error="errors['firstName']"
                         :disabled="!isEdit"
-                      ></InputText>
+                      >
+                      </InputText>
                     </div>
 
                     <div class="md:col-span-3">
@@ -123,7 +126,8 @@ const editToggle = () => {
                         v-model="lastName"
                         :error="errors['lastName']"
                         :disabled="!isEdit"
-                      ></InputText>
+                      >
+                      </InputText>
                     </div>
 
                     <div class="md:col-span-6">
@@ -149,6 +153,7 @@ const editToggle = () => {
                     </div>
                   </div>
                 </form>
+
                 <div class="mb-4"><span class="font-bold">Advisor: </span></div>
                 <RouterLink
                   v-if="oneStudent?.teacher"
@@ -176,7 +181,8 @@ const editToggle = () => {
           </div>
         </div>
       </div>
-      <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
     </div>
+
+    <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
   </div>
 </template>
