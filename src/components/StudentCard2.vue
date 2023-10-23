@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import type { StudentItem } from '@/type'
+import apiClient from '@/services/AxiosClient';
+import type { StudentItem, TeacherItem } from '@/type'
 import type { PropType } from 'vue'
 const props = defineProps({
   student: {
     type: Object as PropType<StudentItem>,
     require: true
+  },
+  oneTeacher: {
+    type: Object as PropType<TeacherItem>,
+    default: () => ({})
   }
 })
 
@@ -14,6 +19,14 @@ const truncate = (text: string) => {
   }
   return text
 }
+
+const showDetails = () => {
+  console.log('Student:', props.student?.id)
+  console.log('Teacher:', props.oneTeacher.id)
+
+  apiClient.put(`http://localhost:8080/api/v1/relation?teacherId=${props.oneTeacher.id}&studentId=${props.student?.id}`)
+
+}
 </script>
 
 <template>
@@ -21,7 +34,7 @@ const truncate = (text: string) => {
 
     <RouterLink :to="{ name: 'student-detail', params: { id: student?.id } }">
       <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
-        <span class="absolute text-sm text-white bg-[#42b883] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{
+        <span class="absolute text-sm text-white bg-[#ff4747] rounded-br-lg rounded-tl-lg px-6 py-1.5">{{
           student?.id
         }}</span>
         <div class="flex flex-col items-center p-10">
@@ -38,9 +51,9 @@ const truncate = (text: string) => {
           </span>
           <div class="flex mt-4 space-x-3 md:mt-6">
             <a href="#"
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-[#42b883] rounded-lg hover:bg-[#27a26f] focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg">Details</a>
-            <a href="#"
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200">Comment</a>
+              class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-[#ff4747] rounded-lg hover:bg-[#ff4747] focus:ring-4 focus:outline-none focus:ring-blue-300 shadow-lg"
+              @click.prevent="showDetails">Add
+              Advisee</a>
           </div>
         </div>
       </div>

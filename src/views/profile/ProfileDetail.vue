@@ -243,7 +243,8 @@ function updateKeyword(value: string) {
       </BaseInput>
     </div>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      <StudentCard2 v-for="student in students" :key="student.id" :student="student"></StudentCard2>
+      <StudentCard2 v-for="student in students" :key="student.id" :student="student" :oneTeacher="oneTeacher">
+      </StudentCard2>
     </div>
 
   </main>
