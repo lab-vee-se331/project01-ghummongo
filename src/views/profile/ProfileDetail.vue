@@ -5,6 +5,7 @@ import type { StudentItem, TeacherItem } from '@/type'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
+import CommentSection from '@/components/CommentSection.vue'
 
 const isEdit = ref(false)
 const authStore = useAuthStore()
@@ -78,6 +79,10 @@ const editToggle = () => {
   isEdit.value = !isEdit.value
   console.log(isEdit.value)
 }
+
+const isStudent = () => {
+  return getRole() === '["ROLE_STUDENT"]'
+}
 </script>
 
 <template>
@@ -95,7 +100,7 @@ const editToggle = () => {
           {{ oneStudent ? oneStudent?.firstname : oneTeacher?.firstname }}
           {{ oneStudent ? oneStudent?.lastname : oneTeacher?.lastname }}
         </h2>
-        <p>{{ oneStudent ? oneStudent?.email : oneTeacher?.email }}</p>
+        <p class="text-center">{{ oneStudent ? oneStudent?.email : oneTeacher?.email }}</p>
         <p class="text-center text-gray-600 mt-1">{{ getRole() }}</p>
       </div>
     </div>
@@ -168,6 +173,9 @@ const editToggle = () => {
           </div>
         </div>
       </form>
+    </div>
+    <div v-if="isStudent()" class="flex flex-col items-center justify-center my-12">
+      <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
     </div>
   </main>
 </template>

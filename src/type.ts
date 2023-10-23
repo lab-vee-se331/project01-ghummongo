@@ -55,7 +55,15 @@ export interface AnnouncementItem {
 }
 
 export interface CommentItem {
-  id: number
+  id: string
   content: string
-  reply: string[]
+  studentId: string
+  teacherId: string
+  reply: replyComment | string
+}
+
+export interface replyComment {
+  id: string
+  content: string
+  reply: string | null
 }

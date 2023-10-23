@@ -31,9 +31,14 @@ export const useTeacherStore = defineStore('teacher', {
       console.log('L: ' + state.teachers.length)
       return state.teachers.length
     },
-    getAllTeachers: (state) => () => {
+    getAllTeachers: (state) => async () => {
+      const response = await TeacherService.getAllTeachers()
+      state.teachers = response.data
       return state.teachers
-    }
+    },
+    // getTeacherByIdInComment: (state) => (id: string) => {
+
+    // }
   },
   actions: {
     setTeacher(teachers: TeacherItem[]) {

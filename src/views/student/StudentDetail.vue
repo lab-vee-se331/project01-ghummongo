@@ -6,10 +6,12 @@ import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
 import { ref } from 'vue'
 import CommentSection from '@/components/CommentSection.vue'
+import { useCommentStore } from '@/stores/comment'
 
 const isEdit = ref(false)
 const authStore = useAuthStore()
 const messageStore = useMessageStore()
+const commentStore = useCommentStore()
 
 const { oneStudent } = defineProps<{
   oneStudent: StudentItem
@@ -23,7 +25,8 @@ const { errors, handleSubmit } = useForm({
     username: (oneStudent?.username as string) || '',
     firstName: (oneStudent?.firstname as string) || '',
     lastName: (oneStudent?.lastname as string) || '',
-    email: (oneStudent?.email as string) || ''
+    email: (oneStudent?.email as string) || '',
+    content: ''
   }
 })
 
@@ -31,16 +34,11 @@ const { value: username } = useField<string>('username')
 const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 const { value: email } = useField<string>('email')
+const { value: content } = useField<string>('content')
 
 const onSubmit = handleSubmit((values) => {
   authStore
-    .updateStudent(
-      values.id,
-      values.username,
-      values.firstName,
-      values.lastName,
-      values.email
-    )
+    .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email)
     .then(() => {
       messageStore.updateMessage('Update Successful')
 
@@ -57,14 +55,35 @@ const onSubmit = handleSubmit((values) => {
     })
 })
 
+const isTeacherRole = () => {
+  return localStorage.getItem('user_role') === '["ROLE_TEACHER"]'
+}
+
 const editToggle = () => {
   isEdit.value = !isEdit.value
   console.log(isEdit.value)
 }
 
-const onSubmitComment = () => {
-  console.log('COMMENT')
-}
+const onSubmitComment = handleSubmit((values) => {
+  const teacherId = localStorage.getItem('user_id') as string
+  // console.log(values.content, values.id, teacherId);
+  commentStore
+    .createComment(values.content, values.id, teacherId)
+    .then(() => {
+      messageStore.updateMessage('Update Successful')
+
+      setTimeout(() => {
+        messageStore.resetMessage()
+      }, 5000)
+    })
+    .catch(() => {
+      messageStore.updateMessage('could not Update')
+
+      setTimeout(() => {
+        messageStore.resetMessage()
+      }, 3000)
+    })
+})
 </script>
 
 <template>
@@ -157,6 +176,7 @@ const onSubmitComment = () => {
                 </form>
                 <div class="mb-4"><span class="font-bold">Advisor: </span></div>
                 <RouterLink
+                  v-if="oneStudent?.teacher"
                   :to="{ name: 'teacher-detail', params: { id: oneStudent?.teacher.id } }"
                   class="w-fit flex"
                 >
@@ -182,18 +202,19 @@ const onSubmitComment = () => {
         </div>
       </div>
       <div class="flex flex-col items-center justify-center my-12">
-        <CommentSection :id="oneStudent.id"></CommentSection>
+        <CommentSection :id="oneStudent.id" :oneStudent="oneStudent"></CommentSection>
       </div>
 
-      <form @submit.prevent="onSubmitComment">
+      <form v-if="isTeacherRole()" @submit.prevent="onSubmitComment">
         <div class="w-full border border-gray-200 rounded-lg bg-gray-50">
           <div class="px-4 py-2 bg-white rounded-t-lg">
             <label for="comment" class="sr-only">Your comment</label>
-            <textarea
+            <InputText
               rows="4"
-              class="w-full px-0 text-sm text-gray-900 bg-white border-0"
+              v-model="content"
+              class="w-full px-0 text-sm text-gray-900 bg-white"
               placeholder="Write a comment..."
-            ></textarea>
+            ></InputText>
           </div>
           <div class="flex items-center justify-between px-3 py-2 border-t">
             <button

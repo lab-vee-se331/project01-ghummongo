@@ -26,11 +26,11 @@ const props = defineProps({
 
 const fetchStudents = async () => {
   students.value = await studentStore.getStudents(props.limit, props.page)
+  totalStudent.value = studentStore.getStudentsLength()
 }
 
 onMounted(async () => {
   fetchStudents()
-  totalStudent.value = studentStore.getStudentsLength()
 })
 
 onBeforeRouteUpdate(async (to, from, next) => {
@@ -46,6 +46,7 @@ const hasNextPage = computed(() => {
 })
 
 const totalPages = computed(() => {
+  console.log(Math.ceil(totalStudent.value / props.limit));
   return Math.ceil(totalStudent.value / props.limit)
 })
 
@@ -77,7 +78,7 @@ function updateKeyword(value: string) {
 
 <template>
   <main class="flex flex-col items-center justify-center">
-    <h1 class="text-2xl font-bold mb-4 text-gray-700">Student List</h1>
+    <h1 class="text-2xl font-bold mb-4 text-gray-700">Student List ({{ totalStudent }})</h1>
     <!-- Search -->
     <div class="w-[50%] mb-4">
       <BaseInput

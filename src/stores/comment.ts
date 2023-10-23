@@ -18,11 +18,11 @@ export const useCommentStore = defineStore('comment', {
     comments: [] as CommentItem[]
   }),
   getters: {
-    getStudentById: (state) => async (id: string) => {
+    getCommentById: (state) => async (id: string) => {
       const comments = await CommentService.getAllCommentsByStudentId(id)
       state.comments = comments.data
       const response = state.comments
-      return new Promise<CommentItem | null>((resolve) => {
+      return new Promise<CommentItem[]>((resolve) => {
         resolve(response || null)
       })
     }
@@ -35,6 +35,18 @@ export const useCommentStore = defineStore('comment', {
       const response = await CommentService.getAllCommentsByStudentId(id)
       console.log(response.data)
       this.setComments(response.data)
+    },
+    async replyComment(id: string, content: string, sid: string, tid: string) {
+      const response = await apiClient.post(`/api/v1/comments/${id}?studentId=${sid}&teacherId=${tid}`, {
+        content: content
+      })
+      return response
+    },
+    async createComment(content: string, sid: string, tid: string) {
+      const response = await apiClient.post(`/api/v1/comments?studentId=${sid}&teacherId=${tid}`, {
+        content: content
+      })
+      return response
     }
   }
 })

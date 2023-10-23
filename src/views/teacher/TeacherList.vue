@@ -26,11 +26,11 @@ const props = defineProps({
 
 const fetchTeachers = async () => {
   teachers.value = await teacherStore.getTeachers(props.limit, props.page)
+  totalTeacher.value = teacherStore.getTeachersLength()
 }
 
 onMounted(async () => {
   fetchTeachers()
-  totalTeacher.value = teacherStore.getTeachersLength()
 })
 
 onBeforeRouteUpdate(async (to, from, next) => {
@@ -78,7 +78,7 @@ function updateKeyword(value: string) {
 
 <template>
   <main class="flex flex-col items-center justify-center">
-    <h1 class="text-2xl font-bold mb-4 text-gray-700">Teacher List</h1>
+    <h1 class="text-2xl font-bold mb-4 text-gray-700">Teacher List ({{ totalTeacher }})</h1>
     <!-- Search -->
     <div class="w-[50%] mb-4">
       <BaseInput
@@ -92,7 +92,7 @@ function updateKeyword(value: string) {
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       <TeacherCard v-for="teacher in teachers" :key="teacher.id" :teacher="teacher"></TeacherCard>
     </div>
-    <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
+    <div v-if="totalPages > 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink
         :to="{ name: 'teacher-list', query: { page: page - 1, limit: limit } }"
         rel="prev"
