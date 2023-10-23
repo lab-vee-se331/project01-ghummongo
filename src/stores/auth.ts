@@ -78,13 +78,15 @@ export const useAuthStore = defineStore('auth', {
       username: string,
       firstName: string,
       lastName: string,
-      email: string
+      email: string,
+      image: string
     ) {
       const response = await apiClient.put(`/api/v1/teachers/${id}`, {
         username: username,
         firstname: firstName,
         lastname: lastName,
-        email: email
+        email: email,
+        image: image
       })
       return response
     },
@@ -93,13 +95,15 @@ export const useAuthStore = defineStore('auth', {
       username: string,
       firstName: string,
       lastName: string,
-      email: string
+      email: string,
+      image: string
     ) {
       const response = await apiClient.put(`/api/v1/students/${id}`, {
         username: username,
         firstname: firstName,
         lastname: lastName,
-        email: email
+        email: email,
+        image: image
       })
       return response
     },

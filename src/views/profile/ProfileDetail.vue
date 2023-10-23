@@ -6,10 +6,23 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useMessageStore } from '@/stores/message'
 import CommentSection from '@/components/CommentSection.vue'
+import ImageUpload from '@/components/ImageUpload.vue'
 
 const isEdit = ref(false)
 const authStore = useAuthStore()
 const messageStore = useMessageStore()
+// const teacher = ref<TeacherItem>({
+//   id: '0',
+//   image: [],
+//   username: '',
+//   firstname: '',
+//   lastname: '',
+//   email: '',
+//   roles: [],
+//   department: '',
+//   ownStudent: ''
+// })
+const images = ref<string[]>([])
 
 const { oneStudent, oneTeacher } = defineProps<{
   oneStudent: StudentItem
@@ -24,7 +37,8 @@ const { errors, handleSubmit } = useForm({
     username: oneStudent ? (oneStudent.username as string) : (oneTeacher.username as string),
     firstName: oneStudent ? (oneStudent.firstname as string) : (oneTeacher.firstname as string),
     lastName: oneStudent ? (oneStudent.lastname as string) : (oneTeacher.lastname as string),
-    email: oneStudent ? (oneStudent.email as string) : (oneTeacher.email as string)
+    email: oneStudent ? (oneStudent.email as string) : (oneTeacher.email as string),
+    image: []
   }
 })
 
@@ -32,11 +46,13 @@ const { value: username } = useField<string>('username')
 const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 const { value: email } = useField<string>('email')
+const { value: image } = useField<string[]>('image')
 
 const onSubmit = handleSubmit((values) => {
+  // console.log(images.value[0].url);
   if (getRole() === '["ROLE_STUDENT"]') {
     authStore
-      .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email)
+      .updateStudent(values.id, values.username, values.firstName, values.lastName, values.email, images.value[0].url)
       .then(() => {
         messageStore.updateMessage('Update Successful')
 
@@ -52,8 +68,9 @@ const onSubmit = handleSubmit((values) => {
         }, 3000)
       })
   } else if (getRole() === '["ROLE_TEACHER"]') {
+    // console.log(values.image)
     authStore
-      .updateTeacher(values.id, values.username, values.firstName, values.lastName, values.email)
+      .updateTeacher(values.id, values.username, values.firstName, values.lastName, values.email, images.value[0].url)
       .then(() => {
         messageStore.updateMessage('Update Successful')
 
@@ -92,8 +109,8 @@ const isStudent = () => {
     >
       <div class="">
         <img
-          class="w-32 h-32 rounded-full mx-auto"
-          src="https://i.imgur.com/tbXDnsJ.jpg"
+          class="w-32 h-32 rounded-full mx-auto object-cover"
+          :src="oneStudent ? oneStudent?.image : oneTeacher?.image"
           alt="Profile picture"
         />
         <h2 class="text-center text-2xl font-semibold mt-3">
@@ -158,6 +175,12 @@ const isStudent = () => {
               :error="errors['email']"
               :disabled="!isEdit"
             ></InputText>
+          </div>
+
+          <div class="md:col-span-6">
+            <h3>Upload Profile</h3>
+            <ImageUpload v-model="images" class="my-1" :max="1" />
+            <p class="text-gray-400">Supported formats: "JPG", "JPEG", "PNG", "GIF"</p>
           </div>
 
           <div class="md:col-span-6 text-right mt-2">
