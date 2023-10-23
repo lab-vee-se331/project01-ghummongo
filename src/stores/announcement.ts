@@ -1,6 +1,17 @@
 import { defineStore } from 'pinia'
+import axios from 'axios'
+import type { AxiosInstance } from 'axios'
 import AnnouncementService from '@/services/AnnouncementService'
 import type { AnnouncementItem } from '@/type'
+
+const apiClient: AxiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_BACKEND_URL,
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+})
 
 export const useAnnouncementStore = defineStore('announcement', {
   state: () => ({
@@ -9,6 +20,7 @@ export const useAnnouncementStore = defineStore('announcement', {
   getters: {
     getAnnouncements: (state) => async (limit: number, page: number) => {
       const response = await AnnouncementService.getAllAnnouncements()
+      console.log(response.data);
       state.announcements = response.data
       const start = (page - 1) * limit
       const end = start + limit
@@ -52,6 +64,14 @@ export const useAnnouncementStore = defineStore('announcement', {
       if (response.status === 200) {
         this.setAnnouncements(response.data)
       }
-    }
+    },
+    async createAnnouncement(title: string, description: string, images: string[], tid: string) {
+      const response = await apiClient.post(`/api/v1/announcements?teacherId=${tid}`, {
+        title: title,
+        description: description,
+        images: images
+      })
+      return response
+    },
   }
 })

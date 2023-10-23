@@ -1,37 +1,25 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import type { AnnouncementItem } from '@/type'
+import { ref, type PropType } from 'vue'
 import VueEasyLightbox from 'vue-easy-lightbox'
 
-// const img = ref('') // Img Url , string or Array of string
 const imgs = ref<String[]>()
 const visible = ref(false)
 const index = ref(0)
 
-// const showSingle = () => {
-//   img.value = 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070' // or an object with title and src
-//   show()
-// }
+const { announcements } = defineProps<{
+  announcements: AnnouncementItem[]
+}>()
 
-const showMultiple = (i: number) => {
-  imgs.value = [
-    'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070',
-    'https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1935',
-    'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070'
-  ] // or an array of objects with title and src
+const showMultiple = (i: number, images: string[]) => {
+  imgs.value = images
   index.value = i
   show()
 }
 
-// const changeIndexAndShowMultiple = (index: number) => {
-//   changeIndex(index)
-// }
-
-// const changeIndex = (index: number) => {
-//   index.value = index
-// }
-
 const show = () => {
   visible.value = true
+  document.documentElement.style.overflow = 'auto'
 }
 
 const handleHide = () => {
@@ -47,24 +35,31 @@ const truncate = (text: string) => {
 </script>
 
 <template>
+  <!-- <main > -->
   <!-- <RouterLink :to="{ name: 'student-detail', params: { id: student?.studentId } }"> -->
-  <div class="w-[80%] md:w-[60%] bg-white border border-gray-200 rounded-lg shadow hover:shadow-md">
+  <div
+    v-for="announcement in announcements"
+    :key="announcement.id"
+    class="w-[80%] md:w-[60%] bg-white border border-gray-200 rounded-lg shadow hover:shadow-md mb-4"
+  >
     <div class="flex flex-col p-8">
       <div class="flex flex-row text-sm text-gray-500">
-        <img src="https://i.imgur.com/tbXDnsJ.jpg" alt="" class="h-12 rounded-full mb-4 mr-4" />
+        <img
+          :src="announcement.image"
+          alt=""
+          class="w-12 h-12 rounded-full mb-4 mr-4 object-cover"
+        />
         <div class="">
-          <div class="text-gray-900 font-medium">Web</div>
-          <div class="">— 10/15/2023 1:10 AM</div>
+          <div class="text-gray-900 font-medium">
+            {{ announcement.firstname }} {{ announcement.lastname }}
+          </div>
+          <div class="">— {{ announcement.date }}</div>
         </div>
       </div>
       <div>
-        <h5 class="mb-1 text-xl font-medium text-gray-900">Some Title</h5>
+        <h5 class="mb-1 text-xl font-medium text-gray-900">{{ announcement.title }}</h5>
         <p class="text-gray-600">
-          {{
-            truncate(
-              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores vitae eaque voluptate eius perferendis pariatur unde placeat totam incidunt quaerat! eaque voluptate eius'
-            )
-          }}
+          {{ truncate(announcement.title) }}
         </p>
       </div>
 
@@ -72,29 +67,19 @@ const truncate = (text: string) => {
         escDisabled
         moveDisabled
         :visible="visible"
-        :imgs="imgs"
+        :imgs="announcement.images"
         :index="index"
         @hide="handleHide"
       ></vue-easy-lightbox>
 
       <div class="flex flex-row flex-wrap items-start gap-2 mt-2">
         <img
-          src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070"
+          v-for="(image, index) in announcement.images"
+          :key="index"
+          :src="image"
           alt="events image"
           class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
-          @click="showMultiple(0)"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1513128034602-7814ccaddd4e?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=1935"
-          alt="events image"
-          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
-          @click="showMultiple(1)"
-        />
-        <img
-          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&w=2070"
-          alt="events image"
-          class="border-solid border-gray-200 border-2 rounded w-20 h-28 object-cover hover:shadow-lg cursor-pointer"
-          @click="showMultiple(2)"
+          @click="showMultiple(index, announcement.images)"
         />
       </div>
 
@@ -107,5 +92,6 @@ const truncate = (text: string) => {
       </div>
     </div>
   </div>
+  <!-- </main> -->
   <!-- </RouterLink> -->
 </template>

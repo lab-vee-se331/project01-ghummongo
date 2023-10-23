@@ -46,7 +46,6 @@ const { value: username } = useField<string>('username')
 const { value: firstName } = useField<string>('firstName')
 const { value: lastName } = useField<string>('lastName')
 const { value: email } = useField<string>('email')
-const { value: image } = useField<string[]>('image')
 
 const onSubmit = handleSubmit((values) => {
   // console.log(images.value[0].url);

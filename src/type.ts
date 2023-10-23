@@ -50,8 +50,12 @@ export interface ErrorsType {
 export interface AnnouncementItem {
   id: number
   title: string
-  content: string
+  description: string
   images: string[]
+  firstname: string
+  lastname: string
+  image: string
+  date: string
 }
 
 export interface CommentItem {

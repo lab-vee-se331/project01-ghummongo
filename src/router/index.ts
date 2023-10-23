@@ -96,17 +96,21 @@ const router = createRouter({
     {
       path: '/announcement',
       name: 'announcement-page',
-      component: AnnouncementView
-    },
-    {
-      path: '/announcement',
-      name: 'announcement-list',
       component: AnnouncementView,
       props: (route) => ({
         page: parseInt((route.query?.page as string) || '1'),
-        limit: parseInt((route.query?.limit as string) || '6')
+        limit: parseInt((route.query?.limit as string) || '3')
       })
     },
+    // {
+    //   path: '/announcement',
+    //   name: 'announcement-list',
+    //   component: AnnouncementView,
+    //   props: (route) => ({
+    //     page: parseInt((route.query?.page as string) || '1'),
+    //     limit: parseInt((route.query?.limit as string) || '6')
+    //   })
+    // },
 
     // ----- Auth -----
     {
