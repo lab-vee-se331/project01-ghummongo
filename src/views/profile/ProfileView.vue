@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import router from '@/router';
 import { useStudentStore } from '@/stores/student'
 import type { StudentItem } from '@/type'
 import { onMounted, ref } from 'vue'
@@ -21,11 +22,18 @@ const fetchStudentData = () => {
     })
 }
 
-onMounted(fetchStudentData)
+onMounted(() => {
+  setTimeout(() => {
+    router.push({ name: 'profile-detail', params: { id: userId } })
+  }, 5000);
+})
+
 </script>
 
 <template>
   <RouterLink :to="{ name: 'profile-detail', params: { id: userId } }">
-    GO TO PROFILE PAGE NAJA
+    Redirecting Na... .. .
   </RouterLink>
 </template>
+
+<style></style>
