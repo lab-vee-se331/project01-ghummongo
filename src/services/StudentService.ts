@@ -12,4 +12,7 @@ export default {
   getStudentsById(id: string): Promise<AxiosResponse<StudentItem[]>> {
     return apiClient.get<StudentItem[]>('/students/' + id)
   },
+  getStudentsByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<StudentItem[]>> {
+    return apiClient.get<StudentItem[]>('/students?_limit=' + perPage + '&_page=' + page + '&_filter=' + keyword)
+  },
 }

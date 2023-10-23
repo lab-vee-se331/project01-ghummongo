@@ -5,10 +5,13 @@ import StudentCard from '@/components/StudentCard.vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useStudentStore } from '@/stores/student'
 import BaseInput from '@/components/BaseInput.vue'
+import StudentService from '@/services/StudentService'
+import type { AxiosResponse } from 'axios'
 
 const studentStore = useStudentStore()
 const students = ref<StudentItem[]>([])
 const totalStudent = ref<number>(0)
+const keyword = ref('')
 
 const props = defineProps({
   page: {
@@ -21,8 +24,12 @@ const props = defineProps({
   }
 })
 
-onMounted(async () => {
+const fetchStudents = async () => {
   students.value = await studentStore.getStudents(props.limit, props.page)
+}
+
+onMounted(async () => {
+  fetchStudents()
   totalStudent.value = studentStore.getStudentsLength()
 })
 
@@ -42,25 +49,29 @@ const totalPages = computed(() => {
   return Math.ceil(totalStudent.value / props.limit)
 })
 
-const keyword = ref('')
 function updateKeyword(value: string) {
   console.log(keyword.value)
-  // let queryFunction
-  // if (keyword.value === '') {
-  //   queryFunction = studentStore.getStudents(3, 1)
-  // } else {
-  //   queryFunction = EventService.getEventsByKeyword(keyword.value, 3, 1)
-  // }
-  // queryFunction
-  //   .then((response: AxiosResponse<EventItem[]>) => {
-  //     events.value = response.data
-  //     console.log('events', events.value)
-  //     totalEvent.value = response.headers['x-total-count']
-  //     console.log('totalEvent', totalEvent.value)
-  //   })
-  //   .catch(() => {
-  //     router.push({ name: 'NetworkError' })
-  //   })
+  let queryFunction
+  if (keyword.value == '') {
+    fetchStudents()
+    queryFunction = studentStore.getStudents(6, 1)
+  } else {
+    queryFunction = StudentService.getStudentsByKeyword(keyword.value, 6, 1)
+  }
+  queryFunction
+    .then((response: AxiosResponse<StudentItem[]>) => {
+      students.value = response.data
+      console.log('students', students.value)
+      totalStudent.value = studentStore.getStudentsLength()
+      console.log('totalStudent', totalStudent.value)
+      if (!students.value) {
+        fetchStudents()
+      }
+    })
+    .catch((err) => {
+      console.log('err: ' + err)
+      // router.push({ name: 'NetworkError' })
+    })
 }
 </script>
 
@@ -73,14 +84,14 @@ function updateKeyword(value: string) {
         v-model="keyword"
         type="text"
         label="Search"
-        placeholder="ค้นหาควาย"
+        placeholder="Search for student"
         @input="updateKeyword"
       ></BaseInput>
     </div>
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       <StudentCard v-for="student in students" :key="student.id" :student="student"></StudentCard>
     </div>
-    <div v-if="totalPages != 0" class="pagination flex items-center -space-x-px h-10 mt-4">
+    <div v-if="totalPages > 0" class="pagination flex items-center -space-x-px h-10 mt-4">
       <RouterLink
         :to="{ name: 'student-list', query: { page: page - 1, limit: limit } }"
         rel="prev"

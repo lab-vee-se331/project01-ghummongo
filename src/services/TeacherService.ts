@@ -12,4 +12,7 @@ export default {
   getTeachersById(id: string): Promise<AxiosResponse<TeacherItem[]>> {
     return apiClient.get<TeacherItem[]>('/teachers/' + id)
   },
+  getTeachersByKeyword(keyword: string, perPage: number, page: number): Promise<AxiosResponse<TeacherItem[]>> {
+    return apiClient.get<TeacherItem[]>('/teachers?_limit=' + perPage + '&_page=' + page + '&_filter=' + keyword)
+  },
 }

@@ -5,10 +5,13 @@ import TeacherCard from '@/components/TeacherCard.vue'
 import { onBeforeRouteUpdate } from 'vue-router'
 import { useTeacherStore } from '@/stores/teacher'
 import BaseInput from '@/components/BaseInput.vue'
+import TeacherService from '@/services/TeacherService'
+import type { AxiosResponse } from 'axios'
 
 const teacherStore = useTeacherStore()
 const teachers = ref<TeacherItem[]>([])
 const totalTeacher = ref<number>(0)
+const keyword = ref('')
 
 const props = defineProps({
   page: {
@@ -21,16 +24,12 @@ const props = defineProps({
   }
 })
 
-onMounted(async () => {
-  // try {
-  //   if (teacherStore.teachers.length === 0) {
-  //     await teacherStore.fetchAllTeachers()
-  //   }
-  // } catch (error) {
-  //   console.log('ERROR: ' + error)
-  // }
-
+const fetchTeachers = async () => {
   teachers.value = await teacherStore.getTeachers(props.limit, props.page)
+}
+
+onMounted(async () => {
+  fetchTeachers()
   totalTeacher.value = teacherStore.getTeachersLength()
 })
 
@@ -51,25 +50,29 @@ const totalPages = computed(() => {
   return Math.ceil(totalTeacher.value / props.limit)
 })
 
-const keyword = ref('')
 function updateKeyword(value: string) {
   console.log(keyword.value)
-  // let queryFunction
-  // if (keyword.value === '') {
-  //   queryFunction = studentStore.getStudents(3, 1)
-  // } else {
-  //   queryFunction = EventService.getEventsByKeyword(keyword.value, 3, 1)
-  // }
-  // queryFunction
-  //   .then((response: AxiosResponse<EventItem[]>) => {
-  //     events.value = response.data
-  //     console.log('events', events.value)
-  //     totalEvent.value = response.headers['x-total-count']
-  //     console.log('totalEvent', totalEvent.value)
-  //   })
-  //   .catch(() => {
-  //     router.push({ name: 'NetworkError' })
-  //   })
+  let queryFunction
+  if (keyword.value == '') {
+    fetchTeachers()
+    queryFunction = teacherStore.getTeachers(6, 1)
+  } else {
+    queryFunction = TeacherService.getTeachersByKeyword(keyword.value, 6, 1)
+  }
+  queryFunction
+    .then((response: AxiosResponse<TeacherItem[]>) => {
+      teachers.value = response.data
+      console.log('teachers', teachers.value)
+      totalTeacher.value = teacherStore.getTeachersLength()
+      console.log('totalTeacher', totalTeacher.value)
+      if (!teachers.value) {
+        fetchTeachers()
+      }
+    })
+    .catch((err) => {
+      console.log('err: ' + err)
+      // router.push({ name: 'NetworkError' })
+    })
 }
 </script>
 
@@ -82,7 +85,7 @@ function updateKeyword(value: string) {
         v-model="keyword"
         type="text"
         label="Search"
-        placeholder="ค้นหาควายเหมือนกันแต่โตกว่า"
+        placeholder="Search for advisors"
         @input="updateKeyword"
       ></BaseInput>
     </div>
